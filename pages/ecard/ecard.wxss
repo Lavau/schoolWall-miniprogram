@@ -1,1 +1,82 @@
 /* pages/ecard/ecard.wxss */
+/* 头部搜索框 */
+.search {
+  position: relative;
+  top: 32rpx;
+  left: 25rpx;
+  width: 700rpx;
+  height: 66rpx;
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+
+.search input {
+  display: block;
+  box-sizing: border-box;
+  background: #fff;             /*white*/
+  border: 1rpx solid #e3e3e3;
+  width: 700rpx;
+  height: 66rpx;
+  border-radius: 30rpx;
+  padding-left: 32rpx; 
+}
+.search image {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  top: 16rpx;
+  right: 32rpx;
+}
+
+/* 遗失的一卡通列表 */
+.list{
+  margin-top: 50rpx;
+}
+
+.item{
+  border: #D3D3D3 5rpx solid;           /*lightGray*/ 
+  margin: 40rpx 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 5rpx 5rpx 15rpx #D3D3D3;  /*lightGray*/
+}
+
+.item-column{
+  display: flex;
+  flex-direction: row;
+}
+
+.item-column-title{
+  font-weight: bolder;
+  color: #D3D3D3;   /*lightGray*/
+}
+
+.item-column-content{
+  font-size: small;
+  color: #3333FF;  
+  margin-top: 8rpx;
+}
+
+button{
+  margin-top: 10rpx;
+}
+
+/* 底部固定发表按钮 */
+.add{
+  position: fixed;
+  top: 85%;
+  left: 80%
+}
+
+image{
+  height: 100rpx;
+  width: 100rpx;
+}
+
+.inputInformation{
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  padding: 10rpx;
+}

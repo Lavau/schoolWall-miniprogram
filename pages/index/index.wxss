@@ -10,8 +10,7 @@
 .header{
   width: 100%;
   height: 30%;
-  background-color: #1E90FF;
-  z-index: -10rpx;
+  background-color: #1E90FF;  /*DodgerBlue*/
   display: flex;
   flex-direction: row;
 }
@@ -21,7 +20,7 @@
   width: 60%;
   text-align: center;
   padding: 20rpx;
-  color: 	#F0FFF0;
+  color: 	#F0FFF0;    /*HoneyDew*/
   font-weight: bold;
 }
 
@@ -38,7 +37,7 @@
   width: 100%;
   height: 30%;
   border-radius: 40% 40%;
-  background-color: #1E90FF;
+  background-color: #1E90FF;   /*DodgerBlue*/
 }
 
 .header-bottom-box{
@@ -48,13 +47,13 @@
   width: 652rpx;
   height: 150rpx;
   margin: 0 45rpx;
-  background-color: #FFFFFF;
+  background-color: #FFFFFF;   /*white*/
   border-radius: 100rpx;
   display: flex;
   flex-direction: row;
   font-weight: bold;
   font-size: x-small;
-  box-shadow: 5rpx 5rpx 5rpx 5rpx  #F0F0F0;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx  #F0F0F0;  /*HoneyDew*/
 }
 
 .header-bottom-box-item{
@@ -71,7 +70,7 @@
 
 /* 中间 */
 .middle{
-  margin: 120rpx 20rpx 20rpx 10rpx;
+  margin: 120rpx 20rpx 0 20rpx;
   display: flex;
   flex-direction: row;
 }
@@ -79,22 +78,23 @@
 .middle-line{
   margin-top: 15rpx;
   background: #cdcdcd;
-  width: 31%;
+  width: 30%;
   height: 3rpx;
 }
 
 .middle-content{
+  width: 40%;
   font-size: x-small;
   color: #cdcdcd;
-  margin: 0 10rpx;
+  padding: 0 30rpx;
 }
 
 /* 身体部分 */
 .body{
-  margin: 30rpx 20rpx 20rpx 10rpx;
+  margin: 30rpx 20rpx 10rpx 20rpx;
   height: 1150rpx;
-  background-color: #FFFFFF;
-  border: #D3D3D3 5rpx solid;
+  background-color: #FFFFFF;     /*White*/
+  border: #D3D3D3 5rpx solid;    /*LightGray*/
   border-radius: 20rpx;
 }
 
@@ -128,6 +128,6 @@
 }
 
 .body-line{
-  border: #D3D3D3 2rpx solid;
+  border: #D3D3D3 2rpx solid;  /*LightGray*/
   margin: 0 30rpx;
 }

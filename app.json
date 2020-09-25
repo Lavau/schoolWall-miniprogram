@@ -1,9 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/ecardClaim/ecardClaim",
-    "pages/ecard/ecard"
+    "pages/ecard/ecard",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",

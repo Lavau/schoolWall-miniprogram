@@ -1,0 +1,16 @@
+/* pages/my/my.wxss */
+
+.noLogin{
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx;
+}
+
+.noLogin-img{
+  height: 180rpx;
+  width: 180rpx;
+}
+
+.noLogin-content{
+  margin: 60rpx 0 0 40rpx;
+}

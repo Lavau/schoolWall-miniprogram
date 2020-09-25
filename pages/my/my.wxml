@@ -1,0 +1,12 @@
+<!--pages/my/my.wxml-->
+<view class="header">
+  <view wx:if="{{login}}">
+    <view class="avator"></view>
+  </view>
+  <view wx:else class="noLogin">
+    <image class="noLogin-img" src="../../img/user-unlogin.png"></image>
+    <view class="noLogin-content">未登录</view>
+  </view>
+  <view class="userInfo"></view>
+</view>
+

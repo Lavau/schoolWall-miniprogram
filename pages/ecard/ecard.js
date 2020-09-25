@@ -1,66 +1,69 @@
 // pages/ecard/ecard.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    modalHidden: true,
+    claimModalHidden: true,
+    claimEcardId: "",
+    ecardId: "",
+    stuId: "",
+    college: "",
+    name: "",
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 以下是“提交一卡通 ID ”相关函数
    */
-  onLoad: function (options) {
-
+  // 出示认领的对话框
+  showClaimDialog: function() {
+    this.setData({claimModalHidden: !this.data.claimModalHidden});
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  // 隐藏认领的对话框
+  hiddenClaimDialog: function() {
+    this.setData({claimModalHidden: !this.data.claimModalHidden});
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  // 向后台提交被认领的一卡通 ID
+  submitClaimEcardId: function() {
+    if(this.data.claimEcardId !== "") console.log("成功");
+    else 
+      wx.showModal({
+        title: "请填写一卡通 ID"
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
+  // 确定输入的信息
+  inputClaimEcardId: function(e) {this.data.claimEcardId = e.detail.value;},
+
+  /**
+   * 以下是“提交一卡通”相关函数
+   */
+  // 出示“提交被捡到的一卡通”的对话框
+  showDialog: function() {
+    this.setData({modalHidden: !this.data.modalHidden});
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  // 隐藏“提交被捡到的一卡通”的对话框
+  hiddenDialog: function() {
+    this.setData({modalHidden: !this.data.modalHidden});
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  // 向后台提交被捡到的一卡通信息
+  submitInformation: function(e){
+    if(this.data.ecardId !== "" && this.data.stuId !== "" && this.data.college !== ""
+       && this.data.name !== "" && this.data.msg !== "")
+       console.log("提交成功");
+    else 
+      wx.showModal({
+        title: "请填写完整"
+      })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  // 确定输入的信息
+  inputEcardId: function(e) {this.data.ecardId = e.detail.value;},
+  inputStuId: function(e) {this.data.stuId = e.detail.value;},
+  inputCollege: function(e) {this.data.college = e.detail.value},
+  inputName: function(e) {this.data.name = e.detail.value},
+  inputMsg: function(e) {this.data.msg = e.detail.value}
 })

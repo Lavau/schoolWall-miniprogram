@@ -12,7 +12,7 @@
   </view>
   <view class="header-bottom"></view>
   <view class="header-bottom-box">
-    <view class="header-bottom-box-item">
+    <view class="header-bottom-box-item" bindtap="goToMyPage">
       <image src="../../img/icon/geRenZhongXin.svg"></image>
       <view>个人中心</view>
     </view>
