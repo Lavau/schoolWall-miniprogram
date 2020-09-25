@@ -32,7 +32,7 @@
     <view class="body-item">
       <image class="body-item-left" src="../../img/icon/yiKaTong.svg"></image>
       <view class="body-item-title">一卡通认领</view>
-      <image class="body-item-right" src="../../img/icon/you.svg"></image>
+      <image class="body-item-right" src="../../img/icon/you.svg" bindtap="goToEcardPage"></image>
     </view>
     <view class="body-line"></view>
     <view class="body-item">

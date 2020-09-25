@@ -71,7 +71,7 @@
 
 /* 中间 */
 .middle{
-  margin: 120rpx 10rpx 10rpx 10rpx;
+  margin: 120rpx 20rpx 20rpx 10rpx;
   display: flex;
   flex-direction: row;
 }
@@ -79,12 +79,11 @@
 .middle-line{
   margin-top: 15rpx;
   background: #cdcdcd;
-  width: 29%;
+  width: 31%;
   height: 3rpx;
 }
 
 .middle-content{
-  word-spacing: 5rpx;
   font-size: x-small;
   color: #cdcdcd;
   margin: 0 10rpx;
@@ -92,7 +91,7 @@
 
 /* 身体部分 */
 .body{
-  margin: 30rpx 10rpx 10rpx 10rpx;
+  margin: 30rpx 20rpx 20rpx 10rpx;
   height: 1150rpx;
   background-color: #FFFFFF;
   border: #D3D3D3 5rpx solid;

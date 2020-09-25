@@ -1,4 +1,4 @@
-// pages/ecardClaim/ecardClaim.js
+// pages/ecard/ecard.js
 Page({
 
   /**
