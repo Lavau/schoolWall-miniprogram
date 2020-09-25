@@ -1,10 +1,10 @@
 //app.js
+
 App({
   globalData: {
     userInfo: null,
     isLogin: false
   },
-
 
   onLaunch: function () {
     // 展示本地存储能力
@@ -39,5 +39,5 @@ App({
       }
     })
     console.log(this.globalData.userInfo)
-  }
+  },
 })

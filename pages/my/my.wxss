@@ -3,14 +3,16 @@
 .noLogin{
   display: flex;
   flex-direction: row;
-  margin: 20rpx;
+  margin: 20rpx 80rpx;
 }
 
 .noLogin-img{
-  height: 180rpx;
-  width: 180rpx;
+  height: 160rpx;
+  width: 160rpx;
 }
 
-.noLogin-content{
-  margin: 60rpx 0 0 40rpx;
+.noLogin button{ 
+  font-size: small;
+  background-color: #fff;
+  margin: 50rpx 0 0 -10rpx;
 }

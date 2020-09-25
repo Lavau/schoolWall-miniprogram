@@ -3,10 +3,12 @@
   <view wx:if="{{login}}">
     <view class="avator"></view>
   </view>
-  <view wx:else class="noLogin">
+  <view wx:else class="noLogin" bindtap="login">
     <image class="noLogin-img" src="../../img/user-unlogin.png"></image>
-    <view class="noLogin-content">未登录</view>
+    <view class="noLogin-btn">
+      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">您未登录</button>
+    </view>
   </view>
-  <view class="userInfo"></view>
+  <view class="userInfo"></view> 
 </view>
 

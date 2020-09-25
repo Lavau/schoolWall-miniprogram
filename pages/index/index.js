@@ -19,10 +19,5 @@ Page({
     wx.navigateTo({
       url: '../my/my',
     })
-  },
-
-  onLoad: function(){
-    console.log("是否登录：" + app.globalData.isLogin)
-    console.log("用户信息：" + app.globalData.userInfo)
   }
 })
