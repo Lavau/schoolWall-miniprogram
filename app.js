@@ -2,22 +2,24 @@
 
 App({
   globalData: {
+    localhost: "http://localhost:8080/miniprogram",
     userInfo: null,
     isLogin: false
   },
 
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    let code;
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
+    wx.login({success: res => code = res.code});
+    wx.request({
+      url: 'this.globalData.localhost' + "/login",
+      method: "POST",
+      data: {code: code}
     })
+
+
+
     // 获取用户信息
     wx.getSetting({
       success: res => {

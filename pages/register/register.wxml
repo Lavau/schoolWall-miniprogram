@@ -11,17 +11,28 @@
   </view>
 
   <view class="item">
-    <view class="tile">学院：</view>
-    <view class='top-selected' bindtap='bindShowMsg'>
-      <text>{{grade_name}}</text>
-    </view>
-    <!-- 下拉需要显示的列表 -->
-    <view class="select_box" wx:if="{{select}}">
-      <view wx:for="{{grades}}" wx:key="unique">
-        <view class="select_one" bindtap="mySelect" data-name="{{item}}">{{item}}</view>
-      </view>
+    <view>入学年份：</view>
+    <view class="select-body">
+      <picker mode="date" start="2016-01-01" end="{{endDate}}" fields="year" 
+      bindchange="datePickerBindchange">
+        {{dateValue}}
+      </picker>
     </view>
   </view>
 
-
+  <view class="select-item">
+    <view>所在学院：</view>
+    <view class="select-box">
+      <view class='selected-content' bindtap='bindShowMsg'>
+        <text>{{collegeName}}</text>
+      </view>
+      <view class="select-body" wx:if="{{select}}">
+        <view wx:for="{{colleges}}" wx:key="unique">
+          <view bindtap="mySelect" data-name="{{item}}">{{item.name}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <button bindtap="register">注册</button>
 </view>

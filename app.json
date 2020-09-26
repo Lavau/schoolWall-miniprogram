@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/register/register",
-    "pages/my/my",
+    
     "pages/index/index",
     "pages/ecard/ecard",
     "pages/expressThank/expressThank",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/register/register",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
