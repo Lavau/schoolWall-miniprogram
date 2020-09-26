@@ -36,10 +36,19 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
+    app.globalData.userInfo = e.detail.userInfo;
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    });
+  },
+
+  go: function(){
+    wx.request({
+      url: 'http://localhost:8080/e',
+      success: function(e){
+        console.log(e);
+      }
     })
   }
 })

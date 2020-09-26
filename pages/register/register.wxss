@@ -1,0 +1,29 @@
+/* pages/register/register.wxss */
+/* 顶部 */
+.top-text {
+  float: left;
+}
+
+/* 下拉框 */
+.top-selected {
+  width: 50%;
+  float: right;
+  border: 1px solid #ccc;
+}
+
+/* 下拉内容 */
+.select_box {
+  width: 50%;
+  float: right;
+  animation: myfirst 0.5s;
+}
+
+.select_one {
+  border-bottom: 1px solid #ccc;
+}
+
+/* 下拉过度效果 */
+@keyframes myfirst {
+  from{height: 0rpx;}
+  to{height: 210rpx;}
+}

@@ -10,5 +10,6 @@
     </view>
   </view>
   <view class="userInfo"></view> 
+  <button bindtap="go">go</button>
 </view>
 
