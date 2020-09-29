@@ -3,13 +3,26 @@ const app = getApp()
 
 Page({
   data: {
-    login: false,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
-  // 获取用户信息
+  goToRegisterPage: function() {
+    wx.navigateTo({
+      url: '../register/register',
+    });
+  },
+
+  goToLogin: function() {
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
+
+  /**
+   * 页面加载时，获取用户信息
+   */
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -34,12 +47,5 @@ Page({
         }
       })
     }
-  },
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo;
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    });
   }
 })

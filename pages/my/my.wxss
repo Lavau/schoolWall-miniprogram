@@ -16,3 +16,18 @@
   background-color: #fff;
   margin: 50rpx 0 0 -10rpx;
 }
+
+.login{
+  margin: 40rpx 20rpx;
+}
+
+.login-userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  margin: 0 42%;
+}
+
+.login-userinfo-nickname {
+  text-align: center;
+}

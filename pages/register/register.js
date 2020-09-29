@@ -33,37 +33,45 @@ Page({
   //  这个函数需要“瘦身”
   register: function(){
     if(this.data.stuId !== null && this.data.name !== null && this.data.collegeId !== null){
-      console.log(this.data.stuId);
-      console.log(this.data.name);
-      console.log(this.data.collegeId);
-      wx.request({
-        url: app.globalData.localhost + "/user/register",
-        method: "POST",
-        header: {"Content-Type": "application/x-www-form-urlencoded"},
-        data: {
-          stuId: this.data.stuId,
-          name: this.data.name,
-          collegeId: this.data.collegeId
-        },
-        success: function(e) {
-          if(e.data.success){
-            wx.showModal({
-              title: "注册成功",
-              showCancel: true
-            });
-          } else {
-          wx.showModal({
-            title: "注册失败",
-            showCancel: true
-          });
+      wx.login({
+        timeout: app.globalData.timeout,
+        // fail: app.fail(),
+        success: res => wx.request({
+          url: app.globalData.localhost + "/user/register",
+          method: "POST",
+          header: {"Content-Type": "application/x-www-form-urlencoded"},
+          data: {
+            stuId: this.data.stuId,
+            name: this.data.name,
+            collegeId: this.data.collegeId,
+            code: res.code
+          },
+          timeout: app.globalData.timeout,
+          // fail: app.fail(),
+          success: function(e) {
+            if(e.data.success){
+              wx.showModal({
+                title: "注册成功",
+                showCancel: true,
+                success: function() {
+                  wx.redirectTo({
+                    url: '../index/index',
+                  });
+                }
+              });
+            } else {
+              wx.showModal({
+                title: "注册失败",
+                showCancel: true
+              });
+            }
           }
-        }
       })
-    } else {
-    wx.showModal({
-      title: "请检查输入！",
-      showCancel: true
-    });
+    });} else {
+      wx.showModal({
+        title: "请检查输入！",
+        showCancel: true
+      });
     }
   },
 
@@ -79,6 +87,8 @@ Page({
 
     let p = this;
     wx.request({
+      timeout: app.globalData.timeout,
+      // fail: app.fail(),
       url:  app.globalData.localhost + "/college",
       header: {'content-type': 'application/json'},
       success: e => p.setData({colleges: e.data.list})

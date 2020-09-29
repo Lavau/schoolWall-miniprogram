@@ -1,15 +1,17 @@
 <!--pages/my/my.wxml-->
 <view class="header">
-  <view wx:if="{{login}}">
-    <view class="avator"></view>
-  </view>
-  <view wx:else class="noLogin" bindtap="login">
+
+  <view wx:if="{{!hasUserInfo && canIUse}}" class="noLogin" bindtap="goToLogin">
     <image class="noLogin-img" src="../../img/user-unlogin.png"></image>
     <view class="noLogin-btn">
-      <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">您未登录</button>
+      <button bindtap="goToLogin">您未登录</button>
     </view>
   </view>
-  <view class="userInfo"></view> 
-  <button bindtap="go">go</button>
+  <view wx:else class="login">
+    <image class="login-userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="login-userinfo-nickname">{{userInfo.nickName}}</view>
+  </view>
+
+  <button bindtap="goToRegisterPage">注册</button>
 </view>
 

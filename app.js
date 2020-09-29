@@ -1,25 +1,21 @@
 //app.js
-
 App({
   globalData: {
+    timeout: 30000,
     localhost: "http://localhost:8080/miniprogram",
     userInfo: null,
-    isLogin: false
+    login: false
+  },
+
+  fail: function() {
+    wx.showModal({
+      title: "提示",
+      content: "处理失败",
+      showCancel: false
+    });
   },
 
   onLaunch: function () {
-    let code;
-
-    // 登录
-    wx.login({success: res => code = res.code});
-    wx.request({
-      url: 'this.globalData.localhost' + "/login",
-      method: "POST",
-      data: {code: code}
-    })
-
-
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -39,7 +35,6 @@ App({
           })
         }
       }
-    })
-    console.log(this.globalData.userInfo)
+    });
   },
 })

@@ -28,7 +28,7 @@
       </view>
       <view class="select-body" wx:if="{{select}}">
         <view wx:for="{{colleges}}" wx:key="unique">
-          <view bindtap="mySelect" data-name="{{item}}">{{item.name}}</view>
+          <view bindtap="mySelect" data-name="{{item}}">{{item.collegeName}}</view>
         </view>
       </view>
     </view>
