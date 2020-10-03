@@ -94,17 +94,17 @@ Page({
               uuid: p.data.uuid,
             },
             success: (e) => {
+              // 图片提交失败时，显示提示信息
               let result = JSON.parse(e.data);
               console.log(result)
-              if(!result["success"]){
-                p.showModal(result["msg"]);
-              }
+              if(!result["success"]) p.showModal(result["msg"] + "\n图片提交失败");
+              else p.showModal("提交成功！");
             }
           });
-          console.log("上传完成");
         }
-        
-        p.showModal("提交成功！");
+
+        // 无图片时，显示成功提交的信息
+        if( p.data.photos.length == 0) p.showModal("提交成功！");
     } else {
       this.showModal("必须有描述或照片");
     }

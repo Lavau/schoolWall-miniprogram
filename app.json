@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/lostPropertyDetail/lostPropertyDetail",
     "pages/postLostProperty/postLostProperty",
     "pages/index/index",
     "pages/ecard/ecard",
