@@ -82,6 +82,8 @@
       <view class="body-item-title">跳蚤市场</view>
       <image class="body-item-right" src="../../img/icon/you.svg"></image>
     </view> -->
+
+    <button type="default" bindtap="test">Test</button>
   </view>
 
 </view>

@@ -13,6 +13,15 @@ Page({
     })
   },
 
+  test: function() {
+    wx.request({
+      url: app.globalData.localhost + "/test",
+      success: function(e) {
+        console.log(e);
+      }
+    });
+  },
+
   // 前往个人中心页面
   goToMyPage: function() {
     wx.navigateTo({
