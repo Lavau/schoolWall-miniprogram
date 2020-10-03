@@ -89,7 +89,6 @@ Page({
             filePath: p.data.photos[i],
             name: "uploadFile",
             formData: {
-              i: i,
               typeId: "4",
               uuid: p.data.uuid,
             },
