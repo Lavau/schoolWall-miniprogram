@@ -1,0 +1,4 @@
+<!--pages/publish/publish.wxml-->
+<view class="item">一卡通</view>
+<view class="item" bindtap="goToPublishLostPropertyPage">失物</view>
+<view class="item" bindtap="goToPublishSeekHelpPage">求助</view>

@@ -1,19 +1,47 @@
 {
   "pages": [
-    "pages/lostPropertyDetail/lostPropertyDetail",
-    "pages/postLostProperty/postLostProperty",
     "pages/index/index",
+    "pages/indexTest/index",
     "pages/ecard/ecard",
     "pages/expressThank/expressThank",
     "pages/setting/setting",
     "pages/register/register",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/lostPropertyDetail/lostPropertyDetail",
+    "pages/publish/publish",
+    "pages/publishLostProperty/publishLostProperty",
+    "pages/publishSeekHelp/publishSeekHelp"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "长春理工大学校园墙",
+    "navigationBarTitleText": "校园墙",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#212923",
+    "selectedColor": "#1E90FF",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/img/icon/shouYe.png",
+        "selectedIconPath": "/img/icon/shouYe.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发布",
+        "iconPath": "/img/icon/faBu.png",
+        "selectedIconPath": "/img/icon/faBu.png"
+      },
+      {
+        "pagePath": "pages/register/register",
+        "text": "我的",
+        "iconPath": "/img/icon/geRen.png",
+        "selectedIconPath": "/img/icon/geRen.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

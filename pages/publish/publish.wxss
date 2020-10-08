@@ -1,0 +1,5 @@
+/* pages/publish/publish.wxss */
+.item{
+  border: blue 5rpx solid;
+  margin: 40rpx 20rpx;
+}

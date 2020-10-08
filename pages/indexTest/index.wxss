@@ -1,0 +1,133 @@
+/* pages/index/index.wxss */
+/* 为整个页面设置盒子 */
+.container{
+  width: 100%;
+  height: 1000rpx;
+  position: relative;
+}
+
+/* 头部 */
+.header{
+  width: 100%;
+  height: 30%;
+  background-color: #1E90FF;  /*DodgerBlue*/
+  display: flex;
+  flex-direction: row;
+}
+
+.header-left{
+  margin-top: 30rpx;
+  width: 60%;
+  text-align: center;
+  padding: 20rpx;
+  color: 	#F0FFF0;    /*HoneyDew*/
+  font-weight: bold;
+}
+
+.header-right image{
+  margin-top: 10rpx;
+  height: 180rpx;
+  width: 180rpx;
+}
+
+.header-bottom{
+  position: absolute;
+  top: 70rpx;
+  z-index: -10;
+  width: 100%;
+  height: 30%;
+  border-radius: 40% 40%;
+  background-color: #1E90FF;   /*DodgerBlue*/
+}
+
+.header-bottom-box{
+  position: absolute;
+  top: 240rpx;
+  z-index: 10;
+  width: 652rpx;
+  height: 150rpx;
+  margin: 0 45rpx;
+  background-color: #FFFFFF;   /*white*/
+  border-radius: 100rpx;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-size: x-small;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx  #F0F0F0;  /*HoneyDew*/
+}
+
+.header-bottom-box-item{
+  margin-left: 30rpx;
+  margin-top: 40rpx;
+  text-align: center;
+  width: 50%;
+}
+
+.header-bottom-box image{
+  height: 40rpx;
+  width: 40rpx;
+}
+
+/* 中间 */
+.middle{
+  margin: 120rpx 20rpx 0 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.middle-line{
+  margin-top: 15rpx;
+  background: #cdcdcd;
+  width: 30%;
+  height: 3rpx;
+}
+
+.middle-content{
+  width: 40%;
+  font-size: x-small;
+  color: #cdcdcd;
+  padding: 0 30rpx;
+}
+
+/* 身体部分 */
+.body{
+  margin: 30rpx 20rpx 10rpx 20rpx;
+  height: 1150rpx;
+  background-color: #FFFFFF;     /*White*/
+  border: #D3D3D3 5rpx solid;    /*LightGray*/
+  border-radius: 20rpx;
+}
+
+.body-item{
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin: 40rpx 30rpx;
+}
+
+.body-item-left{
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.body-item-title{
+  width: 70%;
+  display: inline-block;
+  margin-top: 12rpx;
+  margin-left: 30rpx;
+  font-size: small;
+  font-weight: bolder;
+}
+
+.body-item-right{
+  height: 40rpx;
+  width: 40rpx;
+  margin-top: 10rpx;
+  position: relative;
+  left: 280rpx;
+}
+
+.body-line{
+  border: #D3D3D3 2rpx solid;  /*LightGray*/
+  margin: 0 30rpx;
+}

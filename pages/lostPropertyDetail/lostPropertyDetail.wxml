@@ -1,2 +1,21 @@
-<!--pages/lostPropertyDetail/losstPropertyDetail.wxml-->
-<text>pages/lostPropertyDetail/losstPropertyDetail.wxml</text>
+<!--pages/postLostProperty/postLostProperty.wxml-->
+<view>
+  <view class="title">
+    <view>物品名：</view>
+    <view>{{}}</view>
+  </view>
+
+  <view class="description">
+    <view>特征描述：</view>
+    <view>{{}}</view>
+  </view>
+
+  <view class="photo">
+    <view>图片：</view>
+    <image wx:for="{{photos}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewPhoto"></image>
+  </view>
+
+  <view class="btn">
+    <button type="primary" bindtap="submit">我要认领</button>
+  </view>
+</view>

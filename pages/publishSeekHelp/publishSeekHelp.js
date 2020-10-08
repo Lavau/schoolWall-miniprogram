@@ -1,4 +1,4 @@
-// pages/postLostProperty/postLostProperty.js
+// pages/publishSeekHelp/publishSeekHelp.js
 const APP = getApp();
 
 Page({
@@ -89,6 +89,7 @@ Page({
             filePath: p.data.photos[i],
             name: "uploadFile",
             formData: {
+              i: i,
               typeId: "4",
               uuid: p.data.uuid,
             },
@@ -114,6 +115,7 @@ Page({
     */
   onLoad: function() {
     this.data.uuid = APP.uuid();
+    console.log("seek help uuid：" + this.data.uuid);
   },
 
   /**
