@@ -19,5 +19,12 @@ Page({
     wx.navigateTo({
       url: '../publishSeekHelp/publishSeekHelp',
     })
-  }
+  },
+
+  // 前往感谢/吐槽发布页
+  goToPublishThankOrRidiculePage: function() {
+    wx.navigateTo({
+      url: '../publishThankOrRidicule/publishThankOrRidicule',
+    })
+  },
 })

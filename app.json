@@ -10,7 +10,8 @@
     "pages/lostPropertyDetail/lostPropertyDetail",
     "pages/publish/publish",
     "pages/publishLostProperty/publishLostProperty",
-    "pages/publishSeekHelp/publishSeekHelp"
+    "pages/publishSeekHelp/publishSeekHelp",
+    "pages/publishThankOrRidicule/publishThankOrRidicule"
   ],
   "window": {
     "backgroundTextStyle": "light",

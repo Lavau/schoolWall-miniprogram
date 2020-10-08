@@ -2,13 +2,13 @@
 <view>
   <!-- 输入标题 -->
   <view class="title">
-    <view><input type="text" placeholder="请输入求助主题（最多10个字）" maxlength="10" bindinput="inputTitle"/></view>
+    <view><input type="text" placeholder="请输入主题（最多10个字）" maxlength="10" bindinput="inputTitle"/></view>
   </view>
 
   <!-- 输入具体内容 -->
   <view class="description">
     <view>
-      <textarea placeholder="请输入求助的具体内容" maxlength="150" bindinput="inputDescription">
+      <textarea placeholder="请输入具体内容" maxlength="150" bindinput="inputDescription">
         <view class="word-num-sign">{{wordNum}}/150</view>
       </textarea>
     </view>

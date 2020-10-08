@@ -90,7 +90,8 @@ Page({
             },
             success: (e) => {
               // 图片提交失败时，显示提示信息
-              if(!JSON.parse(e.data)["success"]) p.showModal(result["msg"] + "\n图片提交失败");
+              let result = JSON.parse(e.data);
+              if(!result["success"]) p.showModal(result["msg"] + "\n图片提交失败");
             }
           });
         }

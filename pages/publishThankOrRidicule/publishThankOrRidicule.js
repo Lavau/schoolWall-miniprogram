@@ -12,7 +12,7 @@ Page({
   },
 
   /**
-   * 获取输入的内容：求助主题，求助内容具体描述，是否匿名
+   * 获取输入的内容：主题，内容具体描述，是否匿名
    */
   inputTitle: function(e) {this.setData({title: e.detail.value})},
   inputDescription: function(e) {
@@ -47,7 +47,7 @@ Page({
    },
 
    /**
-    * 提交求助的相关信息
+    * 提交感谢/吐槽的信息
     */
   submit: function() {
     // 要求 uuid 必须不为空串
@@ -58,13 +58,13 @@ Page({
     }
 
     if(p.data.title.length === 0){
-      this.showModal("求助主题不能为空哦");
+      this.showModal("主题不能为空哦");
       return;
     }
     if(p.data.description.length > 0 || p.data.pictures.length > 0){
         // 提交非图片部分
         wx.request({
-          url: APP.globalData.localhost + "/login/seekHelp",
+          url: APP.globalData.localhost + "/login/thankOrRidicule",
           method: "POST",
           header: {"Content-Type": "application/x-www-form-urlencoded"},
           data: {
@@ -84,7 +84,7 @@ Page({
             filePath: p.data.pictures[i],
             name: "uploadFile",
             formData: {
-              typeId: "5",
+              typeId: "3",
               uuid: p.data.uuid,
             },
             success: (e) => {
@@ -125,7 +125,7 @@ Page({
     */
   onLoad: function() {
     this.data.uuid = APP.uuid();
-    console.log("seek help uuid：" + this.data.uuid);
+    console.log("thank or ridicule uuid：" + this.data.uuid);
   },
 
   /**
