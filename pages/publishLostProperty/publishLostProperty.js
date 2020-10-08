@@ -102,6 +102,14 @@ Page({
     }
   },
 
+  /**
+   * 取消提交
+   * 重定型到首页
+   */
+  cancel: function() {
+    wx.switchTab({url: '../index/index'});
+  },
+
    /**
     * 页面加载时，获取 uuid
     */
@@ -117,7 +125,8 @@ Page({
   showModal: function(e) {
     wx.showModal({
       content: e,
-      showCancel: false
-    })
+      showCancel: false,
+      success: (res) => wx.switchTab({url: '../index/index'})
+    });
   }
 })

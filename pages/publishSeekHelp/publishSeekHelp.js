@@ -56,14 +56,12 @@ Page({
       this.showModal("uuid 为空！");
       return;
     }
-    if(p.data.title.length > 0 && p.data.msg.length > 0 
-      && p.data.description.length > 0 || p.data.photos.length > 0){
-        console.log(p.data.uuid)
-        console.log(p.data.title)
-        console.log(p.data.description)
-        console.log(p.data.photos.length)
-        console.log(p.data.msg)
 
+    if(p.data.title.length === 0 || p.data.msg.length === 0){
+      this.showModal("物品名与认领信息必须有！");
+      return;
+    }
+    if(p.data.description.length > 0 || p.data.photos.length > 0){
         // 提交非图片部分
         wx.request({
           url: APP.globalData.localhost + "/login/lostAndFound",
@@ -81,9 +79,6 @@ Page({
         
         // 提交图片
         for(let i = 0; i < p.data.photos.length; i++){
-          console.log(p.data.photos[i]);
-          console.log(p.data.photos);
-          console.log("第"+i+"张图");
           wx.uploadFile({
             url: APP.globalData.localhost + "/login/uploadPhoto",
             filePath: p.data.photos[i],
@@ -95,10 +90,7 @@ Page({
             },
             success: (e) => {
               // 图片提交失败时，显示提示信息
-              let result = JSON.parse(e.data);
-              console.log(result)
-              if(!result["success"]) p.showModal(result["msg"] + "\n图片提交失败");
-              else p.showModal("提交成功！");
+              if(!JSON.parse(e.data)["success"]) p.showModal(result["msg"] + "\n图片提交失败");
             }
           });
         }
@@ -110,12 +102,20 @@ Page({
     }
   },
 
+  /**
+   * 取消提交
+   * 重定型到首页
+   */
+  cancel: function() {
+    wx.switchTab({url: '../index/index'});
+  },
+
    /**
     * 页面加载时，获取 uuid
     */
   onLoad: function() {
     this.data.uuid = APP.uuid();
-    console.log("seek help uuid：" + this.data.uuid);
+    console.log("lost and found uuid：" + this.data.uuid);
   },
 
   /**
@@ -125,7 +125,8 @@ Page({
   showModal: function(e) {
     wx.showModal({
       content: e,
-      showCancel: false
-    })
+      showCancel: false,
+      success: (res) => wx.switchTab({url: '../index/index'})
+    });
   }
 })
