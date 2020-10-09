@@ -11,7 +11,10 @@
     "pages/publish/publish",
     "pages/publishLostProperty/publishLostProperty",
     "pages/publishSeekHelp/publishSeekHelp",
-    "pages/publishThankOrRidicule/publishThankOrRidicule"
+    "pages/publishThankOrRidicule/publishThankOrRidicule",
+    "pages/publishEcard/publishEcard",
+    "pages/publishSingle/publishSingle",
+    "paegs/publishPublicity/publishPublicity"
   ],
   "window": {
     "backgroundTextStyle": "light",

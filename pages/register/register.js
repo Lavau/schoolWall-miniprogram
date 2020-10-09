@@ -20,8 +20,8 @@ Page({
   mySelect: function(e) {
     let item = e.currentTarget.dataset.name;
     this.setData({
-      collegeName: item.name,
-      collegeId: item.collegeId,
+      collegeName: item['collegeName'],
+      collegeId: item['collegeId'],
       select: false
     });
   },

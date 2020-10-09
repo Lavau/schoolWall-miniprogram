@@ -1,0 +1,58 @@
+<!--pages/publishSingle/publishSingle.wxml-->
+<view>
+  <!-- 输入身高 -->
+  <view class="height">
+    <view><input type="number" maxlength="3" placeholder="ni 的身高"  bindinput="inputHeight"/></view>
+    <view>cm</view>
+  </view>
+
+  <!-- 输入体重 -->
+  <view class="weight">
+    <view><input type="number" maxlength="4" placeholder="ni 的体重" bindinput="inputWeight"/></view>
+    <view>kg</view>
+  </view>
+
+  <!-- 输入特长 -->
+  <view class="specialty">
+    <view><input type="text" maxlength="20" placeholder="ni 的特长" bindinput="inputSpecialty"/></view>
+  </view>
+
+  <!-- 输入爱好 -->
+  <view class="interest">
+    <view><input type="text" maxlength="20" placeholder="ni 的爱好" bindinput="inputInterest"/></view>
+  </view>
+
+  <!-- 输入具体内容 -->
+  <view class="description">
+    <view>
+      <textarea placeholder="请输入具体内容" maxlength="200" bindinput="inputDescription">
+        <view class="word-num-sign">{{wordNum}}/200</view>
+      </textarea>
+    </view>
+  </view>
+
+  <!-- 选择图片并预览 -->
+  <view class="picture">
+    <button bindtap="choosepicture">选择图片</button>
+  </view>
+  <view>
+    <image wx:for="{{pictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewpicture"></image>
+  </view>
+
+  <!-- 输入联系方式 -->
+  <view class="msg">
+    <input type="text" maxlength="20" placeholder="联系方式" bindinput="inputMsg"/>
+  </view>
+
+  <!-- 匿名按钮 -->
+  <view class="switch-anonymous">
+    <switch bindchange="inputAnonymous">是否匿名，默认为不匿名</switch>
+  </view>
+
+  <!-- 取消按钮与提交按钮 -->
+  <view class="btn">
+    <button type="default">取消</button>
+    <button type="primary" bindtap="submit">确定</button>
+  </view>
+</view>
+

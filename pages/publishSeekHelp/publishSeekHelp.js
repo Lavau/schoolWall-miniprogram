@@ -89,7 +89,7 @@ Page({
             },
             success: (e) => {
               // 图片提交失败时，显示提示信息
-              let result = JSON.parse(e.data);
+              let result = e.data;
               if(!result["success"]) {
                 wx.showModal({
                   content: result["msg"] + "\n图片提交失败",

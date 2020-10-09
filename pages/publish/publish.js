@@ -7,6 +7,13 @@ Page({
   /**
    * 前往具体的发布页
    */
+  // 前往一卡通发布页 
+  goToEcardPage: function() {
+    wx.navigateTo({
+      url: '../publishEcard/publishEcard',
+    })
+  },
+
   // 前往失物招领发布页
   goToPublishLostPropertyPage: function() {
     wx.navigateTo({
@@ -25,6 +32,20 @@ Page({
   goToPublishThankOrRidiculePage: function() {
     wx.navigateTo({
       url: '../publishThankOrRidicule/publishThankOrRidicule',
+    })
+  },
+
+  // 前往脱单发布页
+  goToPublishSinglePage: function() {
+    wx.navigateTo({
+      url: '../publishSingle/publishSingle',
+    })
+  },
+
+  // 前往宣传发布页
+  goToPublishPublicityPage: function() {
+    wx.navigateTo({
+      url: '../publishPublicity/publishPublicity',
     })
   },
 })

@@ -1,4 +1,4 @@
-// pages/publishSeekHelp/publishSeekHelp.js
+// pages/publishPublicity/publishPublicity.js
 const APP = getApp();
 
 Page({
@@ -8,6 +8,7 @@ Page({
     description: "",
     Anonymous: false,
     wordNum: 0,
+    gmtDeat: null,
     pictures: []
   },
 
@@ -47,7 +48,7 @@ Page({
    },
 
    /**
-    * 提交感谢/吐槽的信息
+    * 提交相关信息
     */
   submit: function() {
     // 要求 uuid 必须不为空串
@@ -64,7 +65,7 @@ Page({
     if(p.data.description.length > 0 || p.data.pictures.length > 0){
         // 提交非图片部分
         wx.request({
-          url: APP.globalData.localhost + "/login/thankOrRidicule",
+          url: APP.globalData.localhost + "/login/publicity",
           method: "POST",
           header: {"Content-Type": "application/x-www-form-urlencoded"},
           data: {
@@ -84,13 +85,13 @@ Page({
             filePath: p.data.pictures[i],
             name: "uploadFile",
             formData: {
-              typeId: "3",
+              typeId: "1",
               uuid: p.data.uuid,
             },
             success: (e) => {
               // 图片提交失败时，显示提示信息
               let result = e.data;
-              if(!result["success"]) {
+              if(result["success"] == false) {
                 wx.showModal({
                   content: result["msg"] + "\n图片提交失败",
                   showCancel: false,
@@ -120,12 +121,12 @@ Page({
     wx.switchTab({url: '../index/index'});
   },
 
-  /**
+   /**
     * 页面加载时，获取 uuid
     */
   onLoad: function() {
     this.data.uuid = APP.uuid();
-    console.log("thank or ridicule uuid：" + this.data.uuid);
+    console.log("publicity uuid：" + this.data.uuid);
   },
 
   /**

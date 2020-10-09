@@ -1,0 +1,27 @@
+/* pages/publishPublicity/publishPublicity.wxss */
+.title, .msg{
+  border: red 5rpx solid;
+  margin: 40rpx 20rpx;
+  font-size: 16px;
+}
+
+.description{
+  border: green 5rpx solid;
+  margin: 40rpx 20rpx;
+}
+
+.word-num-sign{
+  position: absolute;
+  left: 85%;
+  top: 80%;
+}
+
+.photo{
+  border: blue 5rpx solid;
+  margin: 40rpx 20rpx;
+}
+
+.btn{
+  display: flex;
+  flex-direction: row;
+}
