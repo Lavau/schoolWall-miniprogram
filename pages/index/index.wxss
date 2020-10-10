@@ -1,17 +1,15 @@
 /* pages/index/index.wxss */
+page{
+  background-color: #000;
+}
+
 .nav {
   height: 85rpx;
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
   line-height: 80rpx;
   background: #f7f7f7;
-  font-size: 16px;
   white-space: nowrap;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99;
 }
 .nav-item {
   margin: 0 15rpx;
@@ -23,4 +21,68 @@
   font-weight: 800;
   font-size: large;
   border-bottom: #1E90FF 10rpx solid;
+}
+
+.body{
+  margin-top: 10px;
+  /* background-color: #000000; */
+}
+
+.body-item{
+  width: 100%;
+  height: 547rpx;
+  margin-top: 10px;
+  background-color: #fff;
+  padding: 17rpx;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.body-item-img{
+  width: 904rpx;
+  height: 233rpx;
+  box-sizing: border-box;
+  margin-bottom: 23rpx;
+}
+
+.body-item-img image{
+  width: 233rpx;
+  height: 233rpx;
+  border: #000 2rpx solid;
+  margin: 0 3rpx;
+}
+
+.body-item-content{
+  width: 730rpx;
+  height: 157rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 9rpx;
+}
+
+.body-item-other{
+  font-size: 21rpx;
+  margin-bottom: 14rpx;
+}
+
+.body-item-bottom{
+  display: flex;
+  flex-direction: row;
+}
+
+.body-item-bottom-avator{
+  height: 70rpx;
+  width: 70rpx;
+  border-radius: 35rpx;
+  background: blue;
+}
+
+.body-item-bottom-nickname{
+  margin: 16rpx 250rpx 16rpx 10rpx;
+}
+
+.body-item-bottom-time{
+  margin-top: 40rpx;
+  font-size: xx-small;
 }

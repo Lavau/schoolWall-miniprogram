@@ -1,5 +1,6 @@
 <!--pages/index/index.wxml-->
-<view>
+<view class="container">
+  <view>
     <!-- tab导航栏 -->
     <scroll-view scroll-x="true" class="nav">
         <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
@@ -8,5 +9,86 @@
           </view>
         </block>        
     </scroll-view>
+  </view>
+
+  <view class="body">
+    <view class="body-item">
+      <view class="body-item-img">
+        <image></image> 
+        <image></image> 
+        <image></image> 
+      </view>
+      <view class="body-item-content">
+        如果您使用的是序列化的软件部署模型，请联系您的 IT 管理员，以请求进行指定的用户部署。该选项允许贵组织的每位人员都有一个与其求进行指定是序列化的以请求进行指定的用户部署行指定的果您使用的是署管理员，以请……
+      </view>
+      <view class="body-item-other">
+        133热度 15评论
+      </view>
+      <view class="body-item-bottom">
+        <image class="body-item-bottom-avator"></image>
+        <view class="body-item-bottom-nickname">名侦探喜来乐</view>
+        <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+      </view>
+    </view>
+
+    <view class="body-item">
+      <view class="body-item-img">
+        <image></image> 
+        <image></image> 
+        <image></image> 
+      </view>
+      <view class="body-item-content">
+        如果您使用的是序列化的软件部署模型，请联系您的 IT 管理员，以请求进行指定的用户部署。该选项允许贵组织的每位人员都有一个与其求进行指定是序列化的以请求进行指定的用户部署行指定的果您使用的是署管理员，以请……
+      </view>
+      <view class="body-item-other">
+        133热度 15评论
+      </view>
+      <view class="body-item-bottom">
+        <image class="body-item-bottom-avator"></image>
+        <view class="body-item-bottom-nickname">名侦探喜来乐</view>
+        <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+      </view>
+    </view>
+
+    <view class="body-item">
+      <view class="body-item-img">
+        <image></image> 
+        <image></image> 
+        <image></image> 
+      </view>
+      <view class="body-item-content">
+        如果您使用的是序列化的软件部署模型，请联系您的 IT 管理员，以请求进行指定的用户部署。该选项允许贵组织的每位人员都有一个与其求进行指定是序列化的以请求进行指定的用户部署行指定的果您使用的是署管理员，以请……
+      </view>
+      <view class="body-item-other">
+        133热度 15评论
+      </view>
+      <view class="body-item-bottom">
+        <image class="body-item-bottom-avator"></image>
+        <view class="body-item-bottom-nickname">名侦探喜来乐</view>
+        <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+      </view>
+    </view>
+
+    <view class="body-item">
+      <view class="body-item-img">
+        <image></image> 
+        <image></image> 
+        <image></image> 
+      </view>
+      <view class="body-item-content">
+        如果您使用的是序列化的软件部署模型，请联系您的 IT 管理员，以请求进行指定的用户部署。该选项允许贵组织的每位人员都有一个与其求进行指定是序列化的以请求进行指定的用户部署行指定的果您使用的是署管理员，以请……
+      </view>
+      <view class="body-item-other">
+        133热度 15评论
+      </view>
+      <view class="body-item-bottom">
+        <image class="body-item-bottom-avator"></image>
+        <view class="body-item-bottom-nickname">名侦探喜来乐</view>
+        <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+      </view>
+    </view>
+
+  </view>
+
 </view>
 
