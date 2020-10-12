@@ -10,6 +10,10 @@ page{
   line-height: 80rpx;
   background: #f7f7f7;
   white-space: nowrap;
+
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 .nav-item {
   margin: 0 15rpx;
@@ -24,7 +28,7 @@ page{
 }
 
 .body{
-  margin-top: 10px;
+  margin-top: 40px;
   /* background-color: #000000; */
 }
 

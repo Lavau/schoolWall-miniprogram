@@ -3,6 +3,7 @@ App({
   globalData: {
     timeout: 30000,
     localhost: "http://localhost:8088/miniprogram",
+    // localhost: "http://47.98.217.61:8080/miniprogram",
     userInfo: null,
     login: false
   },
