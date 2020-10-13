@@ -1,4 +1,4 @@
-// paegs/publishPublicity/publishPublicity.js
+// paegs/typeAndKeyword/typeAndKeyword.js
 Page({
 
   /**

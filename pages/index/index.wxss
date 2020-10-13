@@ -3,9 +3,14 @@ page{
   background-color: #000;
 }
 
-.nav {
+.nav{
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-left{
   height: 85rpx;
-  width: 100%;
+  width: 89%;
   box-sizing: border-box;
   line-height: 80rpx;
   background: #f7f7f7;
@@ -15,16 +20,28 @@ page{
   left: 0;
   top: 0;
 }
-.nav-item {
+.nav-left-item {
   margin: 0 15rpx;
   width: 20%;
   display: inline-block;
   text-align: center;
 }
-.nav-item.active{
+.nav-left-item.active{
   font-weight: 800;
   font-size: large;
   border-bottom: #1E90FF 10rpx solid;
+}
+
+.nav-right image{
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  height: 85rpx;
+  width: 11%;
+  box-sizing: border-box;
+  border-left: blue 5rpx solid;
+  background-color: #fff;
 }
 
 .body{

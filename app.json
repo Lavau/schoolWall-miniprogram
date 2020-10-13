@@ -14,7 +14,11 @@
     "pages/publishThankOrRidicule/publishThankOrRidicule",
     "pages/publishEcard/publishEcard",
     "pages/publishSingle/publishSingle",
-    "paegs/publishPublicity/publishPublicity"
+    "pages/publishPublicity/publishPublicity",
+    "pages/typeAndKeyword/typeAndKeyword",
+    "pages/detailEcard/detailEcard",
+    "pages/detailSingle/detailSingle",
+    "pages/claimEcard/claimEcard"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -6,15 +6,10 @@ Page({
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
       navData:[
-          { text: '关注'},
           { text: '发现'},
-          { text: '吐槽'},
-          { text: '求助'},
-          { text: '失物招领'},
           { text: '一卡通'},
-          { text: '吐槽/感谢'},
+          { text: '失物招领'},
           { text: '求助'},
-          { text: '找失物'},
           { text: '脱单'},
       ],
       currentTab: 0,
@@ -44,5 +39,14 @@ Page({
           currentTab: cur,
           navScrollLeft: (cur - 2) * singleNavWidth
       });
+  },
+
+  /**
+   * 前往分类和关键字页
+   */
+  goToTypeAndKeywordPage: function() {
+      wx.navigateTo({
+        url: '../typeAndKeyword/typeAndKeyword',
+      })
   }
 })
