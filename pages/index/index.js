@@ -1,7 +1,14 @@
 // pages/index/index.js
+const APP = getApp();
+
 Page({
   data: {
-      motto: 'Hello World',
+      list: null,    
+      pageNum: null,
+      pages: null,
+
+      type: null,
+
       userInfo: {},
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -16,7 +23,7 @@ Page({
       navScrollLeft: 0
   },
 
-  switchNav(event){
+  switchNav: function(event) {
       var cur = event.currentTarget.dataset.current; 
       //每个tab选项宽度占1/5
       var singleNavWidth = this.data.windowWidth / 5;
@@ -32,7 +39,7 @@ Page({
           })
       }
   },
-  switchTab(event){
+  switchTab: function(event) {
       var cur = event.detail.current;
       var singleNavWidth = this.data.windowWidth / 5;
       this.setData({
@@ -48,5 +55,67 @@ Page({
       wx.navigateTo({
         url: '../typeAndKeyword/typeAndKeyword',
       })
-  }
+  },
+
+  /**
+   * 页面加载时，获取首页显示的信息
+   */
+  onLoad: function() {
+      let p = this;
+      wx.request({
+        url: APP.globalData.localhost + "/index",
+        success: (res) => {
+            p.setData({list: res.data['list'],
+                pageNum: res.data['pageNum'],
+                pages: res.data['pages']
+            });
+            console.log(res.data)
+        }
+      })
+  },
+
+ /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+      wx.showModal({
+          content: "上拉刷新中......",
+          showCancel: false
+      })
+  },
+
+    /**
+     * 首页上拉触发加载事件
+     */
+    onReachBottom: function () {
+        if(this.data.pageNum == this.data.pages){
+            wx.showModal({
+              content: '暂无最新数据',
+              showCancel: false
+            });
+            return;
+        }
+
+        let p = this;
+        wx.showLoading({
+          title: '数据加载中',
+        });
+        wx.request({
+            url: APP.globalData.localhost + "/index",
+            method: 'GET',
+            data: {pageNum: p.data.pageNum + 1},
+            success: (res) => {
+                wx.hideLoading({});
+                let listCopy =  p.data.list;
+                res.data['list'].forEach(e => {
+                    listCopy.push(e);
+                });
+                p.setData({list: listCopy,
+                    pageNum: res.data['pageNum'],
+                    pages: res.data['pages']
+                });
+                console.log(res.data)
+            }
+          })
+    },
 })

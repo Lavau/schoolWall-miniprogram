@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <view class="container">
+  <!-- tab导航栏 -->
   <view class="nav">
-    <!-- tab导航栏 -->
     <scroll-view scroll-x="true" class="nav-left">
         <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
           <view class="nav-left-item {{currentTab == idx ?'active':''}}"  data-current="{{idx}}" 
@@ -15,8 +15,40 @@
     </view>
   </view>
 
+  <!-- 发现部分 -->
   <view class="body">
-    <view class="body-item">
+    <block wx:for="{{list}}" wx:key="i">
+      <!-- 一卡通 -->
+      <view wx:if="{{item['typeId'] == 7}}" class="body-item-ecard">
+         <view>姓名：{{item['description']}}</view>
+         <view>学院：{{item['title']}}</view>
+      </view>
+      <!-- 其他 -->
+      <view wx:else class="body-item">
+        <view  wx:if="{{item['pictureUrlList'].length != 0}}" class="body-item-img">
+          <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
+            <image src="{{item}}"></image> 
+          </block>
+        </view>
+        <view class="body-item-content">
+          <text wx:if="{{item['title'].length != 0}}">{{item['title']}}</text>
+          <text wx:else>{{item['description']}}</text>
+        </view>
+        <view class="body-item-other">
+          133热度 15评论
+        </view>
+        <view class="body-item-bottom">
+          <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" ></image>
+          <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
+          <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
+          <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
+          <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+        </view>
+      </view>
+    </block> 
+
+
+    <!-- <view class="body-item">
       <view class="body-item-img">
         <image></image> 
         <image></image> 
@@ -34,6 +66,7 @@
         <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
       </view>
     </view>
+
 
     <view class="body-item">
       <view class="body-item-img">
@@ -91,8 +124,29 @@
         <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
       </view>
     </view>
+
+    <view class="body-item">
+      <view class="body-item-img">
+        <image></image> 
+        <image></image> 
+        <image></image> 
+      </view>
+      <view class="body-item-content">
+        如果您使用的是序列化的软件部署模型，请联系您的 IT 管理员，以请求进行指定的用户部署。该选项允许贵组织的每位人员都有一个与其求进行指定是序列化的以请求进行指定的用户部署行指定的果您使用的是署管理员，以请……
+      </view>
+      <view class="body-item-other">
+        133热度 15评论
+      </view>
+      <view class="body-item-bottom">
+        <image class="body-item-bottom-avator"></image>
+        <view class="body-item-bottom-nickname">名侦探喜来乐</view>
+        <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+      </view>
+    </view> -->
 
   </view>
+
+  
 
 </view>
 
