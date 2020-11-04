@@ -18,37 +18,38 @@
     "pages/typeAndKeyword/typeAndKeyword",
     "pages/detailEcard/detailEcard",
     "pages/detailSingle/detailSingle",
-    "pages/claimEcard/claimEcard"
+    "pages/claimEcard/claimEcard",
+    "pages/listEcard/listEcard"
   ],
   "window": {
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#0081CC",
     "navigationBarTitleText": "",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#212923",
-    "selectedColor": "#1E90FF",
+    "selectedColor": "#0c366d",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "/img/icon/shouYe.png",
-        "selectedIconPath": "/img/icon/shouYe.png"
+        "iconPath": "/assets/img/icon/tabBar/home.png",
+        "selectedIconPath": "/assets/img/icon/tabBar/home-active.png"
       },
       {
         "pagePath": "pages/publish/publish",
         "text": "发布",
-        "iconPath": "/img/icon/faBu.png",
-        "selectedIconPath": "/img/icon/faBu.png"
+        "iconPath": "/assets/img/icon/tabBar/publish.png",
+        "selectedIconPath": "/assets/img/icon/tabBar/publish-active.png"
       },
       {
         "pagePath": "pages/register/register",
         "text": "我的",
-        "iconPath": "/img/icon/geRen.png",
-        "selectedIconPath": "/img/icon/geRen.png"
+        "iconPath": "/assets/img/icon/tabBar/myself.png",
+        "selectedIconPath": "/assets/img/icon/tabBar/myself-active.png"
       }
     ]
   },

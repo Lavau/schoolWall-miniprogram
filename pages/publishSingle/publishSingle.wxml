@@ -13,8 +13,8 @@
   </view>
 
   <!-- 输入特长 -->
-  <view class="specialty">
-    <view><input type="text" maxlength="20" placeholder="ni 的特长" bindinput="inputSpecialty"/></view>
+  <view class="speciality">
+    <view><input type="text" maxlength="20" placeholder="ni 的特长" bindinput="inputSpeciality"/></view>
   </view>
 
   <!-- 输入爱好 -->

@@ -6,7 +6,7 @@ Page({
     uuid: "",
     height: "",
     weight: "",
-    specialty: "",
+    speciality: "",
     interest: "",
     description: "",
     Anonymous: false,
@@ -20,7 +20,7 @@ Page({
    */
   inputHeight: function(e) {this.setData({height: e.detail.value})},
   inputWeight: function(e) {this.setData({weight: e.detail.value})},
-  inputSpecialty: function(e) {this.setData({specialty: e.detail.value})},
+  inputSpeciality: function(e) {this.setData({speciality: e.detail.value})},
   inputInterest: function(e) {this.setData({interest: e.detail.value})},
   inputDescription: function(e) {
     this.data.description = e.detail.value;
@@ -61,6 +61,8 @@ Page({
     // 判断是否符合上传规则：
     //       要求 uuid 必须不为空串、详细描述或图片必须有一个
     let p = this;
+    let success;
+    let msg;
     if(p.data.uuid.length == 0){
       this.showModal("uuid 为空！");
       return;
@@ -77,16 +79,23 @@ Page({
       header: {"Content-Type": "application/x-www-form-urlencoded"},
       data: {
         id: p.data.uuid,
+        typeId: 6,
         height: p.data.height,
         weight: p.data.weight,
-        specialty: p.data.specialty,
+        speciality: p.data.speciality,
         interest: p.data.interest,
         description: p.data.description,
         pictureNum: p.data.pictures.length,
         Anonymous: p.data.Anonymous,
         contactInformation: p.data.msg
       },
-      success: (e) => {}
+      success: (e) => {
+        wx.showModal({
+          content: e.data['msg'],
+          showCancel: false,
+          success: (e) => wx.switchTab({url: '../index/index'})
+        });
+      }
     });
     
     // 提交图片
@@ -113,13 +122,6 @@ Page({
         }
       });
     }
-
-    // 显示成功提交的信息
-    wx.showModal({
-      content: "提交成功！",
-      showCancel: false,
-      success: (e) => wx.switchTab({url: '../index/index'})
-    });
   },
 
   /**

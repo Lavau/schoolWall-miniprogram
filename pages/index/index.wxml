@@ -1,48 +1,95 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <!-- tab导航栏 -->
-  <view class="nav">
-    <scroll-view scroll-x="true" class="nav-left">
-        <block wx:for="{{navData}}" wx:for-index="idx" wx:for-item="navItem" wx:key="idx">
-          <view class="nav-left-item {{currentTab == idx ?'active':''}}"  data-current="{{idx}}" 
-            bindtap="switchNav">{{navItem.text}}
-          </view>
-        </block>        
-    </scroll-view>
-
-    <view class="nav-right" bindtap="goToTypeAndKeywordPage">
-      <image src="../../img/icon/more.svg" ></image>
-    </view>
+  <!-- 顶部文字 -->
+  <view class="header">
+    <view class="header-line"></view>
+    <view class="header-content">校 园 墙，你 的 生 活 家</view>
+    <view class="header-line"></view>
   </view>
 
-  <!-- 发现部分 -->
+  <!-- 顶部右侧固定的图标 -->
+  <view class="header-right" bindtap="showTypeModal">
+    <image src="/assets/img/icon/more.png" ></image>
+  </view>
+
+  <!-- 点击图标后，显示的模态框 -->
+  <modal hidden="{{hidden}}" confirm-text="确定" no-cancel="true" bindconfirm="hiddenTypeModal">
+    <view class="modal">
+      <view class="modal-item">纳新</view>
+      <view class="modal-item">纳新</view>
+      <view class="modal-item">纳新</view>
+      <view class="modal-item" bindtap="goToEardListPage">一卡通</view>
+      <view class="modal-item">失物招领</view>
+      <view class="modal-item">双节快乐</view>
+      <view class="modal-item">脱单角</view>
+      <view class="modal-item">求助处</view>
+      <view class="modal-item">宣传栏</view>
+      <view class="modal-item">吐槽/感谢</view>
+    </view>
+  </modal>
+
+  <!-- 主题内容 -->
   <view class="body">
     <block wx:for="{{list}}" wx:key="i">
       <!-- 一卡通 -->
       <view wx:if="{{item['typeId'] == 7}}" class="body-item-ecard">
-         <view>姓名：{{item['description']}}</view>
-         <view>学院：{{item['title']}}</view>
+         <view class="body-item-type">
+          <image src="/assets/img/icon/lable.png"></image>
+          <view class="body-item-type-word">一卡通认领</view>
+        </view>
+
+        <view>
+          <span class="body-item-ecard-title">学院: </span>
+          {{item['title']}}
+        </view>
+        <view>
+          <span class="body-item-ecard-title">学号: </span
+            >{{item['description']}}
+        </view>
+        <view>
+          <span class="body-item-ecard-title">姓名: </span>
+          {{item['description']}}
+        </view>
       </view>
-      <!-- 其他 -->
+
+      <!-- 非一卡通部分（其他） -->
       <view wx:else class="body-item">
-        <view  wx:if="{{item['pictureUrlList'].length != 0}}" class="body-item-img">
+        <!-- 图片 -->
+        <view class="body-item-img" wx:if="{{item['pictureUrlList'].length != 0}}">
           <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
             <image src="{{item}}"></image> 
           </block>
         </view>
+
+        <!-- 文字部分：优先展示描述 -->
         <view class="body-item-content">
-          <text wx:if="{{item['title'].length != 0}}">{{item['title']}}</text>
-          <text wx:else>{{item['description']}}</text>
+          <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>
+          <text wx:else>{{item['title']}}</text>
         </view>
-        <view class="body-item-other">
-          133热度 15评论
+
+         <!-- 类型 -->
+         <view class="body-item-type">
+          <image src="/assets/img/icon/lable.png"></image>
+          <!-- {{item['typeName']}} -->
+          <view class="body-item-type-word">感谢</view>
         </view>
+
+        <!-- item 最下面的内容 -->
         <view class="body-item-bottom">
-          <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" ></image>
-          <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
-          <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
-          <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
-          <view class="body-item-bottom-time">2020-10-10 17:57:00</view>
+          <view class="body-item-bottom-left">
+            <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" src="/assets/img/icon/user-unlogin.png"></image>
+            <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
+            <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
+            <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
+          </view>
+
+          <view class="body-item-bottom-right">
+            <view class="body-item-bottom-view">{{item['viewNum']}}浏览</view>
+            <!-- <view class="body-item-bottom-time">{{item['createTime']}}</view> -->
+            <view class="body-item-bottom-time">2020-10-10 11:20</view>
+          </view>
+          
+          
         </view>
       </view>
     </block> 
@@ -145,8 +192,4 @@
     </view> -->
 
   </view>
-
-  
-
 </view>
-

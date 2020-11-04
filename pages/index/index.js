@@ -3,7 +3,7 @@ const APP = getApp();
 
 Page({
   data: {
-      list: null,    
+      list: Array,    
       pageNum: null,
       pages: null,
 
@@ -20,7 +20,8 @@ Page({
           { text: '脱单'},
       ],
       currentTab: 0,
-      navScrollLeft: 0
+      navScrollLeft: 0,
+      hidden: true
   },
 
   switchNav: function(event) {
@@ -49,27 +50,50 @@ Page({
   },
 
   /**
+   * 初始或关闭页面模态框
+   */
+  showTypeModal: function() {this.setData({hidden: !this.data.hidden});},
+  hiddenTypeModal: function() {this.setData({hidden: !this.data.hidden});},
+
+  /**
+   * 时间转换
+   */
+  timeStamp() {
+      console.log("da")
+    //   return myUtil.timeStamp(date);
+  },
+
+  /**
    * 前往分类和关键字页
    */
-  goToTypeAndKeywordPage: function() {
+  goToTypeAndKeywordPage() {
       wx.navigateTo({
         url: '../typeAndKeyword/typeAndKeyword',
-      })
+      });
+  },
+
+  goToEardListPage() {
+    wx.navigateTo({
+        url: '../listEcard/listEcard',
+    });
   },
 
   /**
    * 页面加载时，获取首页显示的信息
    */
-  onLoad: function() {
+  onLoad() {
       let p = this;
       wx.request({
         url: APP.globalData.localhost + "/index",
         success: (res) => {
-            p.setData({list: res.data['list'],
+            p.setData({
+                list: res.data['list'],
                 pageNum: res.data['pageNum'],
                 pages: res.data['pages']
             });
-            console.log(res.data)
+            // p.list.;
+            console.log(p.data.list);
+            // console.log(res.data);
         }
       })
   },
@@ -77,7 +101,7 @@ Page({
  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh() {
       wx.showModal({
           content: "上拉刷新中......",
           showCancel: false
@@ -87,7 +111,7 @@ Page({
     /**
      * 首页上拉触发加载事件
      */
-    onReachBottom: function () {
+    onReachBottom() {
         if(this.data.pageNum == this.data.pages){
             wx.showModal({
               content: '暂无最新数据',
