@@ -3,7 +3,7 @@
 
   <view class="box" bindtap="isShowActionSheet">我要发布</view>
 
-  <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
+  <action-sheet hidden="{{actionSheetHidden}}">
     <action-sheet-item bindtap="goToPublishOthersPage" data-typeId="4">失物</action-sheet-item>
     <action-sheet-item bindtap="goToPublishOthersPage" data-typeId="5">求助</action-sheet-item>
     <action-sheet-item bindtap="goToPublishOthersPage" data-typeId="6">脱单</action-sheet-item>

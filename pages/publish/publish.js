@@ -33,7 +33,8 @@ Page({
   // 前往一卡通发布页 
   goToPublishEcardPage:() => wx.navigateTo({url: '../publishEcard/publishEcard'}),
   // 前往其他类别的发布页
-  goToPublishOthersPage:(e) => wx.navigateTo({
-    url: '../publishOthers/publishOthers?typeId=' + e.currentTarget.dataset.typeId,
-  })
+  goToPublishOthersPage:(e) => {
+    wx.navigateTo({
+    url: '../publishOthers/publishOthers?typeId=' + e.currentTarget.dataset.typeid,
+  });}
 })
