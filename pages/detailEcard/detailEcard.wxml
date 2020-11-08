@@ -1,2 +1,15 @@
 <!--pages/detailEcard/detailEcard.wxml-->
-<text>pages/detailEcard/detailEcard.wxml</text>
+<view>
+  <view class="box">
+    <view class="box-name">{{ecard.stuName}}</view>
+    <view  class="box-stu-id">{{ecard.stuId}}</view>
+    <view class="box-college">{{ecard.college}}</view>
+  </view>
+
+  <view class="tip">请仔细检查信息，填写一卡通号后认领，有问题请联系管理员</view>
+  
+  <input class="input-ecard-id" type="number" bindinput="inputEcardId" 
+    placeholder="请输入一卡通号" maxlength="10"/>
+
+  <button type="primary" bindtap="claimEcard">认领</button>
+</view>

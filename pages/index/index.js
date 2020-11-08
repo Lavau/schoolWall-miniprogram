@@ -3,79 +3,30 @@ const APP = getApp();
 
 Page({
   data: {
-      list: Array,    
-      pageNum: null,
-      pages: null,
-
-      type: null,
-
-      userInfo: {},
-      hasUserInfo: false,
-      canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      navData:[
-          { text: '发现'},
-          { text: '一卡通'},
-          { text: '失物招领'},
-          { text: '求助'},
-          { text: '脱单'},
-      ],
-      currentTab: 0,
-      navScrollLeft: 0,
-      hidden: true
-  },
-
-  switchNav: function(event) {
-      var cur = event.currentTarget.dataset.current; 
-      //每个tab选项宽度占1/5
-      var singleNavWidth = this.data.windowWidth / 5;
-      //tab选项居中                            
-      this.setData({
-          navScrollLeft: (cur - 2) * singleNavWidth
-      })      
-      if (this.data.currentTab == cur) {
-          return false;
-      } else {
-          this.setData({
-              currentTab: cur
-          })
-      }
-  },
-  switchTab: function(event) {
-      var cur = event.detail.current;
-      var singleNavWidth = this.data.windowWidth / 5;
-      this.setData({
-          currentTab: cur,
-          navScrollLeft: (cur - 2) * singleNavWidth
-      });
+    list: Array,    
+    pageNum: null,
+    pages: null,
+    type: null,
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    currentTab: 0,
+    navScrollLeft: 0,
+    hidden: true
   },
 
   /**
    * 初始或关闭页面模态框
    */
-  showTypeModal: function() {this.setData({hidden: !this.data.hidden});},
-  hiddenTypeModal: function() {this.setData({hidden: !this.data.hidden});},
-
-//   /**
-//    * 时间转换
-//    */
-//   timeStamp() {
-//       console.log("da")
-//     //   return myUtil.timeStamp(date);
-//   },
+  isShowTypeModal() {this.setData({hidden: !this.data.hidden})},
 
   /**
-   * 前往分类和关键字页
+   * 前往具体的页面
    */
-  goToTypeAndKeywordPage() {
-      wx.navigateTo({
-        url: '../typeAndKeyword/typeAndKeyword',
-      });
-  },
-
-  goToEardListPage() {
-    wx.navigateTo({
-        url: '../listEcard/listEcard',
-    });
+  // 前往一卡通详情页
+  goToDetailEcardPage(e) {
+    if (this.verifyIsLogin() == false) return;
+    wx.navigateTo({url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id});
   },
 
   /**
@@ -105,21 +56,34 @@ Page({
       })
   },
 
+  /**
+   * 验证当前用户是否登录
+   */
+  verifyIsLogin() {
+      if (APP.globalData.login == false) {
+        wx.showModal({
+          content: "请先登录",
+          showCancel: false
+        });
+      }
+      return APP.globalData.login;
+  },
+
     /**
      * 监听页面滚动到顶部,触发加载事件
      */
     onReachBottom() {
-        if(this.data.pageNum == this.data.pages){
+        if (this.data.pageNum == this.data.pages) {
             wx.showModal({
-              content: '暂无最新数据',
-              showCancel: false
+                content: '暂无最新数据',
+                showCancel: false
             });
             return;
         }
 
         let p = this;
         wx.showLoading({
-          title: '数据加载中',
+            title: '数据加载中',
         });
         wx.request({
             url: APP.globalData.localhost + "/index",
@@ -137,6 +101,6 @@ Page({
                 });
                 // console.log(res.data)
             }
-          });
+            });
     },
 })

@@ -21,15 +21,15 @@ Page({
    * 获取输入的内容
    */
   inputTitle(e) {this.setData({title: e.detail.value})},
-  inputHeight: function(e) {this.setData({height: e.detail.value})},
-  inputWeight: function(e) {this.setData({weight: e.detail.value})},
-  inputSpeciality: function(e) {this.setData({speciality: e.detail.value})},
-  inputInterest: function(e) {this.setData({interest: e.detail.value})},
+  inputHeight(e) {this.setData({height: e.detail.value})},
+  inputWeight(e) {this.setData({weight: e.detail.value})},
+  inputSpeciality(e) {this.setData({speciality: e.detail.value})},
+  inputInterest(e) {this.setData({interest: e.detail.value})},
   inputDescription(e) {
     this.data.description = e.detail.value;
     this.setData({wordNum: e.detail.value.length});
   },
-  inputMsg: function(e) {this.setData({msg: e.detail.value})},
+  inputMsg(e) {this.setData({msg: e.detail.value})},
   inputAnonymous(e) {this.setData({Anonymous: e.detail['value']})},
 
   /**

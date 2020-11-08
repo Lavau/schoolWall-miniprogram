@@ -1,66 +1,72 @@
 // pages/detailEcard/detailEcard.js
+const APP = getApp();
+
 Page({
+  data: {
+    ecard: null,
+    ecardId: ""
+  },
 
   /**
-   * 页面的初始数据
+   * 获取输入的 ecardId
+   * @param {*}} e 
    */
-  data: {
+  inputEcardId(e) {this.setData({ecardId: e.detail.value})},
 
+  /**
+   * 认领一卡通
+   */
+  claimEcard() {
+    if (this.data.ecardId.length == 0) {
+      wx.showToast({title: '请输入一卡通号'});
+      return;
+    }
+
+    let p = this;
+    if (this.data.ecardId == this.data.ecard.ecardId) {
+      console.log("agas");
+      wx.request({
+        url: APP.globalData.localhost + "/login/ecard/claim",
+        method: "POST",
+        header: {"Content-Type": "application/x-www-form-urlencoded"},
+        data: {openId: wx.getStorageSync('openId'), id: p.data.ecard.id},
+        success(e) {
+          console.log(e.data);
+          if (e.data.success) {
+            wx.showModal({
+              content: p.data.msg,
+              showCancel: false,
+              success(res) {wx.switchTab({url: '../index/index'})}
+            }); 
+          }
+        },
+        fail: () => wx.showModal({
+          content: "服务器异常",
+          showCancel: false,
+          success(res) {wx.switchTab({url: '../index/index'})}
+        })
+      });
+    } else {
+      wx.showToast({title: '一卡通号错误'});
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    console.log(options.id);
+    let p = this;
+    wx.request({
+      url: APP.globalData.localhost + "/login/ecard/detail",
+      method: "POST",
+      header: {"Content-Type": "application/x-www-form-urlencoded"},
+      data: {openId: wx.getStorageSync('openId'), id: options.id},
+      success(e) {
+        if (e.data.success) {
+          p.setData({ecard: e.data.object});
+        }
+      }
+    });
   }
 })

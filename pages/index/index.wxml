@@ -8,12 +8,12 @@
   </view>
 
   <!-- 顶部右侧固定的图标 -->
-  <view class="header-right" bindtap="showTypeModal">
+  <view class="header-right" bindtap="isShowTypeModal">
     <image src="/assets/img/icon/more.png" ></image>
   </view>
 
   <!-- 点击图标后，显示的模态框 -->
-  <modal hidden="{{hidden}}" confirm-text="确定" no-cancel="true" bindconfirm="hiddenTypeModal">
+  <modal hidden="{{hidden}}" confirm-text="确定" no-cancel="true" bindconfirm="isShowTypeModal">
     <view class="modal">
       <view class="modal-item">纳新</view>
       <view class="modal-item">纳新</view>
@@ -32,8 +32,9 @@
   <view class="body">
     <block wx:for="{{list}}" wx:key="i">
       <!-- 一卡通 -->
-      <view wx:if="{{item['typeId'] == 7}}" class="body-item-ecard">
-         <view class="body-item-type">
+      <view wx:if="{{item['typeId'] == 7}}" class="body-item-ecard" bindtap="goToDetailEcardPage" 
+        data-id="{{item['id']}}">
+        <view class="body-item-type">
           <image src="/assets/img/icon/lable.png"></image>
           <view class="body-item-type-word">一卡通认领</view>
         </view>

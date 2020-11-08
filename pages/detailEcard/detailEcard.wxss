@@ -1,1 +1,30 @@
 /* pages/detailEcard/detailEcard.wxss */
+.box {
+  margin: 30% 20rpx 0 20rpx;
+  border-radius: 25rpx;
+  box-shadow: 10rpx 15rpx 10rpx 5rpx #D3D3D3;
+  border: #D3D3D3 3rpx solid;
+  padding: 30rpx;
+}
+
+.box-name {
+  font-size: larger;
+  padding-bottom: 20rpx;
+}
+
+.box-stu-id, box-college {
+  padding-bottom: 20rpx;
+}
+
+.tip {
+  margin: 40rpx 20rpx 0 30rpx;
+  font-size: x-small;
+  color: #c9c6c6;
+}
+
+.input-ecard-id {
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 20rpx;
+  padding: 10rpx;
+}
