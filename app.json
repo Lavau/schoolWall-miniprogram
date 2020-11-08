@@ -20,7 +20,8 @@
     "pages/detailSingle/detailSingle",
     "pages/claimEcard/claimEcard",
     "pages/listEcard/listEcard",
-    "pages/obtainData/obtainData"
+    "pages/obtainData/obtainData",
+    "pages/publishOthers/publishOthers"
   ],
   "window": {
     "backgroundTextStyle": "dark",

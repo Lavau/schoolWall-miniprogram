@@ -59,10 +59,11 @@ Page({
     //满足提交要求，进行提交
     let p = this;
     wx.request({
-      url: APP.globalData.localhost + "/login/ecard",
+      url: APP.globalData.localhost + "/login/ecard/publish",
       method: "POST",
       header: {"Content-Type": "application/x-www-form-urlencoded"},
       data: {
+        openId: APP.globalData.openId,
         id: p.data.uuid,
         ecardId: p.data.ecardId,
         college: p.data.collegeName,
@@ -78,6 +79,11 @@ Page({
             showCancel: false,
             success: (e) => wx.switchTab({url: '../index/index'})
           });
+        } else {
+          wx.showModal({
+            content: result["msg"],
+            showCancel: false
+          })
         }
       },
       fail: () => wx.showModal({
