@@ -35,4 +35,8 @@
   </view>
   
   <button bindtap="register">注册</button>
+
+  <button type="primary" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
+    基本信息授权
+  </button>
 </view>

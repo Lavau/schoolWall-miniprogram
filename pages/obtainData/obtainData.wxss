@@ -1,0 +1,79 @@
+/* pages/obtainData/obtainData.wxss */
+/* 页面展示 */
+/* 一卡通 */
+.body-item-ecard{
+  margin-bottom: 40rpx;
+  background-color: #fff;
+  padding: 20rpx;
+}
+
+.body-item-ecard-title{
+  /* font-size: small; */
+  font-weight: bold;
+  /* color: #bfbfbf; */
+}
+
+/* 其他 */
+.body-item{
+  width: 100%;
+  margin-bottom: 40rpx;
+  background-color: #fff;
+  padding: 15rpx;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* 上部 */
+.body-item-above {
+  display: flex;
+  flex-direction: row;
+}
+
+.body-item-above text {
+  width: 650rpx;
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 2;  /*最多显示2行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;  /*强制英文单词自动换行*/
+
+  margin-bottom: 15rpx;
+  padding-bottom: 10rpx;
+  border-bottom: #93d1f5 5rpx dotted;
+}
+
+.body-item-above image {
+  margin-top: 15rpx;
+  margin-left: 15rpx;
+  height: 60rpx;
+  width: 60rpx
+}
+
+/* 下部 */
+.body-item-bottom{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.body-item-bottom image {
+  height: 45rpx;
+  width: 60rpx;
+  margin-right: 15rpx;
+}
+
+.body-item-bottom-type {
+  margin-top: 5rpx;
+  font-size: small;
+  font-weight: bold;
+  color: #55b5ec;
+}
+.body-item-bottom-time {
+  position: absolute;
+  bottom: 10rpx;
+  right: 30rpx;
+  margin-top: 10rpx;
+  font-size: x-small;
+}

@@ -55,13 +55,13 @@ Page({
   showTypeModal: function() {this.setData({hidden: !this.data.hidden});},
   hiddenTypeModal: function() {this.setData({hidden: !this.data.hidden});},
 
-  /**
-   * 时间转换
-   */
-  timeStamp() {
-      console.log("da")
-    //   return myUtil.timeStamp(date);
-  },
+//   /**
+//    * 时间转换
+//    */
+//   timeStamp() {
+//       console.log("da")
+//     //   return myUtil.timeStamp(date);
+//   },
 
   /**
    * 前往分类和关键字页
@@ -91,11 +91,8 @@ Page({
                 pageNum: res.data['pageNum'],
                 pages: res.data['pages']
             });
-            // p.list.;
-            console.log(p.data.list);
-            // console.log(res.data);
         }
-      })
+      });
   },
 
  /**
@@ -109,7 +106,7 @@ Page({
   },
 
     /**
-     * 首页上拉触发加载事件
+     * 监听页面滚动到顶部,触发加载事件
      */
     onReachBottom() {
         if(this.data.pageNum == this.data.pages){
@@ -138,8 +135,8 @@ Page({
                     pageNum: res.data['pageNum'],
                     pages: res.data['pages']
                 });
-                console.log(res.data)
+                // console.log(res.data)
             }
-          })
+          });
     },
 })

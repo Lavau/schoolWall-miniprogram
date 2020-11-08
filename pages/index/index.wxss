@@ -45,9 +45,9 @@
 /* 页面展示 */
 /* 一卡通 */
 .body-item-ecard{
-  margin-top: 10px;
+  margin-bottom: 40rpx;
   background-color: #fff;
-  padding: 15rpx;
+  padding: 20rpx;
 }
 
 .body-item-ecard-title{
@@ -83,13 +83,16 @@
 /* 文字内容 */
 .body-item-content{
   width: 720rpx;
-  margin-bottom: 15rpx;
   display: -webkit-box;  /*设置为弹性盒子*/
   -webkit-line-clamp: 2;  /*最多显示2行*/
   overflow: hidden;  /*超出隐藏*/
   text-overflow: ellipsis;  /*超出显示为省略号*/
   -webkit-box-orient: vertical;
   word-break: break-all;  /*强制英文单词自动换行*/
+
+  margin-bottom: 15rpx;
+  padding-bottom: 10rpx;
+  border-bottom: #93d1f5 5rpx dotted;
 }
 
 /* 标签部分 */
@@ -112,7 +115,6 @@
 /* 底部其他内容 */
 .body-item-bottom{
   display: flex;
-  /* flex-direction: row; */
 }
 
 /* 左边内容 */

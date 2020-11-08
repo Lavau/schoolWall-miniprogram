@@ -1,5 +1,23 @@
 /* pages/publish/publish.wxss */
-.item{
-  border: blue 5rpx solid;
-  margin: 40rpx 20rpx;
+.body {
+  margin-top: 50%;
+}
+
+.box {
+  animation: animated-border 1.5s infinite;
+  height: 100rpx;
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0081cc;
+  border: 2px solid;
+  border-radius: 10px;
+  margin: 300rpx 15px;
+  line-height: 100rpx;
+  text-align: center;  
+}
+
+@keyframes animated-border {
+  0% {box-shadow: 0 0 0 0 rgba(0, 129, 204, 0.8);}
+  100% {box-shadow: 0 0 0 20px rgba(0, 129, 204, 0);}
 }

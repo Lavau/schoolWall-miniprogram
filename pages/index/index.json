@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "indexEcardComponent": "/components/indexEcardComponent/indexEcardComponent"
+  },
+  "window": {
+    "enablePullDownRefresh": true
   }
 }

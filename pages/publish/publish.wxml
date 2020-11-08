@@ -1,7 +1,22 @@
 <!--pages/publish/publish.wxml-->
-<view class="item" bindtap="goToEcardPage">一卡通</view>
-<view class="item" bindtap="goToPublishLostPropertyPage">失物</view>
-<view class="item" bindtap="goToPublishSeekHelpPage">求助</view>
-<view class="item" bindtap="goToPublishThankOrRidiculePage">吐槽 / 感谢</view>
-<view class="item" bindtap="goToPublishSinglePage">脱单</view>
-<view class="item" bindtap="goToPublishPublicityPage">宣传栏</view>
+<view class="body">
+
+  <view class="box" bindtap="actionSheetTap">我要发布</view>
+
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetbindchange">
+  <action-sheet-item bindtap="bind{{item.bindtap}}">失物</action-sheet-item>
+  <action-sheet-item bindtap="bind{{item.bindtap}}">求助</action-sheet-item>
+  <action-sheet-item bindtap="bind{{item.bindtap}}">脱单</action-sheet-item>
+  <action-sheet-item bindtap="bind{{item.bindtap}}">一卡通</action-sheet-item>
+  <action-sheet-item bindtap="bind{{item.bindtap}}">宣传栏</action-sheet-item>
+  <action-sheet-item bindtap="bind{{item.bindtap}}">感谢 / 吐槽</action-sheet-item>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>
+
+  <!-- <view class="item" bindtap="goToEcardPage">一卡通</view>
+  <view class="item" bindtap="goToPublishLostPropertyPage"></view>
+  <view class="item" bindtap="goToPublishSeekHelpPage">求助</view>
+  <view class="item" bindtap="goToPublishThankOrRidiculePage">吐槽 / 感谢</view>
+  <view class="item" bindtap="goToPublishSinglePage">脱单</view>
+  <view class="item" bindtap="goToPublishPublicityPage">宣传栏</view> -->
+</view>

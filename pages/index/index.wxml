@@ -44,7 +44,7 @@
         </view>
         <view>
           <span class="body-item-ecard-title">学号: </span
-            >{{item['description']}}
+            >{{item['stuId']}}
         </view>
         <view>
           <span class="body-item-ecard-title">姓名: </span>
@@ -71,7 +71,7 @@
          <view class="body-item-type">
           <image src="/assets/img/icon/lable.png"></image>
           <!-- {{item['typeName']}} -->
-          <view class="body-item-type-word">感谢</view>
+          <view class="body-item-type-word"> {{item['typeName']}}</view>
         </view>
 
         <!-- item 最下面的内容 -->
@@ -86,7 +86,7 @@
           <view class="body-item-bottom-right">
             <view class="body-item-bottom-view">{{item['viewNum']}}浏览</view>
             <!-- <view class="body-item-bottom-time">{{item['createTime']}}</view> -->
-            <view class="body-item-bottom-time">2020-10-10 11:20</view>
+            <view class="body-item-bottom-time">{{item['createTime']}}</view>
           </view>
           
           

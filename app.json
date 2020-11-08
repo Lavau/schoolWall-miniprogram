@@ -19,14 +19,14 @@
     "pages/detailEcard/detailEcard",
     "pages/detailSingle/detailSingle",
     "pages/claimEcard/claimEcard",
-    "pages/listEcard/listEcard"
+    "pages/listEcard/listEcard",
+    "pages/obtainData/obtainData"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#0081CC",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#212923",
@@ -46,7 +46,7 @@
         "selectedIconPath": "/assets/img/icon/tabBar/publish-active.png"
       },
       {
-        "pagePath": "pages/register/register",
+        "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "/assets/img/icon/tabBar/myself.png",
         "selectedIconPath": "/assets/img/icon/tabBar/myself-active.png"

@@ -1,5 +1,5 @@
 // pages/register/register.js
-const app = getApp()
+const APP = getApp()
 
 Page({
   data: {
@@ -10,7 +10,8 @@ Page({
     colleges: {},
     collegeName: '--请选择--',
     collegeId: null,
-    dateValue: '2020'
+    dateValue: '2020',
+    userInfo: null
   },
 
   bindShowMsg: function() {
@@ -30,38 +31,69 @@ Page({
     this.setData({dateValue:e.detail.value});
    },
 
-  //  这个函数需要“瘦身”
+   /**
+   * 获取用户信息
+   */
+  obtainUserInfo(e) {
+    console.log("register.js: obtainUserInfo() \n", e.detail.userInfo);
+    this.setData({
+      userInfo: e.detail.userInfo,
+    });
+    APP.globalData.userInfo = e.detail.userInfo;
+  },
+
+  /**
+   * 注册
+   * 向服务器发送注册请求
+   */
   register: function(){
+    if (this.data.userInfo == null) {
+      wx.showModal({
+        content: "请您授权信息",
+        cancelColor: 'cancelColor',
+      });
+      return;
+    }
+
+    let avatarUrl = this.data.userInfo.avatarUrl;
+    let nickname = this.data.userInfo.nickName;
+    let p = this.data;
+
     if(this.data.stuId !== null && this.data.name !== null && this.data.collegeId !== null){
       wx.login({
-        timeout: app.globalData.timeout,
-        // fail: app.fail(),
+        timeout: APP.globalData.timeout,
+        // fail: APP.fail(),
         success: res => wx.request({
-          url: app.globalData.localhost + "/user/register",
+          url: APP.globalData.localhost + "/register",
           method: "POST",
           header: {"Content-Type": "application/x-www-form-urlencoded"},
           data: {
-            stuId: this.data.stuId,
-            name: this.data.name,
-            collegeId: this.data.collegeId,
+            stuId: p.stuId,
+            stuName: p.name,
+            collegeId: p.collegeId,
+            avatarUrl: avatarUrl,
+            nickname: nickname,
             code: res.code
           },
-          timeout: app.globalData.timeout,
-          // fail: app.fail(),
+          timeout: APP.globalData.timeout,
+          // fail: APP.fail(),
           success: function(e) {
             if(e.data.success){
+              APP.globalData.openId = e.data.status;
+              APP.globalData.login = true;
+              wx.setStorageSync("openId", e.data.status);
               wx.showModal({
                 title: "注册成功",
                 showCancel: true,
-                success: function() {
-                  wx.redirectTo({
-                    url: '../index/index',
-                  });
+                success: function(res) {
+                  if (res.confirm) {
+                    wx.switchTab({url: '../index/index'});
+                  }
                 }
               });
             } else {
               wx.showModal({
-                title: "注册失败",
+                title: e.data.msg,
                 showCancel: true
               });
             }
@@ -87,10 +119,10 @@ Page({
 
     let p = this;
     wx.request({
-      timeout: app.globalData.timeout,
-      // fail: app.fail(),
-      url:  app.globalData.localhost + "/college",
-      header: {'content-type': 'application/json'},
+      timeout: APP.globalData.timeout,
+      // fail: APP.fail(),
+      url:  APP.globalData.localhost + "/college",
+      header: {'content-type': 'APPlication/json'},
       success: e => p.setData({colleges: e.data.list})
     });
   }
