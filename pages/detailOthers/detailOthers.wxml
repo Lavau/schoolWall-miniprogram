@@ -1,5 +1,5 @@
 <!--pages/detailOthers/detailOthers.wxml-->
-<view>
+<view class="box">
 
   <!-- 发布人信息 -->
   <view class="promulgator-info">
@@ -7,31 +7,56 @@
     <image wx:else class="promulgator-info-avator" src="{{obj.avatarUrl}}"></image>
     <view wx:if="{{obj.anonymous}}" class="promulgator-info-nickname">匿名</view>
     <view wx:else class="promulgator-info-nickname">{{obj.nickname}}</view>
+    <view class="promulgator-info-time">{{obj.createTime}}</view>
+    
   </view>
 
   <!-- 标题 -->
   <!-- 当类型不是脱单时显示 -->
-  <view wx:if="{{typeId != 6}}" class="title">
+  <view wx:if="{{obj.typeId != 6}}" class="title">
+    <view wx:if="{{obj.typeId == 4}}" class="tip">物品：</view>
+    <view wx:else class="tip">主题：</view>
     {{obj.title}}
   </view>
 
   <!-- 仅脱单项显示 -->
-  <block wx:if="{{typeId == 6}}">
-    <view wx:if="{{obj.height != null}}">{{obj.height}}</view>
-    <view wx:if="{{obj.weight != null}}">{{obj.weight}}</view>
-    <view wx:if="{{obj.speciality != null}}">{{obj.speciality}}</view>
-    <view wx:if="{{obj.interest != null}}">{{obj.interest}}</view>
-  </block>
+  <view wx:if="{{obj.typeId == 6}}" class="single-feature">
+    <view wx:if="{{obj.height != null}}" class="single-feature-item">
+      <view class="tip">身高：</view>{{obj.height + ' cm'}}
+    </view>
+    <view wx:if="{{obj.weight != null}}" class="single-feature-item">
+      <view class="tip">体重：</view>{{obj.weight + ' kg'}}
+    </view>
+    <view wx:if="{{obj.speciality != null && obj.speciality.length > 0}}" class="single-feature-item">
+      <view class="tip">特长：</view>{{obj.speciality}}
+    </view>
+    <view wx:if="{{obj.interest != null && obj.speciality.length > 0}}" class="single-feature-item">
+      <view class="tip">爱好：</view>{{obj.interest}}
+    </view>
+  </view>
 
   <!-- 具体内容 -->
-  <view class="description description-position">
-    <view wx:if="{{obj.description != null}}">{{obj.description}}</view>
+  <view wx:if="{{obj.description != null}}" class="description">
+    <view class="tip">具体描述：</view>
+    <view class="description-content">{{obj.description}}</view>
   </view>
 
   <!-- 图片，可以预览 -->
   <view wx:if="{{obj.pictureUrlList != null}}" class="picture">
     <image wx:for="{{obj.pictureUrlList}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewpicture">
     </image>
+  </view>
+  
+  <!-- 杂项 -->
+  <view class="others">
+    <view class="others-left">
+      点赞
+    </view>
+    <view class="others-right">
+      <view class="others-right-like">{{obj.likeNum + ' 点赞'}} </view>
+      <view class="others-liner"></view>
+      <view class="others-right-view">{{obj.viewNum + ' 浏览'}}</view>
+    </view>
   </view>
 
 </view>

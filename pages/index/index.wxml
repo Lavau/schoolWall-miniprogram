@@ -15,16 +15,12 @@
   <!-- 点击图标后，显示的模态框 -->
   <modal hidden="{{hidden}}" confirm-text="确定" no-cancel="true" bindconfirm="isShowTypeModal">
     <view class="modal">
-      <view class="modal-item">纳新</view>
-      <view class="modal-item">纳新</view>
-      <view class="modal-item">纳新</view>
-      <view class="modal-item" bindtap="goToEardListPage">一卡通</view>
-      <view class="modal-item">失物招领</view>
-      <view class="modal-item">双节快乐</view>
-      <view class="modal-item">脱单角</view>
-      <view class="modal-item">求助处</view>
-      <view class="modal-item">宣传栏</view>
-      <view class="modal-item">吐槽/感谢</view>
+      <view class="modal-item" bindtap="goToListEcardPage">一卡通</view>
+      <view class="modal-item" bindtap="goToEardListPage">失物招领</view>
+      <view class="modal-item" bindtap="goToEardListPage">脱单</view>
+      <view class="modal-item" bindtap="goToEardListPage">求助</view>
+      <view class="modal-item" bindtap="goToEardListPage">宣传栏</view>
+      <view class="modal-item" bindtap="goToEardListPage">吐槽/感谢</view>
     </view>
   </modal>
 

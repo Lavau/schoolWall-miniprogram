@@ -23,12 +23,11 @@ Page({
   /**
    * 前往具体的页面
    */
-  // 前往一卡通详情页
+  goToListEcardPage:() => wx.navigateTo({url: '../listEcard/listEcard'}),
   goToDetailEcardPage(e) {
     if (this.verifyIsLogin() == false) return;
     wx.navigateTo({url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id});
   },
-  // 
   goToDetailOthersPage(e) {
     if (this.verifyIsLogin() == false) return;
     wx.navigateTo({

@@ -1,18 +1,100 @@
 /* pages/detailOthers/detailOthers.wxss */
-.promulgator-info {
-  flex: 1;
-  align-items: center;
+.tip {
+  font-weight: bold;
+  color: #D3D3D3;
+}
 
+/* 发布人信息 */
+.promulgator-info {
   display: flex;
   flex-direction: row;
+  margin: 20rpx;
 }
 
 .promulgator-info-avator{
-  height: 70rpx;
-  width: 70rpx;
+  height: 60rpx;
+  width: 60rpx;
   border-radius: 35rpx;
 }
 
 .promulgator-info-nickname{
-  margin: 16rpx 250rpx 16rpx 10rpx;
+  margin: 12rpx 250rpx 16rpx 10rpx;
 }
+
+.promulgator-info-time {
+  margin-top: 20rpx;
+  margin-left: 160rpx;
+  font-size: x-small;
+  color: #D3D3D3;
+}
+
+/* 标题 */
+.title {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: #eeebeb 1rpx solid;
+}
+
+/*  */
+.single-feature {
+  margin: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: #eeebeb 1rpx solid;
+}
+
+.single-feature-item {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 具体内容 */
+.description {
+  margin: 20rpx;
+}
+
+.description-content {
+  padding: 10rpx 10rpx 20rpx 10rpx;
+  margin-top: 5rpx;
+  text-indent: 1.5em; 
+  border-bottom: #eeebeb 1rpx solid;
+}
+
+/* 图片 */
+.picture{
+  margin: 20rpx;
+  width: 720rpx;
+  box-sizing: border-box;
+  margin-bottom: 15rpx;
+  padding-bottom: 20rpx;
+  border-bottom: #eeebeb 1rpx solid;
+}
+
+.picture image{
+  width: 235rpx;
+  height: 235rpx;
+  margin-right: 5rpx;
+}
+
+/* 杂项 */
+.others {
+  display: flex;
+  flex-direction: row;
+  margin: 20rpx 30rpx;
+  font-size: smaller;
+}
+
+.others-right {
+  display: flex;
+  flex-direction: row;
+  margin-left: 460rpx;
+}
+
+.others-liner{
+  margin: 0 10rpx;
+  border-right: #D3D3D3 2rpx solid;
+}
+
+
+

@@ -15,7 +15,8 @@
       </view>
 
       <!-- 非一卡通部分（其他） -->
-      <view wx:else class="body-item">
+      <view wx:else class="body-item" bindtap="goToDetailOthersPage" 
+          data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
         <!-- 上部 -->
         <view class="body-item-above">
           <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>

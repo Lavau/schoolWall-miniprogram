@@ -9,6 +9,18 @@ Page({
   },
 
   /**
+   * 预览图片
+   */
+  previewpicture(e) {
+    let index = e.currentTarget.dataset.index;
+    let pictures = this.data.obj.pictureUrlList;
+    wx.previewImage({
+      current: pictures[index],
+      urls: pictures
+    });
+   },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {

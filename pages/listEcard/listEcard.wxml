@@ -1,2 +1,9 @@
 <!--pages/listEcard/listEcard.wxml-->
-<text>pages/listEcard/listEcard.wxml</text>
+<view>
+  <view class="search">
+    <input type="text" placeholder="输入姓名搜索一卡通信息" value="{{name}}" bindinput="bindinput" bindconfirm="bindconfirm"/>
+    <image src="/assets/img/icon/search.svg"></image>
+  </view>
+
+  
+</view>

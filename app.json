@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/detailEcard/detailEcard",
     "pages/indexTest/index",
-    "pages/lostPropertyDetail/lostPropertyDetail",
     "pages/my/my",
     "pages/obtainData/obtainData",
     "pages/publish/publish",

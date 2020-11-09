@@ -10,6 +10,16 @@ Page({
   },
 
   /**
+   * 前往具体的页面
+   */
+  goToDetailOthersPage(e) {
+    wx.navigateTo({
+        url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
+             '&typeId=' + e.currentTarget.dataset.typeid
+     });
+  },
+
+  /**
    * 删除某条记录
    * @param {*} e 
    */
