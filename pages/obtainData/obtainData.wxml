@@ -23,8 +23,8 @@
         <view class="body-item-above">
           <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>
           <text wx:else>{{item['title']}}</text>
-          <image src="/assets/img/icon/my/delete.png" catchtap="delete" 
-                  data-id="{{item['id']}}" data-typeId="{{item['typeId']}}">
+          <image wx:if="{{url == '/obtainPublishedData'}}" src="/assets/img/icon/my/delete.png" 
+              catchtap="delete" data-id="{{item['id']}}" data-typeId="{{item['typeId']}}">
           </image>
         </view>
 

@@ -55,7 +55,7 @@
       <image wx:else src="/assets/img/icon/like.png"></image>
     </view>
     <view class="others-right">
-      <view class="others-right-like">{{obj.likeNum + ' 点赞'}} </view>
+      <view class="others-right-like">{{likeNum + ' 点赞'}} </view>
       <view class="others-liner"></view>
       <view class="others-right-view">{{obj.viewNum + ' 浏览'}}</view>
     </view>

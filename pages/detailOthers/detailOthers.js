@@ -6,14 +6,16 @@ Page({
     typeId: "",
     id: "",
     like: false,
+    likeNum: null,
     obj: null
   },
 
   /**
-   * 点赞相关 
+   * 点赞相关
    */
   touchLike(e) {
     this.setData({like: !this.data.like});
+    this.setData({likeNum: this.data.like ? this.data.likeNum + 1 : this.data.likeNum - 1});
 
     let p = this;
     wx.request({
@@ -63,7 +65,10 @@ Page({
       success(e) {
         console.log("detailOthers.js onLoad() print data:\n", e.data);
         if (e.data.success) {
-          p.setData({obj: e.data.object, like: e.data.object.like});
+          p.setData({obj: e.data.object,
+            like: e.data.object.like,
+            likeNum: e.data.object.likeNum
+          });
         } else {
           wx.showToast({title: e.data.msg});
         }
