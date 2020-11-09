@@ -23,7 +23,7 @@
 
 .promulgator-info-time {
   margin-top: 20rpx;
-  margin-left: 160rpx;
+  margin-left: 150rpx;
   font-size: x-small;
   color: #D3D3D3;
 }
@@ -37,7 +37,7 @@
   border-bottom: #eeebeb 1rpx solid;
 }
 
-/*  */
+/* 脱单 */
 .single-feature {
   margin: 20rpx;
   padding-bottom: 20rpx;

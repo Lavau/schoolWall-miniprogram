@@ -1,4 +1,5 @@
 /* pages/listEcard/listEcard.wxss */
+/* 搜索框 */
 .search {
   position: absolute;
   top: 32rpx;
@@ -8,6 +9,7 @@
   display: block;
   box-sizing: border-box;
 }
+
 .search input {
   display: block;
   box-sizing: border-box;
@@ -18,10 +20,28 @@
   border-radius: 30rpx;
   padding-left: 32rpx; 
 }
+
 .search image {
   width: 35rpx;
   height: 35rpx;
   position: absolute;
   top: 16rpx;
   right: 32rpx;
+}
+
+/* 一卡通列表 */
+.body {
+  margin-top: 110rpx;
+}
+
+.body-item-ecard{
+  margin: 20rpx;
+  background-color: #fff;
+  padding: 20rpx;
+  border-bottom: #eeebeb 1rpx solid;
+}
+
+.body-item-ecard-title{
+  font-weight: bold;
+  color: #D3D3D3;
 }
