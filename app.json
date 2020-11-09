@@ -10,7 +10,8 @@
     "pages/publishEcard/publishEcard",
     "pages/publishOthers/publishOthers",
     "pages/register/register",
-    "pages/listEcard/listEcard"
+    "pages/listEcard/listEcard",
+    "pages/detailOthers/detailOthers"
   ],
   "window": {
     "backgroundTextStyle": "dark",

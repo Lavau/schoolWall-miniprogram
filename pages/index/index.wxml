@@ -54,7 +54,8 @@
       </view>
 
       <!-- 非一卡通部分（其他） -->
-      <view wx:else class="body-item">
+      <view wx:else class="body-item" bindtap="goToDetailOthersPage" 
+          data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
         <!-- 图片 -->
         <view class="body-item-img" wx:if="{{item['pictureUrlList'].length != 0}}">
           <block wx:for="{{item['pictureUrlList']}}" wx:key="j">

@@ -82,7 +82,7 @@ Page({
     if(p.data.description.length > 0 || p.data.pictures.length > 0){
         // 提交非图片部分
         wx.request({
-          url: APP.globalData.localhost + "/login/publishOthers",
+          url: APP.globalData.localhost + "/login/others/publish",
           method: "POST",
           header: {"Content-Type": "application/x-www-form-urlencoded"},
           data: {

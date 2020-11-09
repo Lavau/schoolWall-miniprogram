@@ -38,6 +38,12 @@ Page({
               showCancel: false,
               success(res) {wx.switchTab({url: '../index/index'})}
             }); 
+          } else {
+            wx.showModal({
+              content: e.data.msg,
+              showCancel: false,
+              success(res) {wx.switchTab({url: '../index/index'})}
+            }); 
           }
         },
         fail: () => wx.showModal({

@@ -1,0 +1,38 @@
+<!--pages/detailOthers/detailOthers.wxml-->
+<view>
+
+  <!-- 发布人信息 -->
+  <view class="promulgator-info">
+    <image wx:if="{{obj.anonymous}}" class="promulgator-info-avator" src="/assets/img/icon/user-unlogin.png"></image>
+    <image wx:else class="promulgator-info-avator" src="{{obj.avatarUrl}}"></image>
+    <view wx:if="{{obj.anonymous}}" class="promulgator-info-nickname">匿名</view>
+    <view wx:else class="promulgator-info-nickname">{{obj.nickname}}</view>
+  </view>
+
+  <!-- 标题 -->
+  <!-- 当类型不是脱单时显示 -->
+  <view wx:if="{{typeId != 6}}" class="title">
+    {{obj.title}}
+  </view>
+
+  <!-- 仅脱单项显示 -->
+  <block wx:if="{{typeId == 6}}">
+    <view wx:if="{{obj.height != null}}">{{obj.height}}</view>
+    <view wx:if="{{obj.weight != null}}">{{obj.weight}}</view>
+    <view wx:if="{{obj.speciality != null}}">{{obj.speciality}}</view>
+    <view wx:if="{{obj.interest != null}}">{{obj.interest}}</view>
+  </block>
+
+  <!-- 具体内容 -->
+  <view class="description description-position">
+    <view wx:if="{{obj.description != null}}">{{obj.description}}</view>
+  </view>
+
+  <!-- 图片，可以预览 -->
+  <view wx:if="{{obj.pictureUrlList != null}}" class="picture">
+    <image wx:for="{{obj.pictureUrlList}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewpicture">
+    </image>
+  </view>
+
+</view>
+

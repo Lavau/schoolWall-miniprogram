@@ -28,6 +28,14 @@ Page({
     if (this.verifyIsLogin() == false) return;
     wx.navigateTo({url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id});
   },
+  // 
+  goToDetailOthersPage(e) {
+    if (this.verifyIsLogin() == false) return;
+    wx.navigateTo({
+        url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
+             '&typeId=' + e.currentTarget.dataset.typeid
+     });
+  },
 
   /**
    * 页面加载时，获取首页显示的信息

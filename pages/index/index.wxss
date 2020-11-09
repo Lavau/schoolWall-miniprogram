@@ -135,6 +135,7 @@
 .body-item-bottom-nickname{
   margin: 16rpx 250rpx 16rpx 10rpx;
 }
+
 /* 右边内容 */
 .body-item-bottom-right{
   /* position: relative; */
