@@ -4,7 +4,7 @@ const APP = getApp();
 Page({
   data: {
     url: "",
-    list: Array,    
+    list: null,    
     pageNum: null,
     pages: null,
   },
@@ -30,7 +30,7 @@ Page({
         // 点击确定, 删除
         if (res.confirm) {
           wx.request({
-            url: APP.globalData.localhost + "/login/delete",
+            url: APP.globalData.localhost + "/login/others/delete",
             method: "POST",
             header: {"Content-Type": "application/x-www-form-urlencoded"},
             data: {
@@ -38,8 +38,12 @@ Page({
               id: e.currentTarget.dataset.id,
               typeId: e.currentTarget.dataset.typeId
             },
-            success() {
-
+            success(res) {
+              if (res.data.success) {
+                wx.showToast({title: res.data.msg});
+              } else {
+                wx.showToast({title: res.data.msg});
+              }
             },
             fail: () => wx.showModal({content: "删除失败,请重试"})
           })

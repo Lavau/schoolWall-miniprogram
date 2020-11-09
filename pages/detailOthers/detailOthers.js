@@ -5,7 +5,34 @@ Page({
   data: {
     typeId: "",
     id: "",
-    obj: {}
+    like: false,
+    obj: null
+  },
+
+  /**
+   * 点赞相关 
+   */
+  touchLike(e) {
+    this.setData({like: !this.data.like});
+
+    let p = this;
+    wx.request({
+      url: APP.globalData.localhost + "/login/others/like",
+      method: "POST",
+      header: {"Content-Type": "application/x-www-form-urlencoded"},
+      data: {openId: wx.getStorageSync('openId'), 
+        id: p.data.obj.id, 
+        like: p.data.like, 
+        typeId: p.data.obj.typeId
+      },
+      success(e) {
+        if (e.data.success) {
+          wx.showToast({title: e.data.msg});
+        } else {
+          wx.showToast({title: e.data.msg});
+        }
+      }
+    });
   },
 
   /**
@@ -36,7 +63,9 @@ Page({
       success(e) {
         console.log("detailOthers.js onLoad() print data:\n", e.data);
         if (e.data.success) {
-          p.setData({obj: e.data.object});
+          p.setData({obj: e.data.object, like: e.data.object.like});
+        } else {
+          wx.showToast({title: e.data.msg});
         }
       }
     });

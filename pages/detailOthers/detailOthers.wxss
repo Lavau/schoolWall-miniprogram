@@ -85,10 +85,16 @@
   font-size: smaller;
 }
 
+.others-left image{
+  height: 45rpx;
+  width: 45rpx;
+
+}
+
 .others-right {
   display: flex;
   flex-direction: row;
-  margin-left: 460rpx;
+  margin-left: 440rpx;
 }
 
 .others-liner{

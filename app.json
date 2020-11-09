@@ -10,13 +10,15 @@
     "pages/publishOthers/publishOthers",
     "pages/register/register",
     "pages/listEcard/listEcard",
-    "pages/detailOthers/detailOthers"
+    "pages/detailOthers/detailOthers",
+    "pages/listOthers/listOthers"
   ],
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#0081CC",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "color": "#212923",

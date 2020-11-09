@@ -1,5 +1,7 @@
 <!--pages/detailEcard/detailEcard.wxml-->
-<view>
+<view wx:if="{{ecard == null}}" style="margin-top:50%; text-align:center;">该一卡通已被认领</view>
+
+<view wx:else>
   <view class="box">
     <view class="box-name">{{ecard.stuName}}</view>
     <view  class="box-stu-id">{{ecard.stuId}}</view>

@@ -1,6 +1,7 @@
 <!--pages/detailOthers/detailOthers.wxml-->
-<view class="box">
+<view wx:if="{{obj == null}}" style="margin-top:50%; text-align:center;">数据已被删除</view>
 
+<view wx:else class="box">
   <!-- 发布人信息 -->
   <view class="promulgator-info">
     <image wx:if="{{obj.anonymous}}" class="promulgator-info-avator" src="/assets/img/icon/user-unlogin.png"></image>
@@ -49,8 +50,9 @@
   
   <!-- 杂项 -->
   <view class="others">
-    <view class="others-left">
-      点赞
+    <view class="others-left" bindtap="touchLike" data-id="{{obj.id}}">
+      <image wx:if="{{like}}" src="/assets/img/icon/like-active.png"></image>
+      <image wx:else src="/assets/img/icon/like.png"></image>
     </view>
     <view class="others-right">
       <view class="others-right-like">{{obj.likeNum + ' 点赞'}} </view>

@@ -1,8 +1,6 @@
 <!--pages/listEcard/listEcard.wxml-->
 <view>
-  <view wx:if="{{list == null}}">
-    暂无数据
-  </view>
+  <view wx:if="{{list == null}}" style="margin-top:50%; text-align:center;">暂无数据</view>
 
   <!-- 搜索 -->
   <view wx:else class="search">

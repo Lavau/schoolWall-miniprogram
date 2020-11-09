@@ -2,79 +2,98 @@
 const APP = getApp();
 
 Page({
-  data: {
-    list: Array,    
-    pageNum: null,
-    pages: null,
-    type: null,
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    currentTab: 0,
-    navScrollLeft: 0,
-    hidden: true
-  },
+    data: {
+        list: null,
+        pageNum: null,
+        pages: null,
+        type: null,
+        userInfo: {},
+        hasUserInfo: false,
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        hidden: true
+    },
 
-  /**
-   * 初始或关闭页面模态框
-   */
-  isShowTypeModal() {this.setData({hidden: !this.data.hidden})},
+    /**
+     * 初始或关闭页面模态框
+     */
+    isShowTypeModal() {
+        this.setData({
+            hidden: !this.data.hidden
+        })
+    },
 
-  /**
-   * 前往具体的页面
-   */
-  goToListEcardPage:() => wx.navigateTo({url: '../listEcard/listEcard'}),
-  goToDetailEcardPage(e) {
-    if (this.verifyIsLogin() == false) return;
-    wx.navigateTo({url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id});
-  },
-  goToDetailOthersPage(e) {
-    if (this.verifyIsLogin() == false) return;
-    wx.navigateTo({
-        url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
-             '&typeId=' + e.currentTarget.dataset.typeid
-     });
-  },
+    /**
+     * 前往具体的页面
+     */
+    goToListEcardPage: () => wx.navigateTo({
+        url: '../listEcard/listEcard'
+    }),
+    goToListOthersPage: (e) => wx.navigateTo({
+        url: '../listOthers/listOthers?typeId=' + e.currentTarget.dataset.typeid
+    }),
+    goToDetailEcardPage(e) {
+        if (this.verifyIsLogin() == false) return;
+        wx.navigateTo({
+            url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id
+        });
+    },
+    goToDetailOthersPage(e) {
+        if (this.verifyIsLogin() == false) return;
+        wx.navigateTo({
+            url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
+                '&typeId=' + e.currentTarget.dataset.typeid
+        });
+    },
 
-  /**
-   * 页面加载时，获取首页显示的信息
-   */
-  onLoad() {
-      let p = this;
-      wx.request({
-        url: APP.globalData.localhost + "/index",
-        success: (res) => {
-            p.setData({
-                list: res.data['list'],
-                pageNum: res.data['pageNum'],
-                pages: res.data['pages']
+    /**
+     * 页面加载时，获取首页显示的信息
+     */
+    onLoad() {
+        let p = this;
+        wx.request({
+            url: APP.globalData.localhost + "/index",
+            success: (res) => {
+                p.setData({
+                    list: res.data['list'],
+                    pageNum: res.data['pageNum'],
+                    pages: res.data['pages']
+                });
+            },
+            fail() {
+                wx.showToast({title: '获取数据失败'});
+            }
+        });
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh() {
+        let p = this;
+        wx.request({
+            url: APP.globalData.localhost + "/index",
+            success: (res) => {
+                p.setData({
+                    list: res.data['list'],
+                    pageNum: res.data['pageNum'],
+                    pages: res.data['pages']
+                });
+            }
+        });
+    },
+
+    /**
+     * 验证当前用户是否登录
+     */
+    verifyIsLogin() {
+        if (APP.globalData.login == false) {
+            wx.showModal({
+                content: "请先登录",
+                showCancel: false
             });
         }
-      });
-  },
-
- /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-      wx.showModal({
-          content: "上拉刷新中......",
-          showCancel: false
-      })
-  },
-
-  /**
-   * 验证当前用户是否登录
-   */
-  verifyIsLogin() {
-      if (APP.globalData.login == false) {
-        wx.showModal({
-          content: "请先登录",
-          showCancel: false
-        });
-      }
-      return APP.globalData.login;
-  },
+        return APP.globalData.login;
+    },
 
     /**
      * 监听页面滚动到顶部,触发加载事件
@@ -95,19 +114,22 @@ Page({
         wx.request({
             url: APP.globalData.localhost + "/index",
             method: 'GET',
-            data: {pageNum: p.data.pageNum + 1},
+            data: {
+                pageNum: p.data.pageNum + 1
+            },
             success: (res) => {
                 wx.hideLoading({});
-                let listCopy =  p.data.list;
+                let listCopy = p.data.list;
                 res.data['list'].forEach(e => {
                     listCopy.push(e);
                 });
-                p.setData({list: listCopy,
+                p.setData({
+                    list: listCopy,
                     pageNum: res.data['pageNum'],
                     pages: res.data['pages']
                 });
                 // console.log(res.data)
             }
-            });
+        });
     },
 })

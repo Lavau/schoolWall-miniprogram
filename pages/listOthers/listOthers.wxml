@@ -1,0 +1,41 @@
+<!--pages/listOthers/listOthers.wxml-->
+<view class="container">
+  <view wx:if="{{list == null}}" style="margin-top:50%; text-align:center;">暂无数据</view>
+
+  <view wx:else class="body">
+    <block wx:for="{{list}}" wx:key="i">
+      <view class="body-item" bindtap="goToDetailOthersPage" 
+          data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
+        <!-- 图片 -->
+        <view class="body-item-img" wx:if="{{item['pictureUrlList'].length != 0}}">
+          <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
+            <image src="{{item}}"></image> 
+          </block>
+        </view>
+
+        <!-- 文字部分：优先展示描述 -->
+        <view class="body-item-content">
+          <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>
+          <text wx:else>{{item['title']}}</text>
+        </view>
+
+        <!-- item 最下面的内容 -->
+        <view class="body-item-bottom">
+          <view class="body-item-bottom-left">
+            <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" src="/assets/img/icon/user-unlogin.png"></image>
+            <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
+            <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
+            <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
+          </view>
+
+          <view class="body-item-bottom-right">
+            <view class="body-item-bottom-view">{{item['viewNum']}}浏览</view>
+            <!-- <view class="body-item-bottom-time">{{item['createTime']}}</view> -->
+            <view class="body-item-bottom-time">{{item['createTime']}}</view>
+          </view>
+        
+        </view>
+      </view>
+    </block> 
+  </view>
+</view>
