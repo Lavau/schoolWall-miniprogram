@@ -2,8 +2,8 @@
 App({
   globalData: {
     timeout: 30000,
-    localhost: "http://localhost:8088/miniprogram",
-    // localhost: "http://47.98.217.61:8080/miniprogram",
+    // localhost: "http://localhost:8080/miniprogram",
+    localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
     login: false,
     openId: ""
@@ -60,7 +60,7 @@ App({
                       content: "您未注册，是否前往注册",
                       success(res) {
                         if (res.confirm) {
-                          wx.navigateTo({url: '/pages/register/register'});
+                          wx.redirectTo({url: '/pages/register/register'});
                         }
                       }
                     }); break;

@@ -1,0 +1,9 @@
+<swiper class="swiper_box" bindchange="swiperchange" indicator-dots="true" 
+  indicator-active-color="#fff" autoplay interval="5000">
+  <swiper-item wx:for="{{banners}}" wx:key="id">
+    <image mode="aspectFill" bindtap="imgClick" src="{{item}}" />
+  </swiper-item>
+</swiper>
+<view class="btn">
+  <button type="primary" size="mini" bindtap="goToIndex" class="weui-btn mini-btn">进入</button>
+</view>
