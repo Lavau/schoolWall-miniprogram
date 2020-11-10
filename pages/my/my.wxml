@@ -1,5 +1,5 @@
 <!--pages/my/my.wxml-->
-<view class="container">
+<view>
   <!-- 登录状态显示内容 -->
   <view wx:if="{{login}}">
     <button wx:if="{{!hasUserInfo}}" type="primary" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
@@ -52,10 +52,9 @@
 
   <!-- 未登录状态显示内容 -->
   <view wx:else class="no-login-body">
-      <!-- <button bindtap="goToRegisterPage">注册</button> -->
-    <button wx:if="{{!hasUserInfo}}" type="primary" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
+    <button wx:if="{{!hasUserInfo}}" type="warn" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
       基本信息授权
     </button>
-    <!-- <view class="no-login-box" bindtap="">登录</view> -->
+    <button type="primary" style="margin-top: 50rpx" bindtap="login">登录</button>
   </view>
 </view>

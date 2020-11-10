@@ -9,6 +9,8 @@ App({
     openId: ""
   },
 
+  setLoginTrue() {this.globalData.login = true;},
+
   fail: function() {
     wx.showModal({
       title: "提示",

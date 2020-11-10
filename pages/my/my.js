@@ -6,28 +6,6 @@ Page({
     login: false,
     userInfo: {},
     hasUserInfo: false,
-
-    publishedList: null,
-    publishedPageNum: null,
-    publishedPages: null,
-
-    likedList: null,
-    likedPageNum: null,
-    likedPages: null,
-
-    commentedList: null,
-    commentedPageNum: null,
-    commentedPages: null,
-  },
-
-  bindGetUserInfo (e) {
-    console.log(e.detail.userInfo)
-  },
-
-  goToRegisterPage: function() {
-    wx.navigateTo({
-      url: '../register/register',
-    });
   },
 
   /**
@@ -53,54 +31,59 @@ Page({
   },
 
   /**
-   * 获取发布过的
-   */
-  obtainPublishedList() {
-    if (this.data.publishedList == null) {
-      let p = this;
-      wx.request({
-        url: APP.globalData.localhost + "/login/obtainPublishedData",
-        method: "POST",
-        header: {"Content-Type": "application/x-www-form-urlencoded"},
-        data: {openId: APP.globalData.openId},
-        success: (res) => {
-          p.setData({
-            publishedList: res.data['list'],
-            publishedPageNum: res.data['pageNum'],
-            publishedPages: res.data['pages']
-          });
-        },
-        fail() {
-          wx.showModal({
-            content: "获取已发布的数据失败",
-            showCancel: false
-          });
-        }
-      });
-    }
-  },
-
-  /**
-   * 获取点赞过的
-   */
-  obtainLikedList() {
-
-  },
-
-  /**
-   * 获取评论过的
-   */
-  obtainCommentedList() {
-
-  },
-
-  /**
    * 登录
    */
   login() {
-    wx.navigateTo({
-      url: '../index/index',
-    })
+    if (APP.globalData.userInfo == null) {
+      wx.showToast({title: '请授权基本信息'});
+      return
+    }
+
+    let p = this;
+    wx.login({
+      success(res) {
+        // 成功获取到 code，向服务器发送请求
+        if (res.code) {
+          // openId 为空，进行登录请求
+          if (APP.globalData.openId == "") {
+            wx.request({
+              url: APP.globalData.localhost + "/toLogin",
+              method: "POST",
+              header: {"Content-Type": "application/x-www-form-urlencoded"},
+              data: {code: res.code},
+              success(e) {
+                console.log("app.js: onLanch() print 登录时服务器返回的信息\n", e);
+                // 成功获取到服务器的数据
+                switch(e.data["status"]) {                  
+                  case "unregistered": wx.showModal({
+                      content: "您未注册，是否前往注册",
+                      success(res) {
+                        if (res.confirm) {
+                          wx.redirectTo({url: '/pages/register/register'});
+                        }
+                      }
+                    }); break;
+                  case "registered": 
+                      APP.globalData.openId = e.data["msg"];
+                      // wx.setStorageSync("login", true);
+                      APP.globalData.login = true;
+                      p.setData({login: true});
+                      wx.setStorageSync("openId", e.data["msg"]);
+                      console.log("app.js: onLanch() print(2) openId\n", 
+                          wx.getStorageSync('openId'));
+                      break;
+                  default: wx.showModal({
+                    content: e.data["status"],
+                    showCancel: false
+                  });
+                }
+              }
+            });        
+          }
+        }
+      },
+      fail: () => wx.showToast({title: "获取 code 失败"}),
+    });
   },
 
   /**

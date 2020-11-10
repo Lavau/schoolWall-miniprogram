@@ -11,6 +11,49 @@ Page({
   },
 
   /**
+   * 脱单类别，点击“我想脱单”后，弹出弹框
+   */
+  showContactInfo() {
+    let p = this;
+    wx.showModal({
+      content: p.data.obj.contactInformation == null ? "Ta 没有留下任何痕迹" : p.data.obj.contactInformation,
+      showCancel: false
+    });
+  },
+
+  /**
+   * 失物类别，点击“认领”后，弹出询问框
+   */
+  claim() {
+    let p = this;
+    wx.showModal({
+      content: '请仔细检查信息后认领，有问题请联系管理员',
+      confirmText: "认领",
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: APP.globalData.localhost + "/login/others/claim",
+            method: "POST",
+            header: {"Content-Type": "application/x-www-form-urlencoded"},
+            data: {openId: wx.getStorageSync('openId'), id: p.data.obj.id},
+            success(e) {
+              if (e.data.success) {
+                wx.showModal({
+                  content: p.data.obj.msg,
+                  showCancel: false
+                });
+              } else {
+                wx.showToast({title: e.data.msg});
+              }
+            },
+            fail() {wx.showToast({title: "服务器异常"});}
+          });
+        }
+      }
+    });
+  },
+
+  /**
    * 点赞相关
    */
   touchLike(e) {

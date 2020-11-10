@@ -91,7 +91,7 @@
   word-break: break-all;  /*强制英文单词自动换行*/
 
   margin-bottom: 15rpx;
-  padding-bottom: 10rpx;
+  padding-bottom: 5rpx;
   border-bottom: #93d1f5 5rpx dotted;
 }
 

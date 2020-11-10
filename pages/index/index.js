@@ -128,7 +128,6 @@ Page({
                     pageNum: res.data['pageNum'],
                     pages: res.data['pages']
                 });
-                // console.log(res.data)
             }
         });
     },

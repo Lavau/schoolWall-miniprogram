@@ -2,7 +2,7 @@
 <view class="container">
   <view class="item">
     <view class="tile">学号：</view>
-    <input type="number" placeholder="请输入学号" bindinput="inputStuId"/>
+    <input type="number" placeholder="请输入学号" maxlength="9" bindinput="inputStuId"/>
   </view>
 
   <view class="item">

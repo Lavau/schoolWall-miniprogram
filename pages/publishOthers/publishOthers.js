@@ -121,7 +121,7 @@ Page({
             filePath: p.data.pictures[i],
             name: "uploadFile",
             formData: {
-              typeId: "1",
+              typeId: p.data.typeId,
               uuid: p.data.uuid,
               openId: p.data.openId
             },
