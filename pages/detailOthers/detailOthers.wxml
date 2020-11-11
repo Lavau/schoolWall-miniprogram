@@ -4,12 +4,12 @@
 <view wx:else class="box">
   <!-- 发布人信息 -->
   <view class="promulgator-info">
-    <image wx:if="{{obj.anonymous}}" class="promulgator-info-avator" src="/assets/img/icon/user-unlogin.png"></image>
+    <image wx:if="{{obj.anonymous}}" class="promulgator-info-avator" src="/assets/img/icon/user-unlogin.png">
+    </image>
     <image wx:else class="promulgator-info-avator" src="{{obj.avatarUrl}}"></image>
     <view wx:if="{{obj.anonymous}}" class="promulgator-info-nickname">匿名</view>
     <view wx:else class="promulgator-info-nickname">{{obj.nickname}}</view>
     <view class="promulgator-info-time">{{obj.createTime}}</view>
-    
   </view>
 
   <!-- 标题 -->

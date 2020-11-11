@@ -18,12 +18,24 @@
 }
 
 .promulgator-info-nickname{
-  margin: 12rpx 250rpx 16rpx 10rpx;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
+  padding-top: 5rpx;
+
+  width: 400rpx;
+
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 1;  /*最多显示2行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
 }
 
 .promulgator-info-time {
+  /* border: 1rpx blue solid; */
+  width: 300rpx;
+  text-align: right;
   margin-top: 20rpx;
-  margin-left: 150rpx;
   font-size: x-small;
   color: #D3D3D3;
 }

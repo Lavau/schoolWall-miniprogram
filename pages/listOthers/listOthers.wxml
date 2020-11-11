@@ -23,12 +23,10 @@
 
         <!-- item 最下面的内容 -->
         <view class="body-item-bottom">
-          <view class="body-item-bottom-left">
-            <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" src="/assets/img/icon/user-unlogin.png"></image>
-            <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
-            <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
-            <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
-          </view>
+          <image wx:if="{{item['anonymous']}}" class="body-item-bottom-avator" src="/assets/img/icon/user-unlogin.png"></image>
+          <image wx:else class="body-item-bottom-avator" src="{{item['avatarUrl']}}"></image>
+          <view wx:if="{{item['anonymous']}}" class="body-item-bottom-nickname">匿名</view>
+          <view wx:else class="body-item-bottom-nickname">{{item['nickname']}}</view>
 
           <view class="body-item-bottom-right">
             <view class="body-item-bottom-view">{{item['viewNum']}}浏览</view>

@@ -115,12 +115,6 @@
 /* 底部其他内容 */
 .body-item-bottom{
   display: flex;
-}
-
-/* 左边内容 */
-.body-item-bottom-left{
-  align-items: center;
-  display: flex;
   flex-direction: row;
 }
 
@@ -131,20 +125,32 @@
 }
 
 .body-item-bottom-nickname{
-  margin: 16rpx 200rpx 16rpx 10rpx;
+  margin-left: 10rpx;
+  padding-top: 10rpx;
+
+  width: 400rpx;
+
+  /* border: 1rpx red solid; */
+
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 1;  /*最多显示2行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;  /*强制英文单词自动换行*/
 }
 
 /* 右边内容 */
 .body-item-bottom-right{
+  width: 235rpx;
+  /* border: 1rpx blue solid; */
   display: flex;
   flex-direction: column;
   font-size: x-small;
-  padding-top: 12rpx;
-  padding-left: 200rpx;
 }
 
 .body-item-bottom-view {
-  padding-left: 100rpx;
+  text-align: right;
 }
 
 .body-item-bottom-time{

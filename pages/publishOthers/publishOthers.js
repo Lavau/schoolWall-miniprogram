@@ -69,7 +69,7 @@ Page({
       return;
     }
 
-    if (p.data.title.length === 0) {
+    if (p.data.typeId != "6" && p.data.title.length === 0) {
       this.showModal("主题不能为空哦");
       return;
     }
