@@ -77,7 +77,8 @@ Page({
                     showCancel: false
                   });
                 }
-              }
+              },
+              fail:() => APP.fail()
             });        
           }
         }

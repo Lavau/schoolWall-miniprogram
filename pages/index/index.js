@@ -59,9 +59,7 @@ Page({
                     pages: res.data['pages']
                 });
             },
-            fail() {
-                wx.showToast({title: '获取数据失败'});
-            }
+            fail:() => APP.fail()
         });
     },
 
@@ -78,7 +76,8 @@ Page({
                     pageNum: res.data['pageNum'],
                     pages: res.data['pages']
                 });
-            }
+            },
+            fail:() => APP.fail()
         });
     },
 
@@ -128,7 +127,8 @@ Page({
                     pageNum: res.data['pageNum'],
                     pages: res.data['pages']
                 });
-            }
+            },
+            fail:() => APP.fail()
         });
     },
 })

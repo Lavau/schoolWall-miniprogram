@@ -1,6 +1,5 @@
 {
   "usingComponents": {},
-  "window": {
-    "enablePullDownRefresh": true
-  }
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "校园墙"
 }

@@ -119,9 +119,7 @@
 
 /* 左边内容 */
 .body-item-bottom-left{
-  flex: 1;
   align-items: center;
-
   display: flex;
   flex-direction: row;
 }
@@ -133,25 +131,22 @@
 }
 
 .body-item-bottom-nickname{
-  margin: 16rpx 250rpx 16rpx 10rpx;
+  margin: 16rpx 200rpx 16rpx 10rpx;
 }
 
 /* 右边内容 */
 .body-item-bottom-right{
-  /* position: relative; */
-  align-items:center;
-
   display: flex;
   flex-direction: column;
   font-size: x-small;
+  padding-top: 12rpx;
+  padding-left: 200rpx;
+}
+
+.body-item-bottom-view {
+  padding-left: 100rpx;
 }
 
 .body-item-bottom-time{
-  margin-top: 40rpx;
-  font-size: xx-small;
-}
-
-.body-item-bottom-time{
-  margin-top: 40rpx;
-  font-size: xx-small;
+  text-align: right;
 }

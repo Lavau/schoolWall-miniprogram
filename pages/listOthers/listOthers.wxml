@@ -1,8 +1,10 @@
 <!--pages/listOthers/listOthers.wxml-->
-<view class="container">
-  <view wx:if="{{list == null}}" style="margin-top:50%; text-align:center;">暂无数据</view>
+<view wx:if="{{list == null || list.length == 0}}"style="margin-top:50%; text-align:center;">
+  暂无数据
+</view>
 
-  <view wx:else class="body">
+<view wx:else class="container">
+  <view class="body">
     <block wx:for="{{list}}" wx:key="i">
       <view class="body-item" bindtap="goToDetailOthersPage" 
           data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
@@ -30,7 +32,6 @@
 
           <view class="body-item-bottom-right">
             <view class="body-item-bottom-view">{{item['viewNum']}}浏览</view>
-            <!-- <view class="body-item-bottom-time">{{item['createTime']}}</view> -->
             <view class="body-item-bottom-time">{{item['createTime']}}</view>
           </view>
         

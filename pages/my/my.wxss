@@ -35,7 +35,7 @@
 /* 头部的盒子 */
 .header-bottom-box{
   position: fixed;
-  top: 120rpx;
+  top: 150rpx;
   z-index: 10;
   width: 652rpx;
   height: 100rpx;

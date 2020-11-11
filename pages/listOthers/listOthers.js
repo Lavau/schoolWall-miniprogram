@@ -42,7 +42,8 @@ Page({
           pageNum: res.data['pageNum'],
           pages: res.data['pages']
         });
-      }
+      },
+      fail:() => APP.fail()
     });
   },
 
@@ -72,7 +73,8 @@ Page({
           pageNum: res.data['pageNum'],
           pages: res.data['pages']
         });
-      }
+      },
+      fail:() => APP.fail()
     });
   },
 })

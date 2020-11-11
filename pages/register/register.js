@@ -99,7 +99,8 @@ Page({
                 showCancel: true
               });
             }
-          }
+          },
+          fail:() => APP.fail()
       })
     });} else {
       wx.showModal({
@@ -125,7 +126,8 @@ Page({
       // fail: APP.fail(),
       url:  APP.globalData.localhost + "/college",
       header: {'content-type': 'APPlication/json'},
-      success: e => p.setData({colleges: e.data.list})
+      success: e => p.setData({colleges: e.data.list}),
+      fail:() => APP.fail()
     });
   }
 })

@@ -46,7 +46,7 @@ Page({
                 wx.showToast({title: e.data.msg});
               }
             },
-            fail() {wx.showToast({title: "服务器异常"});}
+            fail:() => APP.fail()
           });
         }
       }
@@ -76,7 +76,8 @@ Page({
         } else {
           wx.showToast({title: e.data.msg});
         }
-      }
+      },
+      fail:() => APP.fail()
     });
   },
 
@@ -115,7 +116,8 @@ Page({
         } else {
           wx.showToast({title: e.data.msg});
         }
-      }
+      },
+      fail:() => APP.fail()
     });
   }
 })

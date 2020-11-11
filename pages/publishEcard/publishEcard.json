@@ -1,6 +1,4 @@
 {
   "usingComponents": {},
-  "window": {
-    "navigationBarTitleText": "一卡通发布"
-  }
+  "navigationBarTitleText": "一卡通发布"
 }

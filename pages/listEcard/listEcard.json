@@ -1,6 +1,4 @@
 {
   "usingComponents": {},
-  "window": {
-    "navigationBarTitleText": "一卡通列表"
-  }
+  "navigationBarTitleText": "一卡通列表"
 }

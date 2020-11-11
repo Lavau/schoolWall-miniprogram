@@ -86,11 +86,7 @@ Page({
           })
         }
       },
-      fail: () => wx.showModal({
-          content: "提交失败！",
-          showCancel: false,
-          success: () => wx.switchTab({url: '../index/index'})
-        })
+      fail:() => APP.fail()
     });
   },
 
@@ -104,11 +100,10 @@ Page({
      // 获取学院信息
     let p = this;
     wx.request({
-      timeout: APP.globalData.timeout,
-      // fail: app.fail(),
       url:  APP.globalData.localhost + "/college",
       header: {'content-type': 'application/json'},
-      success: e => p.setData({colleges: e.data.list})
+      success: e => p.setData({colleges: e.data.list}),
+      fail:() => APP.fail()
     });
   },
 

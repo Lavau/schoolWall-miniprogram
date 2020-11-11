@@ -1,6 +1,4 @@
 {
   "usingComponents": {},
-  "window": {
-    "navigationBarTitleText": "我的数据"
-  }
+  "navigationBarTitleText": "我的数据"
 }

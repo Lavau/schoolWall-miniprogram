@@ -45,7 +45,7 @@ Page({
                 wx.showToast({title: res.data.msg});
               }
             },
-            fail: () => wx.showModal({content: "删除失败,请重试"})
+            fail:() => APP.fail()
           })
         }
       }
@@ -91,12 +91,7 @@ Page({
           });
         }
       },
-      fail() {
-        wx.showModal({
-          content: "获取数据失败",
-          showCancel: false
-        })
-      }
+      fail:() => APP.fail()
     });
   },
 
@@ -132,7 +127,8 @@ Page({
             pageNum: res.data['pageNum'],
             pages: res.data['pages']
         });
-      }
+      },
+      fail:() => APP.fail()
     });
   }
 })

@@ -2,8 +2,8 @@
 App({
   globalData: {
     timeout: 30000,
-    // localhost: "http://localhost:8080/miniprogram",
-    localhost: "https://schoolwall.imwonder.top/miniprogram",
+    localhost: "http://localhost:8080/miniprogram",
+    // localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
     login: false,
     openId: ""
@@ -11,13 +11,7 @@ App({
 
   setLoginTrue() {this.globalData.login = true;},
 
-  fail: function() {
-    wx.showModal({
-      title: "提示",
-      content: "处理失败",
-      showCancel: false
-    });
-  },
+  fail:() => wx.showToast({title: "服务器繁忙", icon: "loading"}),
 
  /**
   * 生成 uuid
@@ -76,7 +70,8 @@ App({
                     showCancel: false
                   });
                 }
-              }
+              },
+              fail:() => p.fail()
             });        
           }
         }

@@ -1,9 +1,11 @@
 <!--pages/listEcard/listEcard.wxml-->
-<view>
-  <view wx:if="{{list == null}}" style="margin-top:50%; text-align:center;">暂无数据</view>
+<view wx:if="{{list == null || list.length == 0}}"style="margin-top:50%; text-align:center;">
+  暂无数据
+</view>
 
+<view wx:else>
   <!-- 搜索 -->
-  <view wx:else class="search">
+  <view class="search">
     <input type="number" placeholder="输入学号搜索一卡通信息" value="{{name}}" maxlength="9" bindinput="bindinput" bindconfirm="bindconfirm"/>
     <image src="/assets/img/icon/search.svg"></image>
   </view>

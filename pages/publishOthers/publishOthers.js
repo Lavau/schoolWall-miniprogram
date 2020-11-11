@@ -111,7 +111,8 @@ Page({
                 }
               })
             }
-          }
+          },
+          fail:() => APP.fail()
         });
         
         // 提交图片
@@ -135,7 +136,8 @@ Page({
                   success: (e) => wx.switchTab({url: '../index/index'})
                 });
               }
-            }
+            },
+            fail:() => APP.fail()
           });
         }
 

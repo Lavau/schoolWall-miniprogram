@@ -46,11 +46,7 @@ Page({
             }); 
           }
         },
-        fail: () => wx.showModal({
-          content: "服务器异常",
-          showCancel: false,
-          success(res) {wx.switchTab({url: '../index/index'})}
-        })
+        fail:() => APP.fail()
       });
     } else {
       wx.showToast({title: '一卡通号错误'});
@@ -72,7 +68,8 @@ Page({
         if (e.data.success) {
           p.setData({ecard: e.data.object});
         }
-      }
+      },
+      fail:() => APP.fail()
     });
   }
 })
