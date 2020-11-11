@@ -37,7 +37,7 @@
   </view>
 
   <!-- 具体内容 -->
-  <view wx:if="{{obj.description != null}}" class="description">
+  <view wx:if="{{obj.description != null && obj.description.length > 0}}" class="description">
     <view class="tip">具体描述：</view>
     <view class="description-content">{{obj.description}}</view>
   </view>

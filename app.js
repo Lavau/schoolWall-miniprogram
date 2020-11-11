@@ -2,8 +2,8 @@
 App({
   globalData: {
     timeout: 30000,
-    localhost: "http://localhost:8080/miniprogram",
-    // localhost: "https://schoolwall.imwonder.top/miniprogram",
+    // localhost: "http://localhost:8080/miniprogram",
+    localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
     login: false,
     openId: ""
