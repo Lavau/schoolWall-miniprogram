@@ -1,5 +1,5 @@
 // pages/register/register.js
-const APP = getApp()
+const APP = getApp();
 
 Page({
   data: {
@@ -48,10 +48,7 @@ Page({
    */
   register: function(){
     if (this.data.userInfo == null) {
-      wx.showModal({
-        content: "请您授权信息",
-        cancelColor: 'cancelColor',
-      });
+      wx.showToast({title: "请您授权信息", icon: "none"});
       return;
     }
 
@@ -59,10 +56,10 @@ Page({
     let nickname = this.data.userInfo.nickName;
     let p = this.data;
 
-    if(this.data.stuId !== null && this.data.name !== null && this.data.collegeId !== null){
+    if(this.data.stuId !== null && this.data.stuId.length == 9 &&
+        this.data.name !== null && this.data.collegeId !== null && this.simpleVerify()){
       wx.login({
         timeout: APP.globalData.timeout,
-        // fail: APP.fail(),
         success: res => wx.request({
           url: APP.globalData.localhost + "/register",
           method: "POST",
@@ -75,24 +72,13 @@ Page({
             nickname: nickname,
             code: res.code
           },
-          timeout: APP.globalData.timeout,
-          // fail: APP.fail(),
           success: function(e) {
             if(e.data.success){
               APP.globalData.openId = e.data.status;
               APP.globalData.login = true;
               wx.setStorageSync("openId", e.data.status);
-              wx.showModal({
-                title: "注册成功",
-                showCancel: true,
-                success: function(res) {
-                  if (res.confirm) {
-                    wx.switchTab({url: '../index/index'});
-                    // wx.setStorageSync("login", true);
-                    APP.globalData.login = true;
-                  }
-                }
-              });
+              wx.showToast({title: "注册成功"});
+              wx.switchTab({url: '../index/index'});
             } else {
               wx.showModal({
                 title: e.data.msg,
@@ -101,29 +87,37 @@ Page({
             }
           },
           fail:() => APP.fail()
-      })
-    });} else {
-      wx.showModal({
-        title: "请检查输入！",
-        showCancel: true
+        }),
+        fail:() => wx.showToast({title: "获取 code 失败", icon: "none"})
       });
+  } else {
+      wx.showToast({title: "请检查输入！", icon: "none"});
     }
   },
 
-   inputStuId: function(e) {this.setData({stuId: e.detail.value});},
-   inputName: function(e) {this.setData({name: e.detail.value});},
+  inputStuId: function(e) {this.setData({stuId: e.detail.value});},
+  inputName: function(e) {this.setData({name: e.detail.value});},
+
+  /**
+   * 简单验证
+   */
+  simpleVerify() {
+    return this.data.dateValue.substring(2, 4) == this.data.stuId.substring(0, 2) && 
+            this.data.collegeId == parseInt(this.data.stuId.substring(2, 4));
+  },
 
   /**
    * 在页面加载过程中获取：年份、学院信息
    */
   onLoad: function() {
     let date = new Date();
-    this.setData({endDate: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate()});
+    this.setData({
+      endDate: date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate(),
+      userInfo: APP.globalData.userInfo
+    });
 
     let p = this;
     wx.request({
-      timeout: APP.globalData.timeout,
-      // fail: APP.fail(),
       url:  APP.globalData.localhost + "/college",
       header: {'content-type': 'APPlication/json'},
       success: e => p.setData({colleges: e.data.list}),

@@ -1,5 +1,5 @@
 <!--pages/register/register.wxml-->
-<view class="container">
+<view>
   <view class="item">
     <view class="tile">学号：</view>
     <input type="number" placeholder="请输入学号" maxlength="9" bindinput="inputStuId"/>
@@ -34,9 +34,9 @@
     </view>
   </view>
   
-  <button bindtap="register">注册</button>
+  <button type="primary" bindtap="register" style="margin-bottom: 40rpx;">注册</button>
 
-  <button type="primary" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
+  <button wx:if="{{userInfo == null}}" type="warn" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
     基本信息授权
   </button>
 </view>

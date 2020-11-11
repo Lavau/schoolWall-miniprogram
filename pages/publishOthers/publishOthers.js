@@ -119,12 +119,13 @@ Page({
         for(let i = 0; i < p.data.pictures.length; i++){
           wx.uploadFile({
             url: APP.globalData.localhost + "/login/uploadPicture",
+            header: {'Content-Type': 'multipart/form-data'},
             filePath: p.data.pictures[i],
             name: "uploadFile",
             formData: {
               typeId: p.data.typeId,
               uuid: p.data.uuid,
-              openId: p.data.openId
+              openId: APP.globalData.openId
             },
             success: (e) => {
               // 图片提交失败时，显示提示信息

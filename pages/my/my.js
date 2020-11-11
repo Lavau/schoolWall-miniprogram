@@ -65,7 +65,6 @@ Page({
                     }); break;
                   case "registered": 
                       APP.globalData.openId = e.data["msg"];
-                      // wx.setStorageSync("login", true);
                       APP.globalData.login = true;
                       p.setData({login: true});
                       wx.setStorageSync("openId", e.data["msg"]);
