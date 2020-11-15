@@ -12,7 +12,8 @@
     "pages/register/register",
     "pages/listEcard/listEcard",
     "pages/detailOthers/detailOthers",
-    "pages/listOthers/listOthers"
+    "pages/listOthers/listOthers",
+    "pages/listComment/listComment"
   ],
   "window": {
     "backgroundTextStyle": "dark",

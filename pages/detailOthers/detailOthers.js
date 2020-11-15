@@ -9,7 +9,14 @@ Page({
     likeNum: null,
     obj: null,
 
-    commentList: null,
+    commentList: [],
+    hidden: true,
+    commentContent: "",
+    pageNum: 1,
+    pages: null,
+
+    publishId: "",
+    publisParent: ""
   },
 
   /**
@@ -59,6 +66,8 @@ Page({
    * 点赞相关
    */
   touchLike(e) {
+    console.log(this.data.commentList);
+
     this.setData({like: !this.data.like});
     this.setData({likeNum: this.data.like ? this.data.likeNum + 1 : this.data.likeNum - 1});
 
@@ -100,6 +109,55 @@ Page({
     });
    },
 
+   /**
+    * 前往二级评论页
+    */
+   goToCommentListPage(e) { wx.navigateTo({
+     url: '/pages/listComment/listComment?id=' + e.currentTarget.dataset.id,
+   });},
+
+  /**
+   * 评论相关
+   */
+  // 显示/隐藏评论模态框
+  isShowModal(e) {
+    this.setData({
+      hidden: !this.data.hidden,
+      publishId: e.currentTarget.dataset.id,
+      publisParent: e.currentTarget.dataset.parent
+    });
+  },
+  // 获取输入的评论
+  inputComment(e) {this.setData({commentContent: e.detail.value});},
+  // 发布评论
+  publishComment() {
+    let p = this;
+    if (this.data.commentContent.length == 0) {
+      wx.showToast({title: '输入评论，才能发布哦', icon: "none"});
+    } else {
+      APP.serverLoading();
+      wx.request({
+        url: APP.globalData.localhost + "/login/comment/publish",
+        method: "POST",
+        header: {"Content-Type": "application/x-www-form-urlencoded"},
+        data: {
+          openId: APP.globalData.openId,
+          id: p.data.publishId,
+          content: p.data.commentContent,
+          isParent: p.data.publisParent
+        },
+        success(res) {
+          wx.hideLoading({});
+          if (res.data.success) {
+            wx.showToast({title: res.data.msg});
+            p.isShowModal();
+          }
+        },
+        fail:() => APP.fail()
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -108,6 +166,7 @@ Page({
     this.data.typeId = options.typeId;
 
     let p = this;
+    // 向服务器请求，要展示的信息
     wx.request({
       url: APP.globalData.localhost + "/login/others/detail",
       method: "POST",
@@ -123,6 +182,41 @@ Page({
         } else {
           wx.showToast({title: e.data.msg});
         }
+      },
+      fail:() => APP.fail()
+    });
+
+    // 向服务器请求评论内容
+    this.obtainComment();
+  },
+
+  /**
+   * 获取评论信息
+   */
+  obtainComment() {
+    let p = this;
+    wx.request({
+      url: APP.globalData.localhost + "/login/comment/list",
+      method: "POST",
+      header: {"Content-Type": "application/x-www-form-urlencoded"},
+      data: {
+        openId: wx.getStorageSync('openId'), 
+        id: p.data.id, 
+        isParent: true,
+        pageNum: p.data.pageNum
+      },
+      success(e) {
+        console.log("detailOthers.js obtainComment() print data:\n", e.data);
+        let listCopy = p.data.commentList;
+        e.data.list.forEach(e => {
+            listCopy.push(e);
+        });
+
+        p.setData({
+          commentList: listCopy,
+          pageNum: e.data.pageNum,
+          pages: e.data.pages
+        });
       },
       fail:() => APP.fail()
     });

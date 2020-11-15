@@ -13,7 +13,7 @@
 .body-item-img{
   width: 720rpx;
   box-sizing: border-box;
-  margin-bottom: 15rpx;
+  margin: 10rpx 0;
 }
 
 .body-item-img image{

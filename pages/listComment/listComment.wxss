@@ -1,12 +1,7 @@
-/* pages/detailOthers/detailOthers.wxss */
-/* 展示发布的信息 */
-/* .detail-info { */
-  /* border: red 2rpx solid; */
-/* } */
-
-.tip {
-  font-weight: bold;
-  color: #D3D3D3;
+/* pages/listComment/listComment.wxss */
+.comment {
+  margin: 0rpx 20rpx 20rpx 20rpx;
+  /* border: green 2rpx solid; */
 }
 
 .nickname {
@@ -22,102 +17,6 @@
   overflow: hidden;  /*超出隐藏*/
   text-overflow: ellipsis;  /*超出显示为省略号*/
   -webkit-box-orient: vertical;
-}
-
-/* 发布人信息 */
-.promulgator-info {
-  display: flex;
-  flex-direction: row;
-  margin: 20rpx;
-}
-
-.promulgator-info-avator {
-  height: 58rpx;
-  width: 58rpx;
-  border-radius: 35rpx;
-}
-
-.promulgator-info-time {
-  /* border: 1rpx blue solid; */
-  width: 300rpx;
-  text-align: right;
-  margin-top: 16rpx;
-  font-size: x-small;
-  color: #D3D3D3;
-}
-
-/* 标题 */
-.title {
-  display: flex;
-  flex-direction: row;
-  margin: 20rpx;
-  padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-/* 脱单 */
-.single-feature {
-  margin: 20rpx;
-  padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-.single-feature-item {
-  display: flex;
-  flex-direction: row;
-}
-
-/* 具体内容 */
-.description {
-  margin: 20rpx;
-}
-
-.description-content {
-  padding: 10rpx 10rpx 20rpx 10rpx;
-  margin-top: 5rpx;
-  text-indent: 1.5em; 
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-/* 图片 */
-.picture {
-  margin: 20rpx;
-  width: 720rpx;
-  box-sizing: border-box;
-  margin-bottom: 15rpx;
-  padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-.picture image {
-  width: 235rpx;
-  height: 235rpx;
-  margin-right: 5rpx;
-  border-radius: 20rpx;
-}
-
-/* 杂项 */
-.others {
-  display: flex;
-  flex-direction: row;
-  margin: 20rpx 30rpx;
-  font-size: smaller;
-}
-
-.others image { 
-  height: 45rpx;
-  width: 45rpx;
-}
-
-.others-right {
-  display: flex;
-  flex-direction: row;
-  margin-left: 380rpx;
-}
-
-.others-liner {
-  margin: 0 10rpx;
-  border-right: #D3D3D3 2rpx solid;
 }
 
 /* 展示评论 */

@@ -1,0 +1,46 @@
+<!--pages/listComment/listComment.wxml-->
+<view class="comment">
+  <view wx:for="{{commentList}}" wx:key="index">
+    <view class="comment-item">
+      <!-- 左部-头像 -->
+      <view class="comment-item-left">
+        <image src="{{item.avatarUrl}}"></image>
+      </view>
+
+      <!-- 右部-主要内容 -->
+      <view class="comment-item-right">
+        <!-- 昵称 + 点赞 -->
+        <view class="comment-item-right-header">
+          <view class="nickname">{{item.nickname}}</view>
+          <view class="others-left" bindtap="touchLike" data-id="{{item.id}}">
+            <image wx:if="{{like}}" src="/assets/img/icon/like-active.png"></image>
+            <image wx:else src="/assets/img/icon/like.png"></image>
+          </view>
+        </view>
+
+        <!-- 评论内容 -->
+        <view class="comment-item-right-body">{{item.content}}</view>
+
+        <!-- 时间 + 回复 -->
+        <view class="comment-item-right-foter">
+          <view wx:if="{{index > 0}}" style="font-size: 27rpx; font-weight: bold; color: #0081CC;  padding-right: 88rpx">
+            {{index}} 楼
+          </view>
+          <view style="font-size: 27rpx; padding-right: 88rpx">{{item.createTime}}</view>
+
+          <view wx:if="{{index == 0}}" style="font-size: 27rpx; color: darkgrey" bindtap="isShowModal" 
+            data-id="{{id}}" data-parent="false">
+            回复
+          </view>
+
+          <modal hidden="{{hidden}}" confirm-text="发布评论" cancel-text="取消" 
+            bindcancel="isShowModal" bindconfirm="publishComment">
+            <textarea type="text" placeholder="请输入友善的评论" maxlength="100" bindinput="inputComment" 
+              style="border: #eeebeb 1rpx solid; padding: 10rpx; margin-right: 550rpx;" >
+            </textarea>
+          </modal>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
