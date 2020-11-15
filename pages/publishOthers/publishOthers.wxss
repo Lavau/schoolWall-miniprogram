@@ -28,6 +28,7 @@
 
 /* 图片部分 */
 .picture {
+  margin: 10rpx;
   width: 720rpx;
   box-sizing: border-box;
   margin: 30rpx 20rpx;
@@ -37,6 +38,7 @@
   width: 235rpx;
   height: 235rpx;
   margin-right: 5rpx;
+  border-radius: 15rpx;
 }
 
 /* 匿名按钮 */

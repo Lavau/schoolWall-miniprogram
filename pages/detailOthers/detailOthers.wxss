@@ -1,4 +1,9 @@
 /* pages/detailOthers/detailOthers.wxss */
+/* 展示发布的信息 */
+/* .detail-info { */
+  /* border: red 2rpx solid; */
+/* } */
+
 .tip {
   font-weight: bold;
   color: #D3D3D3;
@@ -11,16 +16,17 @@
   margin: 20rpx;
 }
 
-.promulgator-info-avator{
-  height: 60rpx;
-  width: 60rpx;
+.promulgator-info-avator {
+  height: 58rpx;
+  width: 58rpx;
   border-radius: 35rpx;
 }
 
-.promulgator-info-nickname{
+.promulgator-info-nickname {
   margin-left: 10rpx;
   margin-bottom: 20rpx;
-  padding-top: 5rpx;
+  padding-top: 10rpx;
+  font-size: 28rpx;
 
   width: 400rpx;
 
@@ -35,7 +41,7 @@
   /* border: 1rpx blue solid; */
   width: 300rpx;
   text-align: right;
-  margin-top: 20rpx;
+  margin-top: 16rpx;
   font-size: x-small;
   color: #D3D3D3;
 }
@@ -74,7 +80,7 @@
 }
 
 /* 图片 */
-.picture{
+.picture {
   margin: 20rpx;
   width: 720rpx;
   box-sizing: border-box;
@@ -83,10 +89,11 @@
   border-bottom: #eeebeb 1rpx solid;
 }
 
-.picture image{
+.picture image {
   width: 235rpx;
   height: 235rpx;
   margin-right: 5rpx;
+  border-radius: 20rpx;
 }
 
 /* 杂项 */
@@ -97,10 +104,9 @@
   font-size: smaller;
 }
 
-.others-left image{
+.others-left image { 
   height: 45rpx;
   width: 45rpx;
-
 }
 
 .others-right {
@@ -109,10 +115,20 @@
   margin-left: 440rpx;
 }
 
-.others-liner{
+.others-liner {
   margin: 0 10rpx;
   border-right: #D3D3D3 2rpx solid;
 }
 
+/* 展示评论 */
+.comment {
+  margin: 0rpx 20rpx 20rpx 20rpx;
+  /* border: green 2rpx solid; */
+}
+
+.comment-none {
+  margin: 100rpx 0;
+  text-align: center;
+}
 
 

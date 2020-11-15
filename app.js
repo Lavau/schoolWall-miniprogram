@@ -2,8 +2,8 @@
 App({
   globalData: {
     timeout: 30000,
-    localhost: "http://localhost:8080/miniprogram",
-    // localhost: "https://schoolwall.imwonder.top/miniprogram",
+    // localhost: "http://localhost:8080/miniprogram",
+    localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
     login: false,
     openId: ""
@@ -12,6 +12,10 @@ App({
   setLoginTrue() {this.globalData.login = true;},
 
   fail:() => wx.showToast({title: "服务器繁忙", icon: "loading"}),
+  /**
+   * 等待服务器返回处理结果
+   */
+  serverLoading:() => wx.showLoading({title: '处理中', mask: true}),
 
  /**
   * 生成 uuid

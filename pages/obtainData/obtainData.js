@@ -24,11 +24,15 @@ Page({
    * @param {*} e 
    */
   delete(e) {
-    wx.showModal({
+      wx.showModal({
       content: "您确定要删除这条记录",
       success(res) {
         // 点击确定, 删除
         if (res.confirm) {
+          wx.showLoading({
+            title: '处理中',
+            mask: true,
+          });
           wx.request({
             url: APP.globalData.localhost + "/login/others/delete",
             method: "POST",
@@ -36,13 +40,15 @@ Page({
             data: {
               openId: APP.globalData.openId, 
               id: e.currentTarget.dataset.id,
-              typeId: e.currentTarget.dataset.typeId
+              typeId: e.currentTarget.dataset.typeid
             },
             success(res) {
               if (res.data.success) {
+                wx.hideLoading({});
                 wx.showToast({title: res.data.msg});
               } else {
-                wx.showToast({title: res.data.msg});
+                wx.hideLoading({});
+                wx.showToast({title: res.data.msg, icon: "none"});
               }
             },
             fail:() => APP.fail()

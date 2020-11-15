@@ -7,7 +7,9 @@ Page({
     id: "",
     like: false,
     likeNum: null,
-    obj: null
+    obj: null,
+
+    commentList: null,
   },
 
   /**
@@ -61,6 +63,9 @@ Page({
     this.setData({likeNum: this.data.like ? this.data.likeNum + 1 : this.data.likeNum - 1});
 
     let p = this;
+
+    APP.serverLoading();
+
     wx.request({
       url: APP.globalData.localhost + "/login/others/like",
       method: "POST",
@@ -72,8 +77,10 @@ Page({
       },
       success(e) {
         if (e.data.success) {
+          wx.hideLoading({});
           wx.showToast({title: e.data.msg});
         } else {
+          wx.hideLoading({});
           wx.showToast({title: e.data.msg});
         }
       },

@@ -3,6 +3,7 @@ const APP = getApp();
 
 Page({
     data: {
+        tipText: '数据加载中',
         list: null,
         pageNum: null,
         pages: null,
@@ -53,11 +54,16 @@ Page({
         wx.request({
             url: APP.globalData.localhost + "/index",
             success: (res) => {
-                p.setData({
-                    list: res.data['list'],
-                    pageNum: res.data['pageNum'],
-                    pages: res.data['pages']
-                });
+                if (res.data['list'] != null) {
+                    p.setData({
+                        list: res.data['list'],
+                        pageNum: res.data['pageNum'],
+                        pages: res.data['pages']
+                    });
+                } else {
+                    p.setData({tipText: "暂无数据"});
+                }
+               
             },
             fail:() => APP.fail()
         });

@@ -67,6 +67,8 @@ Page({
       success(e) {
         if (e.data.success) {
           p.setData({ecard: e.data.object});
+        } else {
+          wx.showToast({title: e.data.msg, icon: "none"});
         }
       },
       fail:() => APP.fail()

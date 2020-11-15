@@ -1,6 +1,6 @@
 <!--pages/index/index.wxml-->
-<view wx:if="{{list == null || list.length == 0}}"style="margin-top:50%; text-align:center;">
-  暂无数据
+<view wx:if="{{list == null || list.length == 0}}" style="margin-top:50%; text-align:center;">
+  {{tipText}}
 </view>
 
 <view wx:else class="container">
@@ -60,7 +60,7 @@
         <!-- 图片 -->
         <view class="body-item-img" wx:if="{{item['pictureUrlList'].length != 0}}">
           <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
-            <image src="{{item}}"></image> 
+            <image src="{{item}}" mode="aspectFill"></image> 
           </block>
         </view>
 

@@ -1,5 +1,5 @@
 <!--pages/detailEcard/detailEcard.wxml-->
-<view wx:if="{{ecard == null}}" style="margin-top:50%; text-align:center;">该一卡通已被认领</view>
+<view wx:if="{{ecard == null}}" style="margin-top:50%; text-align:center;">数据加载中</view>
 
 <view wx:else>
   <view class="box">

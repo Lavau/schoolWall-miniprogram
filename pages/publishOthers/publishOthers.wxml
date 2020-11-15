@@ -31,7 +31,9 @@
   <!-- 选择图片并预览 -->
   <view class="picture">
     <button bindtap="choosepicture">选择图片</button>
-    <image wx:for="{{pictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" bindtap="previewpicture">
+    <view style="height: 20rpx;"></view>
+    <image wx:for="{{pictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
+      bindtap="previewpicture" mode="aspectFill">
     </image>
   </view>
 
