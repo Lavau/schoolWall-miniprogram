@@ -1,4 +1,6 @@
 <!--pages/listComment/listComment.wxml-->
+<view wx:if="{{commentList.length == 0}}" style="margin-top:50%; text-align:center;">数据加载中</view>
+
 <view class="comment">
   <view wx:for="{{commentList}}" wx:key="index">
     <view class="comment-item">
@@ -9,13 +11,13 @@
 
       <!-- 右部-主要内容 -->
       <view class="comment-item-right">
-        <!-- 昵称 + 点赞 -->
+        <!-- 昵称 -->
         <view class="comment-item-right-header">
           <view class="nickname">{{item.nickname}}</view>
-          <view class="others-left" bindtap="touchLike" data-id="{{item.id}}">
-            <image wx:if="{{like}}" src="/assets/img/icon/like-active.png"></image>
+          <!-- <view class="others-left" bindtap="commentLike" data-id="{{item.id}}" data-index="{{index}}">
+            <image wx:if="{{item.like}}" src="/assets/img/icon/like-active.png"></image>
             <image wx:else src="/assets/img/icon/like.png"></image>
-          </view>
+          </view> -->
         </view>
 
         <!-- 评论内容 -->
@@ -28,9 +30,12 @@
           </view>
           <view style="font-size: 27rpx; padding-right: 88rpx">{{item.createTime}}</view>
 
-          <view wx:if="{{index == 0}}" style="font-size: 27rpx; color: darkgrey" bindtap="isShowModal" 
-            data-id="{{id}}" data-parent="false">
+          <view wx:if="{{index == 0}}"  style="font-size: 27rpx; color: darkgrey; padding-right: 88rpx;" bindtap="isShowModal" data-id="{{item.id}}" data-parent="false">
             回复
+          </view>
+
+          <view wx:if="{{item.mine}}" style="font-size: 27rpx; color: darkgrey" bindtap="deleteComment" data-id="{{item.id}}" data-index="{{index}}">
+            删除
           </view>
 
           <modal hidden="{{hidden}}" confirm-text="发布评论" cancel-text="取消" 

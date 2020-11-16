@@ -74,7 +74,7 @@ Page({
       success: (res) => {
         console.log(res.data);
         if (res.data != "error") {
-          if (res.data.pageNum == 0) {
+          if (res.data.pages == 0) {
             wx.showModal({
               content: "暂无数据",
               showCancel: false,

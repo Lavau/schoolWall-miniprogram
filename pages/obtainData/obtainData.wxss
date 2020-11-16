@@ -41,11 +41,10 @@
 
   margin-bottom: 15rpx;
   padding-bottom: 10rpx;
-  border-bottom: #93d1f5 5rpx dotted;
+  /* border-bottom: #93d1f5 5rpx dotted; */
 }
 
 .body-item-above image {
-  margin-top: 15rpx;
   margin-left: 15rpx;
   height: 60rpx;
   width: 60rpx
@@ -59,21 +58,20 @@
 }
 
 .body-item-bottom image {
-  height: 45rpx;
-  width: 60rpx;
+  height: 30rpx;
+  width: 45rpx;
   margin-right: 15rpx;
 }
 
 .body-item-bottom-type {
-  margin-top: 5rpx;
   font-size: small;
   font-weight: bold;
   color: #55b5ec;
 }
+
 .body-item-bottom-time {
   position: absolute;
-  bottom: 10rpx;
+  bottom: 3rpx;
   right: 30rpx;
-  margin-top: 10rpx;
   font-size: x-small;
 }

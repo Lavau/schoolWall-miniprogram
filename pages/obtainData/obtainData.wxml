@@ -1,6 +1,6 @@
 <!--pages/obtainData/obtainData.wxml-->
 <view wx:if="{{list == null || list.length == 0}}"style="margin-top:50%; text-align:center;">
-  暂无数据
+  数据加载中...
 </view>
 
 <view wx:else class="container">
