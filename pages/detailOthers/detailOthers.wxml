@@ -61,7 +61,7 @@
       </image>
       <!-- 点击评论图标后，显示的模态框 -->
       <modal hidden="{{hidden}}" confirm-text="发布评论" cancel-text="取消" 
-        bindcancel="isShowModal" bindconfirm="publishComment">
+        bindcancel="isShowModal" bindconfirm="publishComment" data-id="{{id}}" data-parent="true">
         <textarea type="text" placeholder="请输入友善的评论" maxlength="100" bindinput="inputComment" 
           style="border: #eeebeb 1rpx solid; padding: 10rpx; margin-right: 550rpx;" >
         </textarea>

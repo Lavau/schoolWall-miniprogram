@@ -121,6 +121,9 @@ Page({
    */
   // 显示/隐藏评论模态框
   isShowModal(e) {
+    if (e == null) {
+      return;
+    }
     this.setData({
       hidden: !this.data.hidden,
       publishId: e.currentTarget.dataset.id,
@@ -150,7 +153,7 @@ Page({
           wx.hideLoading({});
           if (res.data.success) {
             wx.showToast({title: res.data.msg});
-            p.isShowModal();
+            p.setData({hidden: !p.data.hidden});
           }
         },
         fail:() => APP.fail()

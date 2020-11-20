@@ -1,6 +1,7 @@
 Page({
   data: {
-    banners:['/assets/img/start/two.png', '/assets/img/start/one.png'],
+    // banners:['/assets/img/start/two.png', '/assets/img/start/one.png'],
+    banners:['/assets/img/start/one.png'],
     swiperMaxNumber: 0,
     swiperCurrent: 0
   },

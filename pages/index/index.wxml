@@ -5,11 +5,12 @@
 
 <view wx:else class="container">
   <!-- 顶部文字 -->
-  <view class="header">
+  <view style="height: 40rpx;"></view>
+  <!-- <view class="header">
     <view class="header-line"></view>
     <view class="header-content">校 园 墙，你 的 生 活 家</view>
     <view class="header-line"></view>
-  </view>
+  </view> -->
 
   <!-- 顶部右侧固定的图标 -->
   <view class="header-right" bindtap="isShowTypeModal">
