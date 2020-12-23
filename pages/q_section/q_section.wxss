@@ -1,0 +1,4 @@
+/* pages/q_section/q_section.wxss */
+view {
+  height: 100rpx;
+}

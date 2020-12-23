@@ -13,7 +13,7 @@
   </view>
 
   <view class="inputInformation">
-    <input type="text" placeholder="认领信息(最多输入50个字)" bindinput="inputMsg" maxlength="50"/>
+    <input type="text" placeholder="认领信息(最多输入50个字哦)" bindinput="inputMsg" maxlength="50"/>
   </view>
 
   <view class="select-item">

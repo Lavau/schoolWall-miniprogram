@@ -13,7 +13,12 @@
     "pages/listEcard/listEcard",
     "pages/detailOthers/detailOthers",
     "pages/listOthers/listOthers",
-    "pages/listComment/listComment"
+    "pages/listComment/listComment",
+
+    
+    "pages/q_index/q_index",
+    "pages/q_section/q_section",
+    "pages/q_detail/q_detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",

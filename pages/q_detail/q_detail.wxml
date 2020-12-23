@@ -1,0 +1,15 @@
+<!--pages/q_detail/q_detail.wxml-->
+<block wx:for="{{q_list}}" wx:key="i">
+  <view class="item">
+
+    <view>{{item.description}}</view>
+
+    <view>
+      <block wx:for="{{item.options}}">
+        <view>{{item}}</view>
+      </block>
+    </view>
+    
+    <button bindtap="visitAnswer" data-id="{{index}}">答案</button>
+  </view>
+</block>
