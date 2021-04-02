@@ -26,9 +26,10 @@ Page({
     /**
      * 前往具体的页面
      */
-    goToListEcardPage: () => wx.navigateTo({
+    goToListEcardPage() {
+        wx.navigateTo({
         url: '../listEcard/listEcard'
-    }),
+    })},
     goToListOthersPage: (e) => wx.navigateTo({
         url: '../listOthers/listOthers?typeId=' + e.currentTarget.dataset.typeid
     }),
@@ -52,18 +53,18 @@ Page({
     onLoad() {
         let p = this;
         wx.request({
-            url: APP.globalData.localhost + "/index",
+            url: APP.globalData.localhost + "/noLogin/index",
             success: (res) => {
-                if (res.data['list'] != null) {
+                if (res.data['data']['list'] != null) {
                     p.setData({
-                        list: res.data['list'],
-                        pageNum: res.data['pageNum'],
-                        pages: res.data['pages']
+                        list: res.data['data']['list'],
+                        pageNum: res.data['data']['pageNum'],
+                        pages: res.data['data']['pages']
                     });
                 } else {
                     p.setData({tipText: "暂无数据"});
                 }
-               
+                
             },
             fail:() => APP.fail()
         });
@@ -75,12 +76,12 @@ Page({
     onPullDownRefresh() {
         let p = this;
         wx.request({
-            url: APP.globalData.localhost + "/index",
+            url: APP.globalData.localhost + "/noLogin/index",
             success: (res) => {
                 p.setData({
-                    list: res.data['list'],
-                    pageNum: res.data['pageNum'],
-                    pages: res.data['pages']
+                    list: res.data['data']['list'],
+                    pageNum: res.data['data']['pageNum'],
+                    pages: res.data['data']['pages']
                 });
             },
             fail:() => APP.fail()
@@ -117,7 +118,7 @@ Page({
             title: '数据加载中',
         });
         wx.request({
-            url: APP.globalData.localhost + "/index",
+            url: APP.globalData.localhost + "/noLogin/index",
             method: 'GET',
             data: {
                 pageNum: p.data.pageNum + 1
@@ -125,13 +126,13 @@ Page({
             success: (res) => {
                 wx.hideLoading({});
                 let listCopy = p.data.list;
-                res.data['list'].forEach(e => {
+                res.data['data']['list'].forEach(e => {
                     listCopy.push(e);
                 });
                 p.setData({
                     list: listCopy,
-                    pageNum: res.data['pageNum'],
-                    pages: res.data['pages']
+                    pageNum: res.data['data']['pageNum'],
+                    pages: res.data['data']['pages']
                 });
             },
             fail:() => APP.fail()

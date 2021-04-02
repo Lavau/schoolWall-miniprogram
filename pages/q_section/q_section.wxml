@@ -1,4 +1,0 @@
-<!--pages/q_section/q_section.wxml-->
-<view bindtap="goToQDetail" data-id="1">单选题</view>
-<view bindtap="goToQDetail" data-id="2">多选题</view>
-<view bindtap="goToQDetail" data-id="3">判断题</view>

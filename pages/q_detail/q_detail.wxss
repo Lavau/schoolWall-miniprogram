@@ -1,6 +1,0 @@
-/* pages/q_detail/q_detail.wxss */
-.item {
-  margin: 0 20rpx;
-  padding: 40rpx 0;
-  border-bottom: 2rpx lightblue solid;
-}

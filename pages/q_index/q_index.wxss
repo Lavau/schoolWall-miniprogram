@@ -1,4 +1,0 @@
-/* pages/q_index/q_index.wxss */
-view {
-  height: 100rpx;
-}

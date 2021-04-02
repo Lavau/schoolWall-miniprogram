@@ -9,7 +9,6 @@ Page({
 
   /**
    * 获取输入的 ecardId
-   * @param {*}} e 
    */
   inputEcardId(e) {this.setData({ecardId: e.detail.value})},
 

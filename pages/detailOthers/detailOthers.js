@@ -12,7 +12,7 @@ Page({
     commentList: [],
     hidden: true,
     commentContent: "",
-    pageNum: 1,
+    pageNum: 0,
     pages: null,
 
     publishId: "",
@@ -68,8 +68,9 @@ Page({
   touchLike(e) {
     console.log(this.data.commentList);
 
-    this.setData({like: !this.data.like});
-    this.setData({likeNum: this.data.like ? this.data.likeNum + 1 : this.data.likeNum - 1});
+    let myLikeStatus = !this.data.like;
+    this.setData({like: myLikeStatus});
+    this.setData({likeNum: myLikeStatus ? this.data.likeNum + 1 : this.data.likeNum - 1});
 
     let p = this;
 
@@ -78,19 +79,21 @@ Page({
     wx.request({
       url: APP.globalData.localhost + "/login/others/like",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {openId: wx.getStorageSync('openId'), 
-        id: p.data.obj.id, 
-        like: p.data.like, 
-        typeId: p.data.obj.typeId
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
       },
-      success(e) {
-        if (e.data.success) {
+      data: {
+        id: p.data.obj.id, 
+        isLike: myLikeStatus
+      },
+      success(response) {
+        if (response.data.success) {
           wx.hideLoading({});
-          wx.showToast({title: e.data.msg});
+          wx.showToast({title: response.data.msg});
         } else {
           wx.hideLoading({});
-          wx.showToast({title: e.data.msg});
+          wx.showToast({title: response.data.msg});
         }
       },
       fail:() => APP.fail()
@@ -199,7 +202,6 @@ Page({
       return;
     }
     wx.showLoading({title: '数据加载中'});
-    this.setData({pageNum: this.data.pageNum + 1});
     // 向服务器请求评论内容
     this.obtainComment();
     wx.hideLoading({});
@@ -228,17 +230,20 @@ Page({
     wx.request({
       url: APP.globalData.localhost + "/login/others/detail",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {openId: wx.getStorageSync('openId'), id: p.data.id, typeId: p.data.typeId},
-      success(e) {
-        console.log("detailOthers.js onLoad() print data:\n", e.data);
-        if (e.data.success) {
-          p.setData({obj: e.data.object,
-            like: e.data.object.like,
-            likeNum: e.data.object.likeNum
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {id: p.data.id, typeId: p.data.typeId},
+      success(response) {
+        console.log("detailOthers.js onLoad() print data:\n", response.data);
+        if (response.data.success) {
+          p.setData({obj: response.data.data,
+            like: response.data.data.like,
+            likeNum: response.data.data.likeNum
           });
         } else {
-          wx.showToast({title: e.data.msg});
+          wx.showToast({title: response.data.msg});
         }
       },
       fail:() => APP.fail()
@@ -251,26 +256,26 @@ Page({
   obtainComment() {
     let p = this;
     wx.request({
-      url: APP.globalData.localhost + "/login/comment/list",
+      url: APP.globalData.localhost + "/login/comment/list/typeData",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {
-        openId: wx.getStorageSync('openId'), 
-        id: p.data.id, 
-        isParent: true,
-        pageNum: p.data.pageNum
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
       },
-      success(e) {
-        console.log("detailOthers.js obtainComment() print data:\n", e.data);
+      data: {
+        attachedId: p.data.id,
+        pageNum: p.data.pageNum + 1
+      },
+      success(response) {
         let listCopy = p.data.commentList;
-        e.data.list.forEach(e => {
-            listCopy.push(e);
+        response.data.data.list.forEach(item => {
+            listCopy.push(item);
         });
 
         p.setData({
           commentList: listCopy,
-          pageNum: e.data.pageNum,
-          pages: e.data.pages
+          pageNum: response.data.data.pageNum,
+          pages: response.data.data.pages
         });
       },
       fail:() => APP.fail()

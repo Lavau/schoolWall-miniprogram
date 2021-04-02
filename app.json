@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/start/start",
     "pages/index/index",
+    "pages/start/start",
     "pages/detailEcard/detailEcard",
-    "pages/indexTest/index",
     "pages/my/my",
     "pages/obtainData/obtainData",
     "pages/publish/publish",
@@ -13,12 +12,7 @@
     "pages/listEcard/listEcard",
     "pages/detailOthers/detailOthers",
     "pages/listOthers/listOthers",
-    "pages/listComment/listComment",
-
-    
-    "pages/q_index/q_index",
-    "pages/q_section/q_section",
-    "pages/q_detail/q_detail"
+    "pages/listComment/listComment"
   ],
   "window": {
     "backgroundTextStyle": "dark",
