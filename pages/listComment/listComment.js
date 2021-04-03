@@ -6,31 +6,30 @@ Page({
     id: "",
     hidden: true,
     commentContent: "",
+    parentId: "",
 
     commentList: [],
-    pageNum: 1,
+    pageNum: 0,
     pages: null,
   },
 
   /**
    * 删除评论 
    */
-  deleteComment(e) {
+  deleteComment(event) {
     wx.showModal({
-      title: "确定删除？",
-      showCancel: false,
+      title: "确定删除该评论？",
       success(res) {
         if (res.confirm) {
           APP.serverLoading();
           wx.request({
-            url: APP.globalData.localhost + "/login/comment/delete",
+            url: APP.globalData.localhost + "/login/comment/reply/delete",
             method: "POST",
-            header: {"Content-Type": "application/x-www-form-urlencoded"},
-            data: {
-              openId: wx.getStorageSync('openId'), 
-              id: e.currentTarget.dataset.id, 
-              isParent: e.currentTarget.dataset.index == 0 
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
             },
+            data: {id: event.currentTarget.dataset.id},
             success(res) {
               wx.hideLoading({});
               if (res.data.success) {
@@ -52,8 +51,7 @@ Page({
   isShowModal(e) {
     this.setData({
       hidden: !this.data.hidden,
-      publishId: e.currentTarget.dataset.id,
-      publisParent: e.currentTarget.dataset.parent
+      parentId: e.currentTarget.dataset.id
     });
   },
 
@@ -68,20 +66,21 @@ Page({
     } else {
       APP.serverLoading();
       wx.request({
-        url: APP.globalData.localhost + "/login/comment/publish",
+        url: APP.globalData.localhost + "/login/comment/reply/insert",
         method: "POST",
-        header: {"Content-Type": "application/x-www-form-urlencoded"},
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
         data: {
-          openId: APP.globalData.openId,
-          id: p.data.publishId,
-          content: p.data.commentContent,
-          isParent: p.data.publisParent
+          commentContent: p.data.commentContent,
+          parentId: p.data.parentId
         },
         success(res) {
           wx.hideLoading({});
           if (res.data.success) {
             wx.showToast({title: res.data.msg});
-            p.isShowModal();
+            p.setData({hidden: !p.data.hidden});
           }
         },
         fail:() => APP.fail()
@@ -94,12 +93,10 @@ Page({
    */
   onReachBottom() {
     if (this.data.pageNum == this.data.pages) {
-      wx.showModal({content: '暂无最新数据', showCancel: false});
+      wx.showModal({content: '暂无最新的评论', showCancel: false});
       return;
     }
     wx.showLoading({title: '数据加载中'});
-    this.setData({pageNum: this.data.pageNum + 1});
-    // 向服务器请求评论内容
     this.obtainComment();
     wx.hideLoading({});
   },
@@ -118,38 +115,26 @@ Page({
   obtainComment() {
     let p = this;
     wx.request({
-      url: APP.globalData.localhost + "/login/comment/list",
+      url: APP.globalData.localhost + "/login/comment/reply/list",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {
-        openId: wx.getStorageSync('openId'), 
-        id: p.data.id, 
-        isParent: false,
-        pageNum: p.data.pageNum
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
       },
-      success(res) {
-        console.log("listComment.js obtainComment() print data:\n", res.data);
-        if (res.data.list.length == 0 ) {
-          wx.showModal({
-            title: "评论已被删除",
-            showCancel: true,
-            success(resu) {
-              if (resu.confirm) {
-                wx.navigateBack({delta: 1});
-              }
-            }
-          });
-        } 
-
+      data: {
+        parentId: p.data.id,
+        pageNum: p.data.pageNum + 1
+      },
+      success(response) {
         let listCopy = p.data.commentList;
-        res.data.list.forEach(e => {
-            listCopy.push(e);
+        response.data.data.list.forEach(item => {
+            listCopy.push(item);
         });
 
         p.setData({
           commentList: listCopy,
-          pageNum: res.data.pageNum,
-          pages: res.data.pages
+          pageNum: response.data.data.pageNum,
+          pages: response.data.data.pages
         });
       },
       fail:() => APP.fail()

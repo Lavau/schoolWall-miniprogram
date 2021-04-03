@@ -15,8 +15,8 @@ Page({
     pageNum: 0,
     pages: null,
 
-    publishId: "",
-    publisParent: ""
+    parentIdOrAttachedId: "",
+    isCommentParent: null
   },
 
   /**
@@ -40,19 +40,25 @@ Page({
       confirmText: "认领",
       success(res) {
         if (res.confirm) {
+          APP.serverLoading();
+
           wx.request({
             url: APP.globalData.localhost + "/login/others/claim",
             method: "POST",
-            header: {"Content-Type": "application/x-www-form-urlencoded"},
-            data: {openId: wx.getStorageSync('openId'), id: p.data.obj.id},
-            success(e) {
-              if (e.data.success) {
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
+            data: {id: p.data.obj.id},
+            success(response) {
+              wx.hideLoading({});
+              if (response.data.success) {
                 wx.showModal({
                   content: p.data.obj.msg,
                   showCancel: false
                 });
               } else {
-                wx.showToast({title: e.data.msg});
+                wx.showToast({title: response.data.msg});
               }
             },
             fail:() => APP.fail()
@@ -88,11 +94,10 @@ Page({
         isLike: myLikeStatus
       },
       success(response) {
+        wx.hideLoading({});
         if (response.data.success) {
-          wx.hideLoading({});
           wx.showToast({title: response.data.msg});
         } else {
-          wx.hideLoading({});
           wx.showToast({title: response.data.msg});
         }
       },
@@ -123,18 +128,19 @@ Page({
    * 评论相关
    */
   // 显示/隐藏评论模态框
-  isShowModal(e) {
-    if (e == null) {
+  isShowModal(event) {
+    if (event == null) {
       return;
     }
+    console.log("detailOthers.js isShowModal()\n", event.currentTarget.dataset);
     this.setData({
       hidden: !this.data.hidden,
-      publishId: e.currentTarget.dataset.id,
-      publisParent: e.currentTarget.dataset.parent
+      parentIdOrAttachedId: event.currentTarget.dataset.id,
+      isCommentParent: event.currentTarget.dataset.parent === 'true'
     });
   },
   // 获取输入的评论
-  inputComment(e) {this.setData({commentContent: e.detail.value});},
+  inputComment(event) {this.setData({commentContent: event.detail.value});},
   // 发布评论
   publishComment() {
     let p = this;
@@ -142,16 +148,25 @@ Page({
       wx.showToast({title: '输入评论，才能发布哦', icon: "none"});
     } else {
       APP.serverLoading();
+      
+      console.log("detailOthers.js publishCommnet()\n",  p.data.isCommentParent, p.data.parentIdOrAttachedId);
+      let uri = p.data.isCommentParent ? "/login/comment/insert" : "/login/comment/reply/insert";
+      let dataToServer = p.data.isCommentParent ? {
+        commentContent: p.data.commentContent,
+        attachedId: p.data.parentIdOrAttachedId
+      } : {
+        commentContent: p.data.commentContent,
+        parentId: p.data.parentIdOrAttachedId
+      };
+
       wx.request({
-        url: APP.globalData.localhost + "/login/comment/publish",
+        url: APP.globalData.localhost + uri,
         method: "POST",
-        header: {"Content-Type": "application/x-www-form-urlencoded"},
-        data: {
-          openId: APP.globalData.openId,
-          id: p.data.publishId,
-          content: p.data.commentContent,
-          isParent: p.data.publisParent
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
         },
+        data: dataToServer,
         success(res) {
           wx.hideLoading({});
           if (res.data.success) {
@@ -160,7 +175,7 @@ Page({
           }
         },
         fail:() => APP.fail()
-      })
+      });
     }
   },
 
@@ -175,10 +190,13 @@ Page({
         if (res.confirm) {
           APP.serverLoading();
           wx.request({
-            url: APP.globalData.localhost + "/login/comment/delete",
+            url: APP.globalData.localhost + "/login/comment/delete/typeData",
             method: "POST",
-            header: {"Content-Type": "application/x-www-form-urlencoded"},
-            data: {openId: wx.getStorageSync('openId'), id: e.currentTarget.dataset.id, isParent: true},
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
+            data: {parentId: e.currentTarget.dataset.id},
             success(res) {
               wx.hideLoading({});
               if (res.data.success) {
@@ -198,7 +216,7 @@ Page({
    */
   onReachBottom() {
     if (this.data.pageNum == this.data.pages) {
-      wx.showModal({content: '暂无最新数据', showCancel: false});
+      wx.showModal({content: '暂无最新的评论', showCancel: false});
       return;
     }
     wx.showLoading({title: '数据加载中'});

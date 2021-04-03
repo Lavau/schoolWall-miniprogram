@@ -53,8 +53,8 @@ App({
       method: "POST",
       header: {"Content-Type": "application/x-www-form-urlencoded"},
       data: {code: code},
-      success(e) {
-        switch(e.data["data"]) {                  
+      success(response) {
+        switch(response.data["data"]) {                  
           case "unregistered":
             wx.showModal({
               content: "您未注册，是否前往注册",
@@ -67,7 +67,7 @@ App({
             break;
           case "registered": 
             p.globalData.login = true;
-            let JSessionId = e.header["Set-Cookie"].toString().split(';')[0].substring(11);
+            let JSessionId = response.header["Set-Cookie"].toString().split(';')[0].substring(11);
             wx.setStorageSync("JSessionId", JSessionId);
             break;
         }
