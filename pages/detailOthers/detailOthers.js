@@ -261,7 +261,11 @@ Page({
             likeNum: response.data.data.likeNum
           });
         } else {
-          wx.showToast({title: response.data.msg});
+          wx.showModal({
+            content: response.data.msg,
+            showCancel: false,
+            success(res) {wx.switchTab({url: '../index/index'})}
+          }); 
         }
       },
       fail:() => APP.fail()

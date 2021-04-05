@@ -1,5 +1,5 @@
 <!--pages/index/index.wxml-->
-<view wx:if="{{list == null || list.length == 0}}" style="margin-top:50%; text-align:center;">
+<view wx:if="{{list == null || list.length === 0}}" style="margin-top:50%; text-align:center;">
   {{tipText}}
 </view>
 

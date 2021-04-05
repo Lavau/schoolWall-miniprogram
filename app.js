@@ -5,7 +5,7 @@ App({
     localhost: "http://localhost:8080/miniprogram",
     // localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
-    login: false,
+    login: false
   },
 
   setLoginTrue() {this.globalData.login = true;},

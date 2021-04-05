@@ -45,46 +45,33 @@ Page({
    * 向后台提交一卡通信息
    */
   submit: function() {
-    // 提交前判断
-    if(this.data.uuid.length === 0){
-      this.showModal("uuid 不能为空！");
-      return;
-    }
     if(this.data.ecardId.length == 0 || this.data.stuId.length == 0 || this.data.collegeId == 0 
        || this.data.name.length == 0 || this.data.msg.length == 0){
          this.showModal("内容必须都要填哦！");
          return;
     }
 
-    //满足提交要求，进行提交
     let p = this;
     wx.request({
       url: APP.globalData.localhost + "/login/ecard/publish",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
       data: {
-        openId: APP.globalData.openId,
-        id: p.data.uuid,
         ecardId: p.data.ecardId,
         college: p.data.collegeName,
         stuId: p.data.stuId,
         stuName: p.data.name,
         msg: p.data.msg
       },
-      success: (e) => {
-        let result = e.data;
-        if(result["success"]) {
-          wx.showModal({
-            content: result["msg"],
-            showCancel: false,
-            success: (e) => wx.switchTab({url: '../index/index'})
-          });
-        } else {
-          wx.showModal({
-            content: result["msg"],
-            showCancel: false
-          })
-        }
+      succese(response) {
+        wx.showModal({
+          content: response.data["msg"],
+          showCancel: false,
+          success() {wx.switchTab({url: '../index/index'})}
+        });
       },
       fail:() => APP.fail()
     });

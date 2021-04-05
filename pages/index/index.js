@@ -4,8 +4,8 @@ const APP = getApp();
 Page({
     data: {
         tipText: '数据加载中',
-        list: null,
-        pageNum: null,
+        list: [],
+        pageNum: 0,
         pages: null,
         type: null,
         userInfo: {},
@@ -55,14 +55,15 @@ Page({
         wx.request({
             url: APP.globalData.localhost + "/noLogin/index",
             success: (res) => {
-                if (res.data['data']['list'] != null) {
+                console.log(res.data['data']['list'].length);
+                if (res.data['data']['list'].length === 0) {
+                    p.setData({tipText: "暂无数据"});
+                } else {
                     p.setData({
                         list: res.data['data']['list'],
                         pageNum: res.data['data']['pageNum'],
                         pages: res.data['data']['pages']
                     });
-                } else {
-                    p.setData({tipText: "暂无数据"});
                 }
                 
             },

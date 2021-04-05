@@ -17,21 +17,22 @@ Page({
    */
   claimEcard() {
     if (this.data.ecardId.length == 0) {
-      wx.showToast({title: '请输入一卡通号'});
+      wx.showToast({title: '请输入一卡通号', icon: "none"});
       return;
     }
 
     let p = this;
     if (this.data.ecardId == this.data.ecard.ecardId) {
-      console.log("agas");
       wx.request({
         url: APP.globalData.localhost + "/login/ecard/claim",
         method: "POST",
-        header: {"Content-Type": "application/x-www-form-urlencoded"},
-        data: {openId: wx.getStorageSync('openId'), id: p.data.ecard.id},
-        success(e) {
-          console.log(e.data);
-          if (e.data.success) {
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
+        data: {id: p.data.ecard.id},
+        success(response) {
+          if (response.data.success) {
             wx.showModal({
               content: p.data.msg,
               showCancel: false,
@@ -39,7 +40,7 @@ Page({
             }); 
           } else {
             wx.showModal({
-              content: e.data.msg,
+              content: response.data.msg,
               showCancel: false,
               success(res) {wx.switchTab({url: '../index/index'})}
             }); 
@@ -61,13 +62,20 @@ Page({
     wx.request({
       url: APP.globalData.localhost + "/login/ecard/detail",
       method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {openId: wx.getStorageSync('openId'), id: options.id},
-      success(e) {
-        if (e.data.success) {
-          p.setData({ecard: e.data.object});
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {id: options.id},
+      success(response) {
+        if (response.data.success) {
+          p.setData({ecard: response.data.data});
         } else {
-          wx.showToast({title: e.data.msg, icon: "none"});
+          wx.showModal({
+            content: response.data.msg,
+            showCancel: false,
+            success(res) {wx.switchTab({url: '../index/index'})}
+          }); 
         }
       },
       fail:() => APP.fail()

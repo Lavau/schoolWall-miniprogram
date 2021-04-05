@@ -84,9 +84,11 @@ Page({
         wx.request({
           url: APP.globalData.localhost + "/login/others/publish",
           method: "POST",
-          header: {"Content-Type": "application/x-www-form-urlencoded"},
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "JSessionId": wx.getStorageSync('JSessionId')
+          },
           data: {
-            openId: APP.globalData.openId,
             typeId: p.data.typeId,
             id: p.data.uuid,
             title: p.data.title,
@@ -99,18 +101,16 @@ Page({
             pictureNum: p.data.pictures.length,
             anonymous: p.data.Anonymous
           },
-          success: (e) => {
-            if (e.data.success) {
-              wx.showModal({
-                content: e.data.msg,
-                showCancel: false,
-                success(res) {
-                  if (res.confirm) {
-                    wx.switchTab({url: '../index/index'});
-                  }
+          success(response) {
+            wx.showModal({
+              content: response.data.msg,
+              showCancel: false,
+              success(res) {
+                if (res.confirm) {
+                  wx.switchTab({url: '../index/index'});
                 }
-              })
-            }
+              }
+            })
           },
           fail:() => APP.fail()
         });
@@ -141,13 +141,6 @@ Page({
             fail:() => APP.fail()
           });
         }
-
-        // 显示成功提交的信息
-        wx.showModal({
-          content: "提交成功！",
-          showCancel: false,
-          success: (e) => wx.switchTab({url: '../index/index'})
-        });
     } else {
       this.showModal("必须有描述或照片");
     }

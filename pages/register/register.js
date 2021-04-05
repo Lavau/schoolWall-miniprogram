@@ -59,35 +59,31 @@ Page({
     if(this.data.stuId !== null && this.data.stuId.length == 9 &&
         this.data.name !== null && this.data.collegeId !== null && this.simpleVerify()){
       wx.login({
-        timeout: APP.globalData.timeout,
-        success: res => wx.request({
-          url: APP.globalData.localhost + "/register",
-          method: "POST",
-          header: {"Content-Type": "application/x-www-form-urlencoded"},
-          data: {
-            stuId: p.stuId,
-            stuName: p.name,
-            collegeId: p.collegeId,
-            avatarUrl: avatarUrl,
-            nickname: nickname,
-            code: res.code
-          },
-          success: function(e) {
-            if(e.data.success){
-              APP.globalData.openId = e.data.status;
-              APP.globalData.login = true;
-              wx.setStorageSync("openId", e.data.status);
-              wx.showToast({title: "注册成功"});
-              wx.switchTab({url: '../index/index'});
-            } else {
+        success(res) {
+          wx.request({
+            url: APP.globalData.localhost + "/noLogin/register",
+            method: "POST",
+            header: {"Content-Type": "application/x-www-form-urlencoded"},
+            data: {
+              stuId: p.stuId,
+              stuName: p.name,
+              collegeId: p.collegeId,
+              avatarUrl: avatarUrl,
+              nickname: nickname,
+              code: res.code
+            },
+            success(response) {
               wx.showModal({
-                title: e.data.msg,
-                showCancel: true
-              });
-            }
-          },
-          fail:() => APP.fail()
-        }),
+                content: response.data.msg,
+                showCancel: false,
+                success(res) {
+                  if (response.data.success) wx.switchTab({url: '../my/my'});
+                }
+              }); 
+            },
+            fail:() => APP.fail()
+          });
+        },
         fail:() => wx.showToast({title: "获取 code 失败", icon: "none"})
       });
   } else {
@@ -118,9 +114,9 @@ Page({
 
     let p = this;
     wx.request({
-      url:  APP.globalData.localhost + "/college",
+      url:  APP.globalData.localhost + "/noLogin/college/list",
       header: {'content-type': 'APPlication/json'},
-      success: e => p.setData({colleges: e.data.list}),
+      success(response) { p.setData({colleges: response.data.data});},
       fail:() => APP.fail()
     });
   }
