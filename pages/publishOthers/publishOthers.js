@@ -110,7 +110,7 @@ Page({
                   wx.switchTab({url: '../index/index'});
                 }
               }
-            })
+            });
           },
           fail:() => APP.fail()
         });
@@ -118,24 +118,20 @@ Page({
         // 提交图片
         for(let i = 0; i < p.data.pictures.length; i++){
           wx.uploadFile({
-            url: APP.globalData.localhost + "/login/uploadPicture",
-            header: {'Content-Type': 'multipart/form-data'},
+            url: APP.globalData.localhost + "/login/picture/save",
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
             filePath: p.data.pictures[i],
-            name: "uploadFile",
+            name: "picture",
             formData: {
               typeId: p.data.typeId,
-              uuid: p.data.uuid,
-              openId: APP.globalData.openId
+              id: p.data.uuid
             },
-            success: (e) => {
-              // 图片提交失败时，显示提示信息
-              let result = e.data;
-              if(result["success"] == false) {
-                wx.showModal({
-                  content: result["msg"] + "\n图片提交失败",
-                  showCancel: false,
-                  success: (e) => wx.switchTab({url: '../index/index'})
-                });
+            success(response) {
+              if (!response.data.success) {
+                wx.showToast({content: response.data.msg});
               }
             },
             fail:() => APP.fail()
