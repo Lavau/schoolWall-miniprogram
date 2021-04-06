@@ -3,9 +3,9 @@ const APP = getApp();
 
 Page({
   data: {
-    url: "",
-    list: null,    
-    pageNum: null,
+    typeId: null,
+    list: [],    
+    pageNum: 0,
     pages: null,
   },
 
@@ -21,7 +21,6 @@ Page({
 
   /**
    * 删除某条记录
-   * @param {*} e 
    */
   delete(e) {
       wx.showModal({
@@ -36,9 +35,11 @@ Page({
           wx.request({
             url: APP.globalData.localhost + "/login/others/delete",
             method: "POST",
-            header: {"Content-Type": "application/x-www-form-urlencoded"},
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
             data: {
-              openId: APP.globalData.openId, 
               id: e.currentTarget.dataset.id,
               typeId: e.currentTarget.dataset.typeid
             },
@@ -64,17 +65,18 @@ Page({
   onLoad: function (options) {
     let p = this;
 
-    this.setData({url: options.url});
+    this.setData({typeId: options.typeid});
 
     wx.request({
-      url: APP.globalData.localhost + "/login" + this.data.url,
-      method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {openId: APP.globalData.openId},
-      success: (res) => {
-        console.log(res.data);
-        if (res.data != "error") {
-          if (res.data.pages == 0) {
+      url: APP.globalData.localhost + "/login/myData",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {typeId: p.data.typeId, pageNum: p.data.pageNum + 1},
+      success(res) {
+          if (res.data.data.list.length == 0) {
             wx.showModal({
               content: "暂无数据",
               showCancel: false,
@@ -85,16 +87,11 @@ Page({
                 return;
               }
             })
-          }
-          p.setData({list: res.data['list'],
-            pageNum: res.data['pageNum'],
-            pages: res.data['pages']
-          });
-        } else {
-          wx.showModal({
-            content: res.data,
-            showCancel: false
-          });
+          } else {
+            p.setData({list: res.data.data['list'],
+              pageNum: res.data.data['pageNum'],
+              pages: res.data.data['pages']
+            });
         }
       },
       fail:() => APP.fail()
@@ -119,19 +116,22 @@ Page({
     });
 
     wx.request({
-      url: APP.globalData.localhost + "/login" + this.data.url,
-      method: "POST",
-      header: {"Content-Type": "application/x-www-form-urlencoded"},
-      data: {pageNum: p.data.pageNum + 1, openId: wx.getStorageSync('openId')},
-      success: (res) => {
+      url: APP.globalData.localhost + "/login/myData",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {typeId: p.data.typeId, pageNum: p.data.pageNum + 1},
+      success(res) {
         wx.hideLoading({});
         let listCopy =  p.data.list;
-        res.data['list'].forEach(e => {
+        res.data.data['list'].forEach(e => {
             listCopy.push(e);
         });
         p.setData({list: listCopy,
-            pageNum: res.data['pageNum'],
-            pages: res.data['pages']
+            pageNum: res.data.data['pageNum'],
+            pages: res.data.data['pages']
         });
       },
       fail:() => APP.fail()

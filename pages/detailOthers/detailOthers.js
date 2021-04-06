@@ -169,10 +169,8 @@ Page({
         data: dataToServer,
         success(res) {
           wx.hideLoading({});
-          if (res.data.success) {
-            wx.showToast({title: res.data.msg});
-            p.setData({hidden: !p.data.hidden});
-          }
+          wx.showModal({title: res.data.msg});
+          p.setData({hidden: !p.data.hidden});
         },
         fail:() => APP.fail()
       });

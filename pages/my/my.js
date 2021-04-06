@@ -6,6 +6,10 @@ Page({
     login: false,
     userInfo: {},
     hasUserInfo: false,
+
+    sumOfPublishedData: 0,
+    likeTotalNum: 0,
+    commentTotalNum: 0
   },
 
   /**
@@ -13,7 +17,7 @@ Page({
    */
   goToObtainDataPage(e) {
     wx.navigateTo({
-      url: '../obtainData/obtainData?url=' + e.currentTarget.dataset.url
+      url: '../obtainData/obtainData?typeid=' + e.currentTarget.dataset.typeid
     });
   },
 
@@ -70,6 +74,26 @@ Page({
           p.data.userInfo = res.userInfo;
           p.data.hasUserInfo = true;
         }
+      });
+    }
+
+    if (APP.globalData.login) {
+      wx.request({
+        url: APP.globalData.localhost + "/login/myData/info",
+        method: "GET",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
+        success(res) {
+          if (res.data.success) {
+            p.setData({sumOfPublishedData: res.data.data['sumOfPublishedData'],
+              likeTotalNum: res.data.data['likeTotalNum'],
+              commentTotalNum: res.data.data['commentTotalNum'],
+            });
+          }
+        },
+        fail:() => APP.fail()
       });
     }
   }

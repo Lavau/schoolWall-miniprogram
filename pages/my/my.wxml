@@ -17,32 +17,32 @@
       <!-- 操作部分 -->
       <view class="header-bottom-box">
         <view class="header-bottom-box-item">
-          <view>已发布{{10}}条</view>
+          <view>已发布{{sumOfPublishedData}}条</view>
         </view>
         <view class="header-bottom-box-item header-bottom-box-item-middle" bindtap="obtainLikedList">
-          <view>收到{{20}}个赞</view>
+          <view>收到{{likeTotalNum}}个赞</view>
         </view>
         <view class="header-bottom-box-item"  bindtap="obtainCommentedList">
-          <view>收到{{10}}条评论</view>
+          <view>收到{{ commentTotalNum}}条评论</view>
         </view>
       </view>
     </view>
     
     <!-- 列表展示 -->
     <view class="body">
-      <view class="body-item" bindtap="goToObtainDataPage" data-url="/obtainPublishedData">
+      <view class="body-item" bindtap="goToObtainDataPage" data-typeid="1">
         <image src="/assets/img/icon/my/publish.png"></image>
         <view class="body-item-middle">我发布的</view>
         <image src="/assets/img/icon/my/right.png"></image>
       </view>
 
-      <view class="body-item" bindtap="goToObtainDataPage" data-url="/obtainLikedData">
+      <view class="body-item" bindtap="goToObtainDataPage" data-typeid="2">
           <image src="/assets/img/icon/my/like.png"></image>
           <view class="body-item-middle">我点赞的</view>      
           <image src="/assets/img/icon/my/right.png"></image>
       </view>
 
-      <view class="body-item"  bindtap="goToObtainDataPage" data-url="/obtainCommentedData">
+      <view class="body-item"  bindtap="goToObtainDataPage" data-typeid="3">
         <image src="/assets/img/icon/my/comment.png"></image>
         <view class="body-item-middle">我评论的</view>
         <image src="/assets/img/icon/my/right.png"></image>

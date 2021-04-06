@@ -87,9 +87,9 @@ Page({
      // 获取学院信息
     let p = this;
     wx.request({
-      url:  APP.globalData.localhost + "/college",
-      header: {'content-type': 'application/json'},
-      success: e => p.setData({colleges: e.data.list}),
+      url:  APP.globalData.localhost + "/noLogin/college/list",
+      header: {'content-type': 'APPlication/json'},
+      success(response) { p.setData({colleges: response.data.data});},
       fail:() => APP.fail()
     });
   },
