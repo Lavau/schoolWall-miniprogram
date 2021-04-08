@@ -6,7 +6,6 @@
     "pages/obtainData/obtainData",
     "pages/publish/publish",
     "pages/register/register",
-    "pages/listEcard/listEcard",
     "pages/detail/detail",
     "pages/listOthers/listOthers",
     "pages/listComment/listComment"

@@ -13,10 +13,7 @@ Page({
    * 前往具体的页面
    */
   goToDetailOthersPage(e) {
-    wx.navigateTo({
-        url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
-             '&typeId=' + e.currentTarget.dataset.typeid
-     });
+    wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
   },
 
   /**
@@ -33,22 +30,18 @@ Page({
             mask: true,
           });
           wx.request({
-            url: APP.globalData.localhost + "/login/others/delete",
+            url: APP.globalData.localhost + "/login/publishedInfo/delete",
             method: "POST",
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "JSessionId": wx.getStorageSync('JSessionId')
             },
-            data: {
-              id: e.currentTarget.dataset.id,
-              typeId: e.currentTarget.dataset.typeid
-            },
+            data: {id: e.currentTarget.dataset.id},
             success(res) {
+              wx.hideLoading({});
               if (res.data.success) {
-                wx.hideLoading({});
                 wx.showToast({title: res.data.msg});
               } else {
-                wx.hideLoading({});
                 wx.showToast({title: res.data.msg, icon: "none"});
               }
             },

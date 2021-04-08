@@ -6,20 +6,7 @@
 <view wx:else class="container">
   <view class="body">
     <block wx:for="{{list}}" wx:key="i">
-      <!-- 一卡通 -->
-      <view wx:if="{{item['typeId'] == 7}}" class="body-item-ecard">
-        <view>
-          <span class="body-item-ecard-title">学院: </span>
-          {{item['title']}}
-        </view>
-        <view>
-          <span class="body-item-ecard-title">姓名: </span>
-          {{item['description']}}
-        </view>
-      </view>
-
-      <!-- 非一卡通部分（其他） -->
-      <view wx:else class="body-item" bindtap="goToDetailOthersPage" 
+      <view class="body-item" bindtap="goToDetailOthersPage" 
           data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
         <!-- 上部 -->
         <view class="body-item-above">

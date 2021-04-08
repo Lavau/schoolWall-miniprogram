@@ -2,28 +2,24 @@
 <view>
   <!-- 登录状态显示内容 -->
   <view wx:if="{{login}}">
-    <button wx:if="{{!hasUserInfo}}" type="primary" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
-      基本信息授权
-    </button>
-
     <!-- 头部 -->
     <view class="header">
       <!-- 用户信息 -->
       <view class="header-user-info">
-        <image class="header-user-info-avatar" src="{{userInfo.avatarUrl}}"></image>
-        <view class="header-user-info-nickname">{{userInfo.nickName}}</view>
+        <image class="header-user-info-avatar" src="{{infos.avatarUrl}}"></image>
+        <view class="header-user-info-nickname">{{infos.nickname}}</view>
       </view>
 
       <!-- 操作部分 -->
       <view class="header-bottom-box">
         <view class="header-bottom-box-item">
-          <view>已发布{{sumOfPublishedData}}条</view>
+          <view>已发布{{infos.publishedInfoTotalNum}}条</view>
         </view>
         <view class="header-bottom-box-item header-bottom-box-item-middle" bindtap="obtainLikedList">
-          <view>收到{{likeTotalNum}}个赞</view>
+          <view>收到{{infos.likeTotalNum}}个赞</view>
         </view>
         <view class="header-bottom-box-item"  bindtap="obtainCommentedList">
-          <view>收到{{ commentTotalNum}}条评论</view>
+          <view>收到{{infos.commentTotalNum}}条评论</view>
         </view>
       </view>
     </view>

@@ -4,12 +4,8 @@ const APP = getApp();
 Page({
   data: {
     login: false,
-    userInfo: {},
-    hasUserInfo: false,
-
-    sumOfPublishedData: 0,
-    likeTotalNum: 0,
-    commentTotalNum: 0
+    infos: {},
+    hasUserInfo: false
   },
 
   /**
@@ -19,19 +15,6 @@ Page({
     wx.navigateTo({
       url: '../obtainData/obtainData?typeid=' + e.currentTarget.dataset.typeid
     });
-  },
-
-  /**
-   * 获取用户信息
-   */
-  obtainUserInfo(e) {
-    console.log(e.detail.userInfo);
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    });
-    APP.globalData.userInfo = this.data.userInfo;
-    console.log(APP.globalData.userInfo);
   },
 
   /**
@@ -64,19 +47,6 @@ Page({
 
     p.setData({login: APP.globalData.login});
 
-    if (APP.globalData.userInfo != null) {
-      p.data.userInfo = APP.globalData.userInfo;
-      p.data.hasUserInfo = true;
-    } else {
-      wx.getUserInfo({
-        success(res) {
-          APP.globalData.userInfo = res.userInfo;
-          p.data.userInfo = res.userInfo;
-          p.data.hasUserInfo = true;
-        }
-      });
-    }
-
     if (APP.globalData.login) {
       wx.request({
         url: APP.globalData.localhost + "/login/myData/info",
@@ -85,12 +55,9 @@ Page({
           "Content-Type": "application/x-www-form-urlencoded",
           "JSessionId": wx.getStorageSync('JSessionId')
         },
-        success(res) {
-          if (res.data.success) {
-            p.setData({sumOfPublishedData: res.data.data['sumOfPublishedData'],
-              likeTotalNum: res.data.data['likeTotalNum'],
-              commentTotalNum: res.data.data['commentTotalNum'],
-            });
+        success(response) {
+          if (response.data.success) {
+            p.setData({infos: response.data.data});
           }
         },
         fail:() => APP.fail()
