@@ -74,5 +74,19 @@ App({
       },
       fail:() => p.fail()
     });        
+  },
+
+  showModal(content) {
+    wx.showModal({
+      content: content,
+      showCancel: false
+    })
+  },
+
+  showToast(title, icon) {
+    wx.showToast({
+      title: title,
+      icon: "success"
+    })
   }
 })

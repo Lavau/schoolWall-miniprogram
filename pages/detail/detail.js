@@ -3,11 +3,10 @@ const APP = getApp();
 
 Page({
   data: {
-    typeId: "",
     id: "",
     like: false,
     likeNum: null,
-    obj: null,
+    publishedInfo: null,
 
     commentList: [],
     hidden: true,
@@ -25,7 +24,7 @@ Page({
   showContactInfo() {
     let p = this;
     wx.showModal({
-      content: p.data.obj.contactInformation == null ? "Ta 没有留下任何痕迹" : p.data.obj.contactInformation,
+      content: p.data.publishedInfo.msg == null ? "Ta 没有留下任何痕迹" : p.data.publishedInfo.msg,
       showCancel: false
     });
   },
@@ -43,18 +42,18 @@ Page({
           APP.serverLoading();
 
           wx.request({
-            url: APP.globalData.localhost + "/login/others/claim",
+            url: APP.globalData.localhost + "/login/publishedInfo/claim",
             method: "POST",
             header: {
               "Content-Type": "application/x-www-form-urlencoded",
               "JSessionId": wx.getStorageSync('JSessionId')
             },
-            data: {id: p.data.obj.id},
+            data: {id: p.data.publishedInfo.id},
             success(response) {
               wx.hideLoading({});
               if (response.data.success) {
                 wx.showModal({
-                  content: p.data.obj.msg,
+                  content: p.data.publishedInfo.msg,
                   showCancel: false
                 });
               } else {
@@ -71,35 +70,25 @@ Page({
   /**
    * 点赞相关
    */
-  touchLike(e) {
-    console.log(this.data.commentList);
-
+  touchLike() {
     let myLikeStatus = !this.data.like;
-    this.setData({like: myLikeStatus});
-    this.setData({likeNum: myLikeStatus ? this.data.likeNum + 1 : this.data.likeNum - 1});
-
+    this.setData({like: myLikeStatus, likeNum: myLikeStatus ? this.data.likeNum + 1 : this.data.likeNum - 1});
     let p = this;
-
     APP.serverLoading();
-
     wx.request({
-      url: APP.globalData.localhost + "/login/others/like",
+      url: APP.globalData.localhost + "/login/like",
       method: "POST",
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "JSessionId": wx.getStorageSync('JSessionId')
       },
       data: {
-        id: p.data.obj.id, 
+        id: p.data.publishedInfo.id, 
         isLike: myLikeStatus
       },
       success(response) {
         wx.hideLoading({});
-        if (response.data.success) {
-          wx.showToast({title: response.data.msg});
-        } else {
-          wx.showToast({title: response.data.msg});
-        }
+        wx.showToast({title: response.data.msg});
       },
       fail:() => APP.fail()
     });
@@ -110,7 +99,7 @@ Page({
    */
   previewpicture(e) {
     let index = e.currentTarget.dataset.index;
-    let pictures = this.data.obj.pictureUrlList;
+    let pictures = this.data.publishedInfo.pictureUrlList;
     wx.previewImage({
       current: pictures[index],
       urls: pictures
@@ -129,10 +118,6 @@ Page({
    */
   // 显示/隐藏评论模态框
   isShowModal(event) {
-    if (event == null) {
-      return;
-    }
-    console.log("detailOthers.js isShowModal()\n", event.currentTarget.dataset);
     this.setData({
       hidden: !this.data.hidden,
       parentIdOrAttachedId: event.currentTarget.dataset.id,
@@ -148,8 +133,7 @@ Page({
       wx.showToast({title: '输入评论，才能发布哦', icon: "none"});
     } else {
       APP.serverLoading();
-      
-      console.log("detailOthers.js publishCommnet()\n",  p.data.isCommentParent, p.data.parentIdOrAttachedId);
+
       let uri = p.data.isCommentParent ? "/login/comment/insert" : "/login/comment/reply/insert";
       let dataToServer = p.data.isCommentParent ? {
         commentContent: p.data.commentContent,
@@ -210,6 +194,17 @@ Page({
   },
 
   /**
+   * 下拉刷新
+   */
+  onPullDownRefresh() {
+    this.obtainDetail();
+    this.data.pageNum = 0;
+    this.data.commentList = [];
+    this.data.commentContent = "";
+    this.obtainComment();
+  },
+
+  /**
    * 监听页面滚动到顶部,触发加载事件————获取下一页评论数据
    */
   onReachBottom() {
@@ -228,12 +223,7 @@ Page({
    */
   onLoad: function (options) {
     this.data.id = options.id;
-    this.data.typeId = options.typeId;
-
-    // 向服务器请求详情
     this.obtainDetail();
-
-    // 向服务器请求评论内容
     this.obtainComment();
   },
 
@@ -244,17 +234,16 @@ Page({
     let p = this;
     // 向服务器请求，要展示的信息
     wx.request({
-      url: APP.globalData.localhost + "/login/others/detail",
+      url: APP.globalData.localhost + "/login/publishedInfo/detail",
       method: "POST",
       header: {
         "Content-Type": "application/x-www-form-urlencoded",
         "JSessionId": wx.getStorageSync('JSessionId')
       },
-      data: {id: p.data.id, typeId: p.data.typeId},
+      data: {id: p.data.id},
       success(response) {
-        console.log("detailOthers.js onLoad() print data:\n", response.data);
         if (response.data.success) {
-          p.setData({obj: response.data.data,
+          p.setData({publishedInfo: response.data.data,
             like: response.data.data.like,
             likeNum: response.data.data.likeNum
           });
@@ -265,8 +254,7 @@ Page({
             success(res) {wx.switchTab({url: '../index/index'})}
           }); 
         }
-      },
-      fail:() => APP.fail()
+      }
     });
   },
 

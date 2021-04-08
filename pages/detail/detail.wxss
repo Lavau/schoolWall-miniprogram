@@ -43,7 +43,7 @@
   text-align: right;
   margin-top: 16rpx;
   font-size: x-small;
-  color: #f8e5e5;
+  color: black;
 }
 
 /* 标题 */
@@ -75,8 +75,6 @@
 .description-content {
   padding: 10rpx 10rpx 20rpx 10rpx;
   margin-top: 5rpx;
-  text-indent: 1.5em; 
-  /* border-bottom: #eeebeb 1rpx solid; */
 }
 
 /* 图片 */

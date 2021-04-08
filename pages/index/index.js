@@ -33,18 +33,9 @@ Page({
     goToListOthersPage: (e) => wx.navigateTo({
         url: '../listOthers/listOthers?typeId=' + e.currentTarget.dataset.typeid
     }),
-    goToDetailEcardPage(e) {
+    goToDetailPage(e) {
         if (this.verifyIsLogin() == false) return;
-        wx.navigateTo({
-            url: '../detailEcard/detailEcard?id=' + e.currentTarget.dataset.id
-        });
-    },
-    goToDetailOthersPage(e) {
-        if (this.verifyIsLogin() == false) return;
-        wx.navigateTo({
-            url: '../detailOthers/detailOthers?id=' + e.currentTarget.dataset.id +
-                '&typeId=' + e.currentTarget.dataset.typeid
-        });
+        wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
     },
 
     /**
@@ -53,7 +44,7 @@ Page({
     onLoad() {
         let p = this;
         wx.request({
-            url: APP.globalData.localhost + "/noLogin/index",
+            url: APP.globalData.localhost + "/noLogin/publishedInfo/list",
             success: (res) => {
                 console.log(res.data['data']['list'].length);
                 if (res.data['data']['list'].length === 0) {
@@ -77,7 +68,7 @@ Page({
     onPullDownRefresh() {
         let p = this;
         wx.request({
-            url: APP.globalData.localhost + "/noLogin/index",
+            url: APP.globalData.localhost + "/noLogin/publishedInfo/list",
             success: (res) => {
                 p.setData({
                     list: res.data['data']['list'],
@@ -119,7 +110,7 @@ Page({
             title: '数据加载中',
         });
         wx.request({
-            url: APP.globalData.localhost + "/noLogin/index",
+            url: APP.globalData.localhost + "/noLogin/publishedInfo/list",
             method: 'GET',
             data: {
                 pageNum: p.data.pageNum + 1

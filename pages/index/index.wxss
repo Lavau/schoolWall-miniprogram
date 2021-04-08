@@ -47,18 +47,15 @@
 .body-item-ecard{
   margin-bottom: 40rpx;
   background-color: #fff;
-  padding: 20rpx;
+  padding: 15rpx;
 }
 
 .body-item-ecard-title{
-  /* font-size: small; */
   font-weight: bold;
-  /* color: #bfbfbf; */
 }
 
 /* 其他 */
 .body-item{
-  width: 100%;
   margin-bottom: 50rpx;
   background-color: #fff;
   padding: 15rpx;
@@ -100,6 +97,7 @@
 .body-item-type{
   display: flex;
   flex-direction: row;
+  justify-content:space-between;
   margin-bottom: 10rpx;
 }
 

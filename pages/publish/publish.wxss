@@ -1,4 +1,71 @@
-/* pages/publish/publish.wxss */
+/* pages/publishOthers/publishOthers.wxss */
+.label {
+  text-align: center;
+  background-color: lightblue;
+}
+
+.label-item{
+  display: inline-table;
+  background-color: lightblue;
+  margin: 16rpx 16rpx;
+  padding: 0 32rpx;
+  border-radius: 35rpx;
+}
+
+.title, .msg, .description, .label {
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 30rpx 20rpx;
+  padding: 10rpx;
+} 
+
+.description-position {
+  position: relative;
+}
+
+.description-word-num-sign{
+  position: absolute;
+  left: 475rpx;
+  bottom: 0rpx;
+}
+
+/* 脱单项 */
+.height, .weight{
+  display: inline-table;
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 20rpx 20rpx 10rpx 20rpx;
+  padding: 10rpx;
+  width: 500rpx;
+}
+
+/* 图片部分 */
+.picture {
+  margin: 10rpx;
+  width: 720rpx;
+  box-sizing: border-box;
+  margin: 30rpx 20rpx;
+}
+
+.picture image {
+  width: 235rpx;
+  height: 235rpx;
+  margin-right: 5rpx;
+  border-radius: 15rpx;
+}
+
+/* 匿名按钮 */
+.switch-anonymous {
+  margin: 30rpx 20rpx;
+}
+
+.switch-anonymous-word {
+  font-size: small;
+  color: #D3D3D3;
+}
+
+
+/* pages/publish/publish.wxss
 .box {
   animation: animated-border 1.5s infinite;
   height: 100rpx;
@@ -17,4 +84,4 @@
   0% {box-shadow: 0 0 0 0 rgba(0, 129, 204, 0.8);}
   100% {box-shadow: 0 0 0 3px rgba(0, 129, 204, 0);}
   50% {box-shadow: 0 0 0 4px rgba(0, 129, 204, 0);}
-}
+} */

@@ -2,15 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/start/start",
-    "pages/detailEcard/detailEcard",
     "pages/my/my",
     "pages/obtainData/obtainData",
     "pages/publish/publish",
-    "pages/publishEcard/publishEcard",
-    "pages/publishOthers/publishOthers",
     "pages/register/register",
     "pages/listEcard/listEcard",
-    "pages/detailOthers/detailOthers",
+    "pages/detail/detail",
     "pages/listOthers/listOthers",
     "pages/listComment/listComment"
   ],
