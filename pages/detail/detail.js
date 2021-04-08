@@ -15,7 +15,12 @@ Page({
     pages: null,
 
     parentIdOrAttachedId: "",
-    isCommentParent: null
+    isCommentParent: null,
+
+    isHiddenActionSheet: true,
+    isHiddenInputFavoriteName: true,
+    favorites: [],
+    favoriteName: ""
   },
 
   /**
@@ -192,6 +197,76 @@ Page({
       }
     });
   },
+
+  showOrCloseActionSheet() {
+    let p = this;
+    p.setData({isHiddenActionSheet: !p.data.isHiddenActionSheet});
+    if (!p.data.isHiddenActionSheet) {
+      wx.showLoading({title: '获取收藏夹信息'});
+      wx.request({
+        url: APP.globalData.localhost + "/login/favorite/list",
+        method: "GET",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
+        success(response) {
+          wx.hideLoading();
+          if (response.data.success) {
+            p.setData({favorites: response.data.data});
+          }
+        }
+      });
+    }
+  },
+
+  collect(e) {
+    let p = this;
+    wx.showModal({
+      title: "确定收藏？",
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({title: '处理中。。。'});
+          wx.request({
+            url: APP.globalData.localhost + "/login/favorite/collect",
+            method: "POST",
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
+            data:{favoriteId: e.currentTarget.dataset.favoriteid, publishedInfoId: p.data.id},
+            success(response) {
+              wx.hideLoading({});
+              APP.showModal(response.data.msg);
+            }
+          });
+        }
+      }
+    })
+  },
+
+  createFavorite() {
+    let p = this;
+    wx.showLoading({title: '创建收藏夹，请稍等。。'});
+    wx.request({
+      url: APP.globalData.localhost + "/login/favorite/create",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data:{name: p.data.favoriteName},
+      success(response) {
+        wx.hideLoading({});
+        p.setData({isHiddenInputFavoriteName: !p.data.isHiddenInputFavoriteName});
+        APP.showModal(response.data.msg);
+      }
+    });
+  },
+
+  inputFavoriteName(e) {this.data.favoriteName = e.detail.value;},
+
+  showOrCloseInputFavoriteName() {this.setData({isHiddenInputFavoriteName: !this.data.isHiddenInputFavoriteName});},
 
   /**
    * 下拉刷新

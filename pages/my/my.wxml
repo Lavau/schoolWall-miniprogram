@@ -44,13 +44,13 @@
         <image src="/assets/img/icon/my/right.png"></image>
       </view>
     </view>
+
+    
+
   </view>
 
   <!-- 未登录状态显示内容 -->
   <view wx:else class="no-login-body">
-    <button wx:if="{{!hasUserInfo}}" type="warn" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
-      基本信息授权
-    </button>
     <button type="primary" style="margin-top: 50rpx" bindtap="login">登录</button>
   </view>
 </view>

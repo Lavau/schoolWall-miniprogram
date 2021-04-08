@@ -25,13 +25,14 @@
       </image>
     </view>
     
-    <!-- 点赞、浏览等内容 -->
+    <!-- 点赞、浏览、收藏；展示点赞数和浏览量 -->
     <view class="others">
       <view class="others-left" bindtap="touchLike" data-id="{{publishedInfo.id}}">
         <image wx:if="{{like}}" src="/assets/img/icon/like-active.png"></image>
         <image wx:else src="/assets/img/icon/like.png"></image>
       </view>
 
+      <!-- 评论 -->
       <image src="/assets/img/icon/comment.png" style="margin-left: 15rpx;" bindtap="isShowModal" data-id="{{publishedInfo.id}}" data-parent="true">
       </image>
       <!-- 点击评论图标后，显示的模态框 -->
@@ -40,6 +41,20 @@
           style="border: #eeebeb 1rpx solid; padding: 10rpx; margin-right: 550rpx;" >
         </textarea>
       </modal>
+
+      <!-- 收藏夹内容 -->
+      <image src="/assets/img/icon/favorite.png" style="margin-left: 15rpx;" bindtap="showOrCloseActionSheet"></image>
+      <action-sheet hidden="{{isHiddenActionSheet}}">
+        <action-sheet-item wx:if="{{favorites.length > 0}}" wx:for="{{favorites}}" wx:key="{{index}}" bindtap="collect" data-favoriteid="{{item.id}}" >
+          收藏在 <text style="color: #0081CC">{{item.name}}</text> 里面
+        </action-sheet-item> 
+        <action-sheet-item style="color: #0081CC" bindtap="showOrCloseInputFavoriteName" >创建收藏夹</action-sheet-item>
+        <action-sheet-cancel class="cancel" bindtap="showOrCloseActionSheet">取消</action-sheet-cancel>
+      </action-sheet>
+      <modal hidden="{{isHiddenInputFavoriteName}}" confirm-text="确定" cancel-text="取消" bindcancel="showOrCloseInputFavoriteName" bindconfirm="createFavorite">
+        <input type="text" bindinput="inputFavoriteName" placeholder="请输入收藏夹的名字" />
+      </modal>
+      
 
       <view class="others-right">
         <view class="others-right-like">{{likeNum + ' 点赞'}} </view>
