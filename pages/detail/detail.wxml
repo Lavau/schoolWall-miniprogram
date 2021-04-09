@@ -55,7 +55,17 @@
         <input type="text" bindinput="inputFavoriteName" placeholder="请输入收藏夹的名字" />
       </modal>
       
-      <image src="/assets/img/icon/report.png" style="margin-left: 15rpx;" bindtap="report"></image>
+      <!-- 举报 -->
+      <image src="/assets/img/icon/report.png" style="margin-left: 15rpx;" bindtap="determineReportReson"></image>
+      <modal hidden="{{isHiddenReportTypeModal}}" confirm-text="举报" cancel-text="取消" bindcancel="closeReportTypeModal" bindconfirm="report">
+        <view wx:for="{{reportTypes}}" wx:key="index" class="report-type-item" data-reporttype="{{item}}" bindtap="inputReportType">
+          {{item.name}}
+        </view>
+        <view class="report-type-item" catchtap="showOrCloseInputReportReason">其他</view>
+      </modal>
+      <modal hidden="{{isHiddenInputReportReason}}" confirm-text="确定输入" cancel-text="取消" bindcancel="resetReportReason" bindconfirm="showOrCloseInputReportReason">
+        <input type="text" bindinput="inputOtherReportReason" placeholder="请输入举报原因（50字）" maxlength="50"/>
+      </modal>
 
       <view class="others-right">
         <view class="others-right-like">{{likeNum + ' 点赞'}} </view>

@@ -1,9 +1,4 @@
 /* pages/detailOthers/detailOthers.wxss */
-/* 展示发布的信息 */
-/* .detail-info { */
-  /* border: red 2rpx solid; */
-/* } */
-
 .tip {
   font-weight: bold;
   color: #D3D3D3;
@@ -94,6 +89,14 @@
   border-radius: 20rpx;
 }
 
+.report-type-item{
+  display: inline-table;
+  background-color: lightblue;
+  margin: 16rpx 16rpx;
+  padding: 0 32rpx;
+  border-radius: 35rpx;
+}
+
 /* 杂项 */
 .others {
   display: flex;
@@ -116,6 +119,10 @@
 .others-liner {
   margin: 0 10rpx;
   border-right: #D3D3D3 2rpx solid;
+}
+
+.others-right-like, .others-right-view {
+  margin-top: 6rpx;
 }
 
 /* 展示评论 */

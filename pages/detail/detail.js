@@ -17,6 +17,12 @@ Page({
     parentIdOrAttachedId: "",
     isCommentParent: null,
 
+    reportTypes: [],
+    isHiddenReportTypeModal: true,
+    isHiddenInputReportReason: true,
+    selectedReportType: null,
+    reportReason: "",
+
     isHiddenActionSheet: true,
     isHiddenInputFavoriteName: true,
     favorites: [],
@@ -256,8 +262,89 @@ Page({
 
   showOrCloseInputFavoriteName() {this.setData({isHiddenInputFavoriteName: !this.data.isHiddenInputFavoriteName});},
 
+  /**
+   * 以下方法为举报
+   */
+  determineReportReson() {
+    let p = this;
+    if (p.data.reportTypes.length == 0) {
+      wx.showLoading({title: '获取信息中。。'});
+      wx.request({
+        url: APP.globalData.localhost + '/login/reportType/list',
+        method: "GET",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
+        success(response) {
+          wx.hideLoading();
+          if (response.data.success) {
+            p.setData({reportTypes: response.data.data,
+              isHiddenReportTypeModal: !p.data.isHiddenReportTypeModal
+            });
+          } else {
+            APP.showModal("举报类别获取失败。。。");
+          }
+        }
+      });
+    } else {
+      p.setData({isHiddenReportTypeModal: !p.data.isHiddenReportTypeModal});
+    }
+  },
+
+  closeReportTypeModal() {
+    this.setData({isHiddenReportTypeModal: !this.data.isHiddenReportTypeModal});
+  },
+
+  showOrCloseInputReportReason() {
+    this.setData({isHiddenInputReportReason: !this.data.isHiddenInputReportReason});
+  },
+  resetReportReason() {
+    this.setData({isHiddenInputReportReason: !this.data.isHiddenInputReportReason,
+      reportReason: ""
+    });
+  },
+
+  inputReportType(e) {this.data.selectedReportType = e.currentTarget.dataset.reporttype;},
+  inputOtherReportReason(e) {this.data.reportReason = e.detail.value;},
+
   report() {
-    
+    let p = this;
+    if (p.data.selectedReportType == null && p.data.reportReason.length == 0) {
+      wx.hideLoading();
+      APP.showModal('！！请输入举报原因！！');
+    } else {
+      let reportReason = (p.data.selectedReportType != null ? p.data.selectedReportType.name + '、' : "") + 
+        (p.data.reportReason.length > 0 ? p.data.reportReason : "");
+      wx.showModal({
+        content: '举报原因：' + reportReason,
+        success(res) {
+          if (res.confirm) {
+            wx.showLoading({title: '处理中'});
+            wx.request({
+              url: APP.globalData.localhost + '/login/report',
+              method: "POST",
+              header: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "JSessionId": wx.getStorageSync('JSessionId')
+              },
+              data: {
+                publishedInfoId: p.data.id,
+                reportTypeId: p.data.selectedReportType != null ? p.data.selectedReportType.id : null,
+                reportReason: p.data.reportReason
+              },
+              success(response) {
+                wx.hideLoading();
+                wx.showModal({
+                  content: response.data.msg,
+                  success(res) {wx.switchTab({url: '../index/index'});}
+                });
+              }
+            });
+          }
+        }
+      });
+    }
   },
 
   /**
