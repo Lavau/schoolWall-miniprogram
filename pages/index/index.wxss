@@ -125,14 +125,9 @@
 
 .body-item-bottom-nickname{
   margin-left: 12rpx;
-  /* margin-top: 4rpx; */
-  padding-top: 16rpx;
+  padding-top: 20rpx;
   font-size: 28rpx;
-
   width: 400rpx;
-
-  /* border: 1rpx red solid; */
-
   display: -webkit-box;  /*设置为弹性盒子*/
   -webkit-line-clamp: 1;  /*最多显示1行*/
   overflow: hidden;  /*超出隐藏*/
@@ -143,8 +138,7 @@
 
 /* 右边内容 */
 .body-item-bottom-right{
-  width: 235rpx;
-  /* border: 1rpx blue solid; */
+  width: 252rpx;
   display: flex;
   flex-direction: column;
   font-size: x-small;

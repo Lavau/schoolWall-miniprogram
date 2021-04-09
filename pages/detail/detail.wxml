@@ -25,7 +25,7 @@
       </image>
     </view>
     
-    <!-- 点赞、浏览、收藏；展示点赞数和浏览量 -->
+    <!-- 点赞、浏览、收藏、举报；展示点赞数和浏览量 -->
     <view class="others">
       <view class="others-left" bindtap="touchLike" data-id="{{publishedInfo.id}}">
         <image wx:if="{{like}}" src="/assets/img/icon/like-active.png"></image>
@@ -55,6 +55,7 @@
         <input type="text" bindinput="inputFavoriteName" placeholder="请输入收藏夹的名字" />
       </modal>
       
+      <image src="/assets/img/icon/report.png" style="margin-left: 15rpx;" bindtap="report"></image>
 
       <view class="others-right">
         <view class="others-right-like">{{likeNum + ' 点赞'}} </view>

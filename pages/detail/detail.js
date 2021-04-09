@@ -256,6 +256,10 @@ Page({
 
   showOrCloseInputFavoriteName() {this.setData({isHiddenInputFavoriteName: !this.data.isHiddenInputFavoriteName});},
 
+  report() {
+    
+  },
+
   /**
    * 下拉刷新
    */

@@ -19,7 +19,7 @@
 
 .header-user-info-avatar {
   position: fixed;
-  left: 100rpx;
+  left: 70rpx;
   top: 0rpx;
   height: 100rpx;
   width: 100rpx;
@@ -28,8 +28,16 @@
 
 .header-user-info-nickname {
   position: fixed;
-  left: 220rpx;
+  left: 180rpx;
   top: 30rpx;
+
+  width: 380rpx;
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 1;  /*最多显示1行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;  /*强制英文单词自动换行*/
 }
 
 /* 头部的盒子 */

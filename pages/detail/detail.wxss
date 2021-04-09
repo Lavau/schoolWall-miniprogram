@@ -110,7 +110,7 @@
 .others-right {
   display: flex;
   flex-direction: row;
-  margin-left: 330rpx;
+  margin-left: 280rpx;
 }
 
 .others-liner {
