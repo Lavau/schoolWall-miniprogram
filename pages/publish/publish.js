@@ -1,9 +1,9 @@
-// pages/publishOthers/publishOthers.js
 const APP = getApp();
 
 Page({
   data: {
     uuid: "",
+    login: false,
 
     labelId: "",
     labelText: "请选择发布的标签",
@@ -182,7 +182,7 @@ Page({
   onLoad: function () {
     let p = this;
 
-    p.data.uuid = APP.uuid();
+    p.setData({uuid: APP.uuid(), login: APP.globalData.login});
 
     wx.request({
       url: APP.globalData.localhost + "/login/type/obtain",
@@ -200,5 +200,19 @@ Page({
       },
       fail:() => APP.fail()
     });
-  }
+  },
+
+  login() {
+    let p = this;
+    wx.login({
+      success(res) {
+        // 成功获取到 code，向服务器发送请求
+        if (res.code) {
+          APP.login(res.code);
+          p.setData({login: true});
+        }
+      },
+      fail: () => wx.showToast({title: "获取 code 失败"}),
+    });
+  },
 })

@@ -17,15 +17,7 @@ Page({
     });
   },
 
-  /**
-   * 登录
-   */
   login() {
-    if (APP.globalData.userInfo == null) {
-      wx.showToast({title: '请授权基本信息'});
-      return;
-    }
-
     let p = this;
     wx.login({
       success(res) {

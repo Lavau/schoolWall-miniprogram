@@ -202,22 +202,27 @@ Page({
     let p = this;
     p.setData({isHiddenActionSheet: !p.data.isHiddenActionSheet});
     if (!p.data.isHiddenActionSheet) {
-      wx.showLoading({title: '获取收藏夹信息'});
-      wx.request({
-        url: APP.globalData.localhost + "/login/favorite/list",
-        method: "GET",
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "JSessionId": wx.getStorageSync('JSessionId')
-        },
-        success(response) {
-          wx.hideLoading();
-          if (response.data.success) {
-            p.setData({favorites: response.data.data});
-          }
-        }
-      });
+      this.obtainFavorites();
     }
+  },
+
+  obtainFavorites() {
+    let p = this;
+    wx.showLoading({title: '获取收藏夹信息'});
+    wx.request({
+      url: APP.globalData.localhost + "/login/favorite/list",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      success(response) {
+        wx.hideLoading();
+        if (response.data.success) {
+          p.setData({favorites: response.data.data});
+        }
+      }
+    });
   },
 
   collect(e) {
@@ -237,6 +242,7 @@ Page({
             data:{favoriteId: e.currentTarget.dataset.favoriteid, publishedInfoId: p.data.id},
             success(response) {
               wx.hideLoading({});
+              p.setData({isHiddenActionSheet: !p.data.isHiddenActionSheet});
               APP.showModal(response.data.msg);
             }
           });
@@ -247,7 +253,7 @@ Page({
 
   createFavorite() {
     let p = this;
-    wx.showLoading({title: '创建收藏夹，请稍等。。'});
+    wx.showLoading({title: '创建中，稍等。。'});
     wx.request({
       url: APP.globalData.localhost + "/login/favorite/create",
       method: "GET",
@@ -260,6 +266,7 @@ Page({
         wx.hideLoading({});
         p.setData({isHiddenInputFavoriteName: !p.data.isHiddenInputFavoriteName});
         APP.showModal(response.data.msg);
+        p.obtainFavorites();
       }
     });
   },
