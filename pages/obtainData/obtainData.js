@@ -9,9 +9,6 @@ Page({
     pages: null,
   },
 
-  /**
-   * 前往具体的页面
-   */
   goToDetailOthersPage(e) {
     wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
   },
@@ -57,9 +54,7 @@ Page({
    */
   onLoad: function (options) {
     let p = this;
-
     this.setData({typeId: options.typeid});
-
     wx.request({
       url: APP.globalData.localhost + "/login/myData",
       method: "GET",
@@ -79,7 +74,7 @@ Page({
                 }
                 return;
               }
-            })
+            });
           } else {
             p.setData({list: res.data.data['list'],
               pageNum: res.data.data['pageNum'],

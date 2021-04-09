@@ -5,7 +5,9 @@ Page({
   data: {
     login: false,
     infos: {},
-    hasUserInfo: false
+    hasUserInfo: false,
+
+    favorites: [],
   },
 
   /**
@@ -31,14 +33,43 @@ Page({
     });
   },
 
+  deleteFavorite(e) {
+    let p = this;
+    wx.showModal({
+      content: '确认删除这个收藏夹？您里面收藏的东西会丢失！',
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({title: '处理中。。。'});
+          wx.request({
+            url: APP.globalData.localhost + '/login/favorite/delete',
+            method: "POST",
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
+            data: {id: e.currentTarget.dataset.id},
+            success(response) {
+              wx.hideLoading();
+              APP.showModal(response.data.msg);
+            }
+          })
+        }
+      }
+    });
+  },
+
+  goToFavoritedContentPage(e) {
+    wx.navigateTo({
+      url: '../listFavoritedContent/listFavoritedContent?favoriteid=' + e.currentTarget.dataset.favoriteid
+    });
+  },
+
   /**
    * 页面加载时，获取用户信息
    */
   onLoad: function () {
     let p = this;
-
     p.setData({login: APP.globalData.login});
-
     if (APP.globalData.login) {
       wx.request({
         url: APP.globalData.localhost + "/login/myData/info",
@@ -54,6 +85,8 @@ Page({
         },
         fail:() => APP.fail()
       });
+
+      APP.obtainFavorites(p);
     }
   }
 })

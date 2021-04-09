@@ -1,18 +1,18 @@
-<!--pages/obtainData/obtainData.wxml-->
-<view wx:if="{{list == null || list.length == 0}}"style="margin-top:50%; text-align:center;">
+<!--pages/listFavoritedContent/listFavoritedContent.wxml-->
+<view wx:if="{{favoritedContents == null || favoritedContents.length == 0}}"style="margin-top:50%; text-align:center;">
   数据加载中...
 </view>
 
 <view wx:else class="container">
   <view class="body">
-    <block wx:for="{{list}}" wx:key="i">
+    <block wx:for="{{favoritedContents}}" wx:key="i">
       <view class="body-item" bindtap="goToDetailOthersPage" 
           data-typeId="{{item['typeId']}}" data-id="{{item['id']}}">
         <!-- 上部 -->
         <view class="body-item-above">
           <text>{{item['description']}}</text>
-          <image wx:if="{{typeId == 1}}" src="/assets/img/icon/my/delete.png" 
-              catchtap="delete" data-id="{{item['id']}}" data-typeId="{{item['typeId']}}">
+          <image src="/assets/img/icon/my/delete.png" 
+              catchtap="deleteFavoritedContent" data-favoritedcontentid="{{item['favoritedContentId']}}">
           </image>
         </view>
 
@@ -26,3 +26,4 @@
     </block> 
   </view>
 </view>
+

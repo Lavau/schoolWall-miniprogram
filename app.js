@@ -47,7 +47,6 @@ App({
 
   login(code) {
     let p = this;
-
     wx.request({
       url: p.globalData.localhost + "/noLogin/login",
       method: "POST",
@@ -74,6 +73,29 @@ App({
       },
       fail:() => p.fail()
     });        
+  },
+
+  /**
+   * 保证 that 实例的 data 含有 favorites 
+   * @param {*} that 某个页面的实例
+   */
+  obtainFavorites(that) {
+    let p = this;
+    wx.showLoading({title: '获取收藏夹信息'});
+    wx.request({
+      url: p.globalData.localhost + "/login/favorite/list",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      success(response) {
+        wx.hideLoading();
+        if (response.data.success) {
+          that.setData({favorites: response.data.data});
+        }
+      }
+    });
   },
 
   showModal(content) {

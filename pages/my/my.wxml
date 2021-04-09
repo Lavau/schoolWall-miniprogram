@@ -45,6 +45,32 @@
       </view>
     </view>
 
+    <!-- 收藏夹 -->
+    <view wx:if="{{favorites.length > 0}}" class="favorite">
+      <view class="favorite-title">
+        <view class="favorite-title-line"></view>
+        收藏夹
+        <view class="favorite-title-line"></view>
+      </view>
+
+      <scroll-view scroll-y="true"  style="height: 500rpx;">
+        <view wx:for="{{favorites}}" wx:key="index" class="body-item" bindtap="goToFavoritedContentPage" data-favoriteid="{{item['id']}}">
+          <image src="/assets/img/icon/favorite.png"></image>
+          <view class="body-item-middle">{{item.name}}</view>
+          <image src="/assets/img/icon/my/delete.png" catchtap="deleteFavorite" data-id="{{item['id']}}"></image>
+          <image src="/assets/img/icon/my/right.png" style="margin-left: 45rpx"></image>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view wx:else class="favorite">
+      <view class="favorite-title">
+        <view class="favorite-title-line"></view>
+        暂无收藏夹
+        <view class="favorite-title-line"></view>
+      </view>
+    </view>
+
     
 
   </view>

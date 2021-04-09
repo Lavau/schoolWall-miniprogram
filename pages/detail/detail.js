@@ -202,27 +202,8 @@ Page({
     let p = this;
     p.setData({isHiddenActionSheet: !p.data.isHiddenActionSheet});
     if (!p.data.isHiddenActionSheet) {
-      this.obtainFavorites();
+      APP.obtainFavorites(this);
     }
-  },
-
-  obtainFavorites() {
-    let p = this;
-    wx.showLoading({title: '获取收藏夹信息'});
-    wx.request({
-      url: APP.globalData.localhost + "/login/favorite/list",
-      method: "GET",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "JSessionId": wx.getStorageSync('JSessionId')
-      },
-      success(response) {
-        wx.hideLoading();
-        if (response.data.success) {
-          p.setData({favorites: response.data.data});
-        }
-      }
-    });
   },
 
   collect(e) {
@@ -266,7 +247,7 @@ Page({
         wx.hideLoading({});
         p.setData({isHiddenInputFavoriteName: !p.data.isHiddenInputFavoriteName});
         APP.showModal(response.data.msg);
-        p.obtainFavorites();
+        APP.obtainFavorites(p);
       }
     });
   },

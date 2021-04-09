@@ -1,4 +1,4 @@
-/* pages/obtainData/obtainData.wxss */
+/* pages/listFavoritedContent/listFavoritedContent.wxss */
 /* 页面展示 */
 .body-item{
   width: 100%;

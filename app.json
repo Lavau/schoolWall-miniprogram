@@ -8,7 +8,8 @@
     "pages/register/register",
     "pages/detail/detail",
     "pages/listOthers/listOthers",
-    "pages/listComment/listComment"
+    "pages/listComment/listComment",
+    "pages/listFavoritedContent/listFavoritedContent"
   ],
   "window": {
     "backgroundTextStyle": "dark",
