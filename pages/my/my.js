@@ -64,6 +64,8 @@ Page({
     });
   },
 
+  goToMsgPage() {wx.navigateTo({url: '../listMsg/listMsg'});},
+
   /**
    * 页面加载时，获取用户信息
    */

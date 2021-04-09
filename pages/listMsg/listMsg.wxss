@@ -1,0 +1,7 @@
+/* pages/listMsg/listMsg.wxss */
+.msg-item {
+  margin: 40rpx 30rpx;
+  font-size: small;
+  padding-bottom: 30rpx;
+  border-bottom: lightgray solid 1rpx;
+}

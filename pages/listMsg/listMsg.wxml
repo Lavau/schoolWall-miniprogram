@@ -1,0 +1,10 @@
+<!--pages/listMsg/listMsg.wxml-->
+<view wx:if="{{msgs.length == 0}}" style="margin-top: 400rpx; margin-left: 200rpx;">
+  获取数据中。。。。
+</view>
+
+<view wx:else>
+  <view wx:for="{{msgs}}" wx:key="{{index}}" class="msg-item">
+    {{item.content}}
+  </view>
+</view>

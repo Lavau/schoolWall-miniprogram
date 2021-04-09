@@ -8,9 +8,9 @@
       <view class="header-user-info">
         <image class="header-user-info-avatar" src="{{infos.avatarUrl}}"></image>
         <view class="header-user-info-nickname">{{infos.nickname}}</view>
+        <image wx:if="{{infos.unreadMsgNum > 0}}" class="header-user-info-msg" src="/assets/img/icon/msg.png" bindtap="goToMsgPage"></image>
       </view>
 
-      <!-- 操作部分 -->
       <view class="header-bottom-box">
         <view class="header-bottom-box-item">
           <view>已发布{{infos.publishedInfoTotalNum}}条</view>
@@ -21,6 +21,10 @@
         <view class="header-bottom-box-item"  bindtap="obtainCommentedList">
           <view>收到{{infos.commentTotalNum}}条评论</view>
         </view>
+      </view>
+
+      <view wx:if="{{infos.unreadMsgNum > 0}}" class="header-msg">
+        您有 {{infos.unreadMsgNum}} 条未读消息
       </view>
     </view>
     

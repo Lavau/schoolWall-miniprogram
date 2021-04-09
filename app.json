@@ -9,7 +9,8 @@
     "pages/detail/detail",
     "pages/listOthers/listOthers",
     "pages/listComment/listComment",
-    "pages/listFavoritedContent/listFavoritedContent"
+    "pages/listFavoritedContent/listFavoritedContent",
+    "pages/listMsg/listMsg"
   ],
   "window": {
     "backgroundTextStyle": "dark",

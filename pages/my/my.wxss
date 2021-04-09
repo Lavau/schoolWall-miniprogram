@@ -40,6 +40,15 @@
   word-break: break-all;  /*强制英文单词自动换行*/
 }
 
+.header-user-info-msg {
+  position: fixed;
+  top: 0rpx;
+  left: 630rpx;
+  top: 20rpx;
+  height: 60rpx;
+  width: 60rpx
+}
+
 /* 头部的盒子 */
 .header-bottom-box{
   position: fixed;
@@ -67,6 +76,14 @@
   border-left: #0081CC 2rpx solid;
   border-right: #0081CC 2rpx solid;
   margin-bottom: 30rpx;
+}
+
+.header-msg {
+  position: fixed;
+  top: 270rpx;
+  left: 270rpx;
+  color: red;
+  font-size: small;
 }
 
 /* 身体部分 */

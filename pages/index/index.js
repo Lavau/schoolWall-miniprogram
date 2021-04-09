@@ -34,8 +34,26 @@ Page({
         url: '../listOthers/listOthers?typeId=' + e.currentTarget.dataset.typeid
     }),
     goToDetailPage(e) {
-        if (this.verifyIsLogin() == false) return;
-        wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
+        if (APP.globalData.login == false) {
+            wx.showModal({
+                content: "请先登录",
+                showCancel: false,
+                success() {
+                    wx.showLoading({title: '处理中'});
+                    wx.login({
+                        success(res) {
+                            if (res.code) {
+                                APP.login(res.code);
+                                wx.hideLoading();
+                            }
+                        },
+                        fail: () => wx.showToast({title: "获取 code 失败"}),
+                    });
+                }
+            });
+        } else {
+            wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
+        }
     },
 
     /**
@@ -78,19 +96,6 @@ Page({
             },
             fail:() => APP.fail()
         });
-    },
-
-    /**
-     * 验证当前用户是否登录
-     */
-    verifyIsLogin() {
-        if (APP.globalData.login == false) {
-            wx.showModal({
-                content: "请先登录",
-                showCancel: false
-            });
-        }
-        return APP.globalData.login;
     },
 
     /**
