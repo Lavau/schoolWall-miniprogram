@@ -63,12 +63,9 @@ Page({
             success(response) {
               wx.hideLoading({});
               if (response.data.success) {
-                wx.showModal({
-                  content: p.data.publishedInfo.msg,
-                  showCancel: false
-                });
+                APP.showModal(p.data.publishedInfo.msg);
               } else {
-                wx.showToast({title: response.data.msg});
+                APP.showModal(response.data.msg);
               }
             },
             fail:() => APP.fail()
@@ -163,9 +160,9 @@ Page({
         },
         data: dataToServer,
         success(res) {
-          wx.hideLoading({});
-          wx.showModal({title: res.data.msg});
-          p.setData({hidden: !p.data.hidden});
+          wx.hideLoading();
+          APP.showModal(res.data.msg);
+          p.setData({hidden: !p.data.hidden, commentContent: ""});
         },
         fail:() => APP.fail()
       });
@@ -352,9 +349,11 @@ Page({
    */
   onPullDownRefresh() {
     this.obtainDetail();
+
     this.data.pageNum = 0;
     this.data.commentList = [];
     this.data.commentContent = "";
+
     this.obtainComment();
   },
 
@@ -363,11 +362,10 @@ Page({
    */
   onReachBottom() {
     if (this.data.pageNum == this.data.pages) {
-      wx.showModal({content: '暂无最新的评论', showCancel: false});
+      APP.showModal(' @_@: 到底了。。没有评论啦');
       return;
     }
-    wx.showLoading({title: '数据加载中'});
-    // 向服务器请求评论内容
+    APP.serverLoading();
     this.obtainComment();
     wx.hideLoading({});
   },

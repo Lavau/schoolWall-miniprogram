@@ -102,10 +102,6 @@
           <!-- 昵称 -->
           <view class="comment-item-right-header">
             <view class="nickname">{{item.nickname}}</view>
-            <!-- <view class="others-left" bindtap="touchLike" data-id="{{item.id}}" data-index="{{index}}">
-              <image wx:if="{{item.like}}" src="/assets/img/icon/like-active.png"></image>
-              <image wx:else src="/assets/img/icon/like.png"></image>
-            </view> -->
           </view>
 
           <!-- 评论内容 -->

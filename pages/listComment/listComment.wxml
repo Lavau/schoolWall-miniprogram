@@ -1,5 +1,5 @@
 <!--pages/listComment/listComment.wxml-->
-<view wx:if="{{commentList.length == 0}}" style="margin-top:50%; text-align:center;">数据加载中</view>
+<view wx:if="{{commentList.length == 0}}" style="margin-top:50%; text-align:center;">数据加载中...</view>
 
 <view class="comment">
   <view wx:for="{{commentList}}" wx:key="index">
@@ -14,10 +14,6 @@
         <!-- 昵称 -->
         <view class="comment-item-right-header">
           <view class="nickname">{{item.nickname}}</view>
-          <!-- <view class="others-left" bindtap="commentLike" data-id="{{item.id}}" data-index="{{index}}">
-            <image wx:if="{{item.like}}" src="/assets/img/icon/like-active.png"></image>
-            <image wx:else src="/assets/img/icon/like.png"></image>
-          </view> -->
         </view>
 
         <!-- 评论内容 -->

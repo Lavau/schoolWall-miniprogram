@@ -15,7 +15,7 @@ App({
   /**
    * 等待服务器返回处理结果
    */
-  serverLoading:() => wx.showLoading({title: '处理中', mask: true}),
+  serverLoading:() => wx.showLoading({title: '处理中。。。', mask: true}),
 
  /**
   * 生成 uuid

@@ -27,6 +27,7 @@ Page({
         if (res.code) {
           APP.login(res.code);
           p.setData({login: true});
+          p.obtainMyData();
         }
       },
       fail: () => wx.showToast({title: "获取 code 失败"}),
@@ -73,22 +74,29 @@ Page({
     let p = this;
     p.setData({login: APP.globalData.login});
     if (APP.globalData.login) {
-      wx.request({
-        url: APP.globalData.localhost + "/login/myData/info",
-        method: "GET",
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "JSessionId": wx.getStorageSync('JSessionId')
-        },
-        success(response) {
-          if (response.data.success) {
-            p.setData({infos: response.data.data});
-          }
-        },
-        fail:() => APP.fail()
-      });
-
-      APP.obtainFavorites(p);
+      p.obtainMyData();
     }
+  },
+
+  obtainMyData() {
+    let p = this;
+    APP.serverLoading();
+    wx.request({
+      url: APP.globalData.localhost + "/login/myData/info",
+      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      success(response) {
+        wx.hideLoading();
+        if (response.data.success) {
+          p.setData({infos: response.data.data});
+        }
+      },
+      fail:() => APP.fail()
+    });
+
+    APP.obtainFavorites(p);
   }
 })

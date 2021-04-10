@@ -18,7 +18,7 @@ Page({
    */
   deleteComment(event) {
     wx.showModal({
-      title: "确定删除该评论？",
+      title: "确定删除本条回复评论？",
       success(res) {
         if (res.confirm) {
           APP.serverLoading();
@@ -30,13 +30,9 @@ Page({
               "JSessionId": wx.getStorageSync('JSessionId')
             },
             data: {id: event.currentTarget.dataset.id},
-            success(res) {
+            success(response) {
               wx.hideLoading({});
-              if (res.data.success) {
-                wx.showToast({title: res.data.msg});
-              } else {
-                wx.showToast({title: res.data.msg, icon: "none"});
-              }
+              APP.showModal(response.data.msg);
             } 
           });
         }
@@ -62,7 +58,7 @@ Page({
   publishComment() {
     let p = this;
     if (this.data.commentContent.length == 0) {
-      wx.showToast({title: '输入评论，才能发布哦', icon: "none"});
+      APP.showModal('输入评论，才能发布哦');
     } else {
       APP.serverLoading();
       wx.request({
@@ -77,14 +73,14 @@ Page({
           parentId: p.data.parentId
         },
         success(res) {
-          wx.hideLoading({});
+          wx.hideLoading();
           if (res.data.success) {
             wx.showToast({title: res.data.msg});
-            p.setData({hidden: !p.data.hidden});
+            p.setData({hidden: !p.data.hidden, commentContent: ""});
           }
         },
         fail:() => APP.fail()
-      })
+      });
     }
   },
 

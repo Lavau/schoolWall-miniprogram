@@ -15,12 +15,8 @@ Page({
     wx.showModal({
       content: "您确定要将这条记录从这个收藏夹中除去？！！",
       success(res) {
-        // 点击确定, 删除
         if (res.confirm) {
-          wx.showLoading({
-            title: '处理中',
-            mask: true,
-          });
+          APP.serverLoading();
           wx.request({
             url: APP.globalData.localhost + "/login/favoritedContent/delete",
             method: "POST",
@@ -29,13 +25,9 @@ Page({
               "JSessionId": wx.getStorageSync('JSessionId')
             },
             data: {favoritedContentId: e.currentTarget.dataset.favoritedcontentid},
-            success(res) {
-              wx.hideLoading({});
-              if (res.data.success) {
-                wx.showToast({title: res.data.msg});
-              } else {
-                wx.showToast({title: res.data.msg, icon: "none"});
-              }
+            success(response) {
+              wx.hideLoading();
+              APP.showModal(response.data.msg);
             },
             fail:() => APP.fail()
           })
@@ -59,7 +51,7 @@ Page({
         if (response.data.success) {
           if (response.data.data.length == 0) {
             wx.showModal({
-              content: "暂无数据",
+              content: "@*—*@：这个收藏夹里面没有收藏东西。。",
               showCancel: false,
               success(res) {if (res.confirm) {wx.navigateBack({delta: -1});}}
             });

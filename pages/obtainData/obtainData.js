@@ -66,13 +66,10 @@ Page({
       success(res) {
           if (res.data.data.list.length == 0) {
             wx.showModal({
-              content: "暂无数据",
+              content: "@~.~@：这里没有任何数据啊",
               showCancel: false,
               success(res) {
-                if (res.confirm) {
                   wx.navigateBack({delta: -1});
-                }
-                return;
               }
             });
           } else {
