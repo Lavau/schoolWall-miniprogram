@@ -311,8 +311,11 @@ Page({
       wx.hideLoading();
       APP.showModal('！！请输入举报原因！！');
     } else {
-      let reportReason = (p.data.selectedReportType != null ? p.data.selectedReportType.name + '、' : "") + 
-        (p.data.reportReason.length > 0 ? p.data.reportReason : "");
+      let reportReason = p.data.selectedReportType != null ? p.data.selectedReportType.name  : "";
+      if (p.data.selectedReportType != null && p.data.reportReason.length > 0) {
+        reportReason += '、';
+      }
+      reportReason += (p.data.reportReason.length > 0 ? p.data.reportReason : "");
       wx.showModal({
         content: '举报原因：' + reportReason,
         success(res) {
@@ -327,8 +330,7 @@ Page({
               },
               data: {
                 publishedInfoId: p.data.id,
-                reportTypeId: p.data.selectedReportType != null ? p.data.selectedReportType.id : null,
-                reportReason: p.data.reportReason
+                reportReason: reportReason
               },
               success(response) {
                 wx.hideLoading();

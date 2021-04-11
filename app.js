@@ -2,7 +2,7 @@
 App({
   globalData: {
     timeout: 30000,
-    localhost: "http://localhost:8080/miniprogram",
+    localhost: "https://www.leeti.top/miniprogram",
     // localhost: "https://schoolwall.imwonder.top/miniprogram",
     userInfo: null,
     login: false
@@ -66,7 +66,9 @@ App({
             break;
           case "registered": 
             p.globalData.login = true;
-            let JSessionId = response.header["Set-Cookie"].toString().split(';')[0].substring(11);
+            let cookie = response.header["Set-Cookie"];
+            let indexOfJSEESSIONID = cookie.indexOf('JSESSIONID');
+            let JSessionId = cookie.substring(indexOfJSEESSIONID + 11, indexOfJSEESSIONID + 47);
             wx.setStorageSync("JSessionId", JSessionId);
             break;
         }

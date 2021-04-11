@@ -74,7 +74,6 @@ Page({
                         pages: res.data['data']['pages']
                     });
                 }
-                
             },
             fail:() => APP.fail()
         });
@@ -104,7 +103,7 @@ Page({
     onReachBottom() {
         if (this.data.pageNum == this.data.pages) {
             wx.showModal({
-                content: '暂无最新数据',
+                content: '我是有底线的。。。',
                 showCancel: false
             });
             return;
