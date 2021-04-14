@@ -35,6 +35,29 @@ Page({
     });
   },
 
+  goToDetailPage(e) {
+    if (APP.globalData.login == false) {
+        wx.showModal({
+            content: "请先登录",
+            showCancel: false,
+            success() {
+                wx.showLoading({title: '处理中'});
+                wx.login({
+                    success(res) {
+                        if (res.code) {
+                            APP.login(res.code);
+                            wx.hideLoading();
+                        }
+                    },
+                    fail: () => wx.showToast({title: "获取 code 失败"}),
+                });
+            }
+        });
+    } else {
+        wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
+    }
+  },
+
   search() {
     let p = this;
     if (p.data.labelId.length == 0 && p.data.searchText.length == 0 
@@ -61,29 +84,35 @@ Page({
   obtainSearchResults() {
     let p = this;
     wx.request({
-      url: APP.globalData.localhost + "/login/comment/reply/list",
+      url: APP.globalData.localhost + "/noLogin/search",
       method: "POST",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "JSessionId": wx.getStorageSync('JSessionId')
-      },
+      header: {"Content-Type": "application/x-www-form-urlencoded"},
       data: {
         typeId: p.data.labelId,
         searchText: p.data.searchText,
-        beginDate: p.data.beginDate,
-        endDate: p.data.endDate
+        beginDate: p.data.beginDate == "开始时间" ? "" : p.data.beginDate,
+        endDate: p.data.endDate == "结束时间" ? "" : p.data.endDate,
+        pageNum: p.data.pageNum + 1
       },
       success(response) {
-        let listCopy = p.data.list;
-        response.data.data.list.forEach(item => {
-            listCopy.push(item);
-        });
-
-        p.setData({
-          list: listCopy,
-          pageNum: response.data.data.pageNum,
-          pages: response.data.data.pages
-        });
+        if (response.data.success) {
+          if (response.data.data.list.length == 0) {
+            APP.showModal('没有搜索到内容');
+          } else {
+            let listCopy = p.data.list;
+            response.data.data.list.forEach(item => {
+                listCopy.push(item);
+            });
+    
+            p.setData({
+              list: listCopy,
+              pageNum: response.data.data.pageNum,
+              pages: response.data.data.pages
+            });
+          }
+        } else {
+          APP.showModal(response.data.msg);
+        }
       },
       fail:() => APP.fail()
     });
