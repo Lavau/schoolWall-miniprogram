@@ -1,1 +1,71 @@
 /* pages/search/search.wxss */
+.label {
+  text-align: center;
+  background-color: #fff;
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 10rpx 20rpx;
+  padding: 10rpx;
+}
+
+.label-item {
+  display: inline-table;
+  background-color: lightblue;
+  margin: 16rpx 16rpx;
+  padding: 0 32rpx;
+  border-radius: 35rpx;
+}
+
+.body-item {
+  margin-bottom: 50rpx;
+  background-color: #fff;
+  padding: 15rpx;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.body-item-img {
+  width: 720rpx;
+  box-sizing: border-box;
+  margin: 10rpx 0;
+}
+
+.body-item-img image {
+  width: 235rpx;
+  height: 235rpx;
+  margin-right: 5rpx;
+  border-radius: 25rpx;
+}
+
+/* 文字内容 */
+.body-item-content {
+  width: 720rpx;
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 4;  /*最多显示2行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
+  word-break: break-all;  /*强制英文单词自动换行*/
+
+  margin-bottom: 15rpx;
+  padding-bottom: 5rpx;
+}
+
+/* 标签部分 */
+.body-item-type {
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  margin-bottom: 10rpx;
+}
+
+.body-item-type image {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.body-item-type-word {
+  font-size: small; 
+  margin-bottom: 5rpx;
+}
