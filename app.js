@@ -2,8 +2,8 @@
 App({
   globalData: {
     timeout: 30000,
-    localhost: "https://www.leeti.top/miniprogram",
-    // localhost: "https://schoolwall.imwonder.top/miniprogram",
+    // localhost: "https://www.leeti.top/miniprogram",
+    localhost: "http://localhost:8080/miniprogram",
     userInfo: null,
     login: false
   },

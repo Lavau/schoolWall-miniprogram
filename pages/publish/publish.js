@@ -129,7 +129,7 @@ Page({
         });
         
         // 提交图片
-        for(let i = 0; i < p.data.pictures.length; i++){
+        for (let i = 0; i < p.data.pictures.length; i++) {
           wx.uploadFile({
             url: APP.globalData.localhost + "/login/picture/save",
             header: {

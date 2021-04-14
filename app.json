@@ -10,7 +10,8 @@
     "pages/listOthers/listOthers",
     "pages/listComment/listComment",
     "pages/listFavoritedContent/listFavoritedContent",
-    "pages/listMsg/listMsg"
+    "pages/listMsg/listMsg",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "dark",

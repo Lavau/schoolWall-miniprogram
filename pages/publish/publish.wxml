@@ -14,8 +14,8 @@
     <!-- 输入具体内容 -->
     <view class="description description-position">
       <textarea placeholder="{{placeholderOfDescription}}" maxlength="300" bindinput="inputDescription" value="">
-        <view class="description-word-num-sign">{{wordNum}}/300</view>
       </textarea>
+      <view class="description-word-num-sign">{{wordNum}}/300</view>
     </view>
     <view wx:if="{{labelId == 5 || labelId == 7 || labelId == 8}}" class="msg">
       <input type="text" placeholder="{{placeholderOfMsg}}" bindinput="inputMsg" value=""/>

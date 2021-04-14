@@ -10,29 +10,13 @@ Page({
         type: null,
         userInfo: {},
         hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        hidden: true
-    },
-
-    /**
-     * 初始或关闭页面模态框
-     */
-    isShowTypeModal() {
-        this.setData({
-            hidden: !this.data.hidden
-        })
+        canIUse: wx.canIUse('button.open-type.getUserInfo')
     },
 
     /**
      * 前往具体的页面
      */
-    goToListEcardPage() {
-        wx.navigateTo({
-        url: '../listEcard/listEcard'
-    })},
-    goToListOthersPage: (e) => wx.navigateTo({
-        url: '../listOthers/listOthers?typeId=' + e.currentTarget.dataset.typeid
-    }),
+    goToSearchPage() {wx.navigateTo({url: '../search/search'});},
     goToDetailPage(e) {
         if (APP.globalData.login == false) {
             wx.showModal({

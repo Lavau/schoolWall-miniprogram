@@ -5,24 +5,13 @@
 
 <view wx:else class="container">
   <!-- 顶部右侧固定的图标 -->
-  <view class="header-right" bindtap="isShowTypeModal">
-    <image src="/assets/img/icon/more.png" ></image>
+  <view class="header-right" bindtap="goToSearchPage">
+    <image src="/assets/img/icon/search.png" ></image>
   </view>
 
-  <!-- 点击图标后，显示的模态框 -->
-  <modal hidden="{{hidden}}" confirm-text="确定" no-cancel="true" bindconfirm="isShowTypeModal">
-    <view class="modal">
-      <view class="modal-item" bindtap="goToListEcardPage">一卡通</view>
-      <view class="modal-item" bindtap="goToListOthersPage" data-typeId="4">失物招领</view>
-      <view class="modal-item" bindtap="goToListOthersPage" data-typeId="6">脱单</view>
-      <view class="modal-item" bindtap="goToListOthersPage" data-typeId="5">求助</view>
-      <view class="modal-item" bindtap="goToListOthersPage" data-typeId="1">宣传栏</view>
-      <view class="modal-item" bindtap="goToListOthersPage" data-typeId="3">吐槽/感谢</view>
-    </view>
-  </modal>
-
-  <!-- 主题内容 -->
+  <!-- 主体内容 -->
   <view wx:if="{{list == null}}" style="margin-top:50%; margin-bottom: 500%; text-align:center;">暂无数据</view>
+  
   <view wx:else class="body">
     <block wx:for="{{list}}" wx:key="i">
       <!-- 一卡通 -->
@@ -35,7 +24,7 @@
           <view class="body-item-type-word">{{item['createTime']}}</view>
         </view>
 
-        <!-- 文字部分：优先展示描述 -->
+        <!-- 描述 -->
         <view class="body-item-content">
           <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>
           <text wx:else>{{item['title']}}</text>
@@ -58,10 +47,9 @@
           </block>
         </view>
 
-        <!-- 文字部分：优先展示描述 -->
+        <!-- 描述 -->
         <view class="body-item-content">
           <text wx:if="{{item['description'].length != 0}}">{{item['description']}}</text>
-          <text wx:else>{{item['title']}}</text>
         </view>
 
         <!-- 类型 + 评论数 -->

@@ -4,7 +4,6 @@
   display: flex;
   flex-direction: row;
   padding-top: 22rpx;
-  /* margin-bottom: 18rpx; */
   height: 85rpx;
   box-sizing: border-box;
 }
@@ -28,10 +27,10 @@
 .header-right image{
   position: fixed;
   top: 0;
-  right: 0;
+  right: 15rpx;
 
-  height: 85rpx;
-  width: 85rpx;
+  height: 100rpx;
+  width: 100rpx;
 }
 
 .modal-item{
@@ -82,7 +81,7 @@
 .body-item-content{
   width: 720rpx;
   display: -webkit-box;  /*设置为弹性盒子*/
-  -webkit-line-clamp: 2;  /*最多显示2行*/
+  -webkit-line-clamp: 4;  /*最多显示2行*/
   overflow: hidden;  /*超出隐藏*/
   text-overflow: ellipsis;  /*超出显示为省略号*/
   -webkit-box-orient: vertical;

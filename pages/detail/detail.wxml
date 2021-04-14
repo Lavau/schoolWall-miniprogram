@@ -16,7 +16,7 @@
 
     <!-- 具体内容 -->
     <view wx:if="{{publishedInfo.description != null && publishedInfo.description.length > 0}}" class="description">
-      <view class="description-content">{{publishedInfo.description}}</view>
+      <text class="description-content">{{publishedInfo.description}}</text>
     </view>
 
     <!-- 图片，可以预览 -->
