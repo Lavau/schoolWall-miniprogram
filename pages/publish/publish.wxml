@@ -22,7 +22,7 @@
 
     <!-- 匿名按钮 -->
     <view class="switch-anonymous">
-      <van-switch checked="{{Anonymous}}" size="20px" data-anonymous="{{Anonymous}}" bindtap="inputAnonymous" />
+      <van-switch checked="{{Anonymous}}" size="20px" active-color="#11417E" data-anonymous="{{Anonymous}}" bindtap="inputAnonymous" />
       <view class="switch-anonymous-word">是否匿名，默认为不匿名</view>  
     </view>
 

@@ -13,16 +13,6 @@
   color: lightblue;
 }
 
-/* 脱单项 */
-.height, .weight{
-  display: inline-table;
-  border: #D3D3D3 3rpx solid;
-  border-radius: 10rpx;
-  margin: 20rpx 20rpx 10rpx 20rpx;
-  padding: 10rpx;
-  width: 500rpx;
-}
-
 /* 图片部分 */
 .picture {
   margin: 10rpx;
@@ -59,6 +49,4 @@
   margin-bottom: 20rpx; 
   background-color: #11417E;
   color: #fff;
-
-  
 }
