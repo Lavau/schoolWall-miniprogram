@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
+  "component": true,
+  "usingComponents": {
+    "van-switch": "@vant/weapp/switch/index"
+  },
   "navigationBarTitleText": "发布"
 }

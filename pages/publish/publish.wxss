@@ -1,26 +1,13 @@
 /* pages/publishOthers/publishOthers.wxss */
-.label {
-  text-align: center;
-  background-color: lightblue;
-}
-
-.label-item{
-  display: inline-table;
-  background-color: lightblue;
-  margin: 16rpx 16rpx;
-  padding: 0 32rpx;
-  border-radius: 35rpx;
-}
-
-.title, .msg,  .description, .label {
+.title, .msg, .description {
   border: #D3D3D3 3rpx solid;
   border-radius: 10rpx;
   margin: 30rpx 20rpx;
   padding: 10rpx;
-} 
+}
 
-.description-word-num-sign{
-  margin-left: 510rpx;
+.description-word-num-sign {
+  margin: 10rpx 0 0 2rpx;
   font-size: small;
   bottom: 0rpx;
   color: lightblue;
@@ -53,14 +40,25 @@
 
 /* 匿名按钮 */
 .switch-anonymous {
+  display: flex;
+  flex-direction: row;
   margin: 30rpx 20rpx;
 }
 
 .switch-anonymous-word {
+  margin: 0 0 1px 10rpx;
   font-size: small;
   color: #D3D3D3;
 }
 
 .no-login-body {
   margin-top: 50%;
+}
+
+.submit-button button {
+  margin-bottom: 20rpx; 
+  background-color: #11417E;
+  color: #fff;
+
+  
 }

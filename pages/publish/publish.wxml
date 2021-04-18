@@ -1,16 +1,6 @@
 <!--pages/publishOthers/publishOthers.wxml-->
 <view>
-
   <view wx:if="{{login}}">
-    <!-- 选择发布的标签 -->
-    <view class="label" bindtap="showOrCloseLabelModal">{{labelText}}</view>
-    <!-- 点击图标后，显示的模态框 -->
-    <modal hidden="{{isHiddenLabelModal}}" confirm-text="关闭" no-cancel="true" bindconfirm="showOrCloseLabelModal">
-      <view wx:for="{{types}}" wx:key="index" class="label-item" data-label="{{item}}" bindtap="inputLabel">
-        {{item.chineseName}}
-      </view>
-    </modal>
-
     <!-- 输入具体内容 -->
     <view class="description description-position">
       <textarea placeholder="{{placeholderOfDescription}}" maxlength="300" bindinput="inputDescription" value="">
@@ -32,18 +22,34 @@
 
     <!-- 匿名按钮 -->
     <view class="switch-anonymous">
-      <switch bindchange="inputAnonymous">
-        <span class="switch-anonymous-word">是否匿名，默认为不匿名</span>  
-      </switch>
+      <van-switch checked="{{Anonymous}}" size="20px" data-anonymous="{{Anonymous}}" bindtap="inputAnonymous" />
+      <view class="switch-anonymous-word">是否匿名，默认为不匿名</view>  
     </view>
 
-    <!-- 取消按钮与提交按钮 -->
-    <view class="btn">
-      <button type="primary" bindtap="submit" style="margin-bottom:20rpx">发布</button>
+    <!-- 标签选择 -->
+    <view class="weui-cells weui-cells_after-title"  style="margin: 30rpx 20rpx;">
+      <view class="weui-cell weui-cell_select" >
+        <view class="weui-label">标签</view>
+        <view class="weui-cell__bd">
+            <picker bindchange="inputLabel" value="{{typeIndex}}" range="{{typeNames}}">
+                <view class="weui-select weui-select_in-select-after">{{typeNames[typeIndex]}}</view>
+            </picker>
+        </view>
+      </view>
+    </view>
+
+
+
+    <!-- 标签选择与发布按钮 -->
+    <view>
+       <!-- 发布按钮 -->
+      <view class="submit-button">
+        <button bindtap="submit">发布</button>
+      </view>
     </view>
   </view>
 
   <view wx:else class="no-login-body">
-    <button type="primary" style="margin-top: 50rpx" bindtap="login">登录</button>
+    <button type="primary" style="margin-top: 50rpx;" catchtap="login">登录</button>
   </view>
 </view>
