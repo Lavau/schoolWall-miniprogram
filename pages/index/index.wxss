@@ -1,71 +1,14 @@
 /* pages/index/index.wxss */
-/* 顶部文字 */
-.header{
-  display: flex;
-  flex-direction: row;
-  padding-top: 22rpx;
-  /* margin-bottom: 18rpx; */
-  height: 85rpx;
-  box-sizing: border-box;
-}
-
-.header-line{
-  margin-top: 20rpx;
-  background: #0081CC;
-  width: 30%;
-  height: 3rpx;
-}
-
-.header-content{
-  width: 40%;
-  text-align: center;
-  font-size: x-small;
-  color: #0081CC;
-  padding: 0 30rpx;
-}
-
-/* 顶部右侧固定的图标 */
-.header-right image{
-  position: fixed;
-  top: 0;
-  right: 15rpx;
-
-  height: 100rpx;
-  width: 100rpx;
-}
-
-.modal-item{
-  display: inline-table;
-  background-color: lightblue;
-  margin: 16rpx 16rpx;
-  padding: 0 32rpx;
-  border-radius: 35rpx;
-}
-
-/* 页面展示 */
-/* 一卡通 */
-.body-item-ecard{
+/* 每个小卡片的整体布局 */
+.body-item {
   margin-bottom: 40rpx;
   background-color: #fff;
   padding: 15rpx;
-}
-
-.body-item-ecard-title{
-  font-weight: bold;
-}
-
-/* 其他 */
-.body-item{
-  margin-bottom: 50rpx;
-  background-color: #fff;
-  padding: 15rpx;
-
-  display: flex;
-  flex-direction: column;
+  border-bottom: 1rpx solid #bebec0;
 }
 
 /* 图片部分 */
-.body-item-img{
+.body-item-img {
   width: 720rpx;
   box-sizing: border-box;
   margin: 10rpx 0;
@@ -81,14 +24,14 @@
 /* 文字内容 */
 .body-item-content{
   width: 720rpx;
-  display: -webkit-box;  /*设置为弹性盒子*/
-  -webkit-line-clamp: 4;  /*最多显示2行*/
-  overflow: hidden;  /*超出隐藏*/
-  text-overflow: ellipsis;  /*超出显示为省略号*/
+  display: -webkit-box;  
+  -webkit-line-clamp: 4;  
+  overflow: hidden; 
+  text-overflow: ellipsis;  
   -webkit-box-orient: vertical;
-  word-break: break-all;  /*强制英文单词自动换行*/
+  word-break: break-all;  
 
-  margin-bottom: 15rpx;
+  margin-bottom: 10rpx;
   padding-bottom: 5rpx;
 }
 
@@ -98,6 +41,8 @@
   flex-direction: row;
   justify-content:space-between;
   margin-bottom: 10rpx;
+
+  color: #69718b;
 }
 
 .body-item-type image{
@@ -110,44 +55,63 @@
   margin-bottom: 5rpx;
 }
 
-/* 底部其他内容 */
+/* 卡片的底部内容 */
 .body-item-bottom{
   display: flex;
   flex-direction: row;
+
+  color: #69718b;
 }
 
 .body-item-bottom-avator{
-  margin-top: 10rpx;
-  height: 55rpx;
-  width: 55rpx;
+  margin-top: 12rpx;
+  height: 64rpx;
+  width: 64rpx;
   border-radius: 35rpx;
+
+  border: 2rpx #11417E solid;
 }
 
 .body-item-bottom-nickname{
   margin-left: 12rpx;
-  padding-top: 20rpx;
-  font-size: 28rpx;
+  padding-top: 22rpx;
   width: 400rpx;
-  display: -webkit-box;  /*设置为弹性盒子*/
-  -webkit-line-clamp: 1;  /*最多显示1行*/
-  overflow: hidden;  /*超出隐藏*/
-  text-overflow: ellipsis;  /*超出显示为省略号*/
+
+  font-size: 32rpx;
+  display: -webkit-box;  
+  -webkit-line-clamp: 1; 
+  overflow: hidden; 
+  text-overflow: ellipsis;  
   -webkit-box-orient: vertical;
-  word-break: break-all;  /*强制英文单词自动换行*/
+  word-break: break-all; 
 }
 
-/* 右边内容 */
+/* 卡片的底部右边内容 */
 .body-item-bottom-right{
-  width: 252rpx;
   display: flex;
   flex-direction: column;
-  font-size: x-small;
-}
 
-.body-item-bottom-view {
+  width: 252rpx;
+
+  font-size: 25rpx;
   text-align: right;
 }
 
-.body-item-bottom-time{
-  text-align: right;
+/* 底部固定图标 */
+.bottom-fixed-search-icon image {
+  position: fixed; 
+  left: 638rpx; 
+  bottom: 100rpx;
+  height: 100rpx; 
+  width: 100rpx;
+}
+
+.bottom-fixed-upward-icon image {
+  display: block; 
+  left: 666rpx; 
+  bottom: 50rpx; 
+  height: 57rpx; 
+  width: 57rpx; 
+  position: fixed; 
+  box-sizing: border-box
 }

@@ -10,7 +10,9 @@ Page({
         type: null,
         userInfo: {},
         hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo')
+        canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
+        isHiddenUpwardIcon: true
     },
 
     /**
@@ -41,6 +43,21 @@ Page({
     },
 
     /**
+     * 获取滚动条当前位置
+     */
+    onPageScroll(e) {this.setData({isHiddenUpwardIcon: e.scrollTop <= 150});},
+    /**
+     * 点击图标，一键回到顶部
+     */
+    goTop() {  
+        if (wx.pageScrollTo) {
+            wx.pageScrollTo({scrollTop: 0});
+        } else {
+            APP.showModal("当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试");
+        }
+    },
+
+    /**
      * 页面加载时，获取首页显示的信息
      */
     onLoad() {
@@ -48,7 +65,6 @@ Page({
         wx.request({
             url: APP.globalData.localhost + "/noLogin/publishedInfo/list",
             success: (res) => {
-                console.log(res.data['data']['list'].length);
                 if (res.data['data']['list'].length === 0) {
                     p.setData({tipText: "暂无数据"});
                 } else {
