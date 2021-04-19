@@ -1,17 +1,13 @@
 /* pages/my/my.wxss */
-.container {
-  background-color: #F0EFF5;
-} 
-
 /* 用户信息 */
 .header-user-info {
   position: fixed;
   top: -170rpx;
   z-index: -10;
   width: 100%;
-  height: 30%;
-  border-radius: 6% 6%;
-  background-color: #0081CC;  
+  height: 300rpx;
+  border-radius: 10% 10%;
+  background-color: #11417E;  
 
   display: flex;
   flex-direction: row;
@@ -20,16 +16,18 @@
 .header-user-info-avatar {
   position: fixed;
   left: 70rpx;
-  top: 0rpx;
-  height: 100rpx;
-  width: 100rpx;
+  top: 8rpx;
+  height: 80rpx;
+  width: 80rpx;
   border-radius: 50rpx;
+  border: 5rpx #fff solid;
 }
 
 .header-user-info-nickname {
   position: fixed;
   left: 180rpx;
   top: 30rpx;
+  color: #fff;
 
   width: 380rpx;
   display: -webkit-box;  /*设置为弹性盒子*/
@@ -49,56 +47,26 @@
   width: 60rpx
 }
 
-/* 头部的盒子 */
-.header-bottom-box{
-  position: fixed;
-  top: 150rpx;
-  z-index: 10;
-  width: 652rpx;
-  height: 100rpx;
-  margin: 0 45rpx;
-  background-color: #FFFFFF;   /*white*/
-  border-radius: 30rpx;
-  display: flex;
-  flex-direction: row;
-  font-weight: bold;
-  font-size: small;
-  box-shadow: 0rpx 10rpx 2rpx #F0F0F0;  /*HoneyDew*/
-}
-
-.header-bottom-box-item{
-  margin-top: 30rpx;
-  text-align: center;
-  width: 50%;
-}
-
-.header-bottom-box-item-middle {
-  border-left: #0081CC 2rpx solid;
-  border-right: #0081CC 2rpx solid;
-  margin-bottom: 30rpx;
-}
-
-.header-msg {
-  position: fixed;
-  top: 270rpx;
-  left: 270rpx;
-  color: red;
-  font-size: small;
-}
-
 /* 身体部分 */
 .body {
   position: fixed;
-  top: 280rpx;
+  top: 155rpx;
 }
    
 .body-item {
   display: flex;
   flex-direction: row;
 
-  margin: 20rpx;
+  justify-content: space-between;
+
+  margin-left: 40rpx;
   padding: 30rpx 0;
   border-bottom: #F0EFF5 2rpx solid;
+}
+
+.body-item-left {
+  display: flex; 
+  flex-direction: row;
 }
 
 .body-item image{
@@ -109,31 +77,6 @@
 .body-item-middle {
   margin: 0 450rpx 0 15rpx;
 }
-
-/* 收藏夹 */
-.favorite {
-  position: fixed;
-  top: 665rpx;
-  width: 93%;
-  margin: 20rpx;
-}
-
-.favorite-title {
-  display: flex;
-  flex-direction: row;
-  justify-content:space-between;
-  font-size: small;
-  font-weight: bold;
-  color: #5dbbf1;
-}
-
-.favorite-title-line {
-  width: 30%;
-  margin-top: 18rpx;
-  border-top:  1rpx solid #5dbbf1;
-}
-
-
 
 /* 未登录样式 */
 .no-login-body {

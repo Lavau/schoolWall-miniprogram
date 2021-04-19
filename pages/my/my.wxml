@@ -1,86 +1,46 @@
 <!--pages/my/my.wxml-->
-<view>
-  <!-- 登录状态显示内容 -->
-  <view wx:if="{{login}}">
-    <!-- 头部 -->
-    <view class="header">
-      <!-- 用户信息 -->
-      <view class="header-user-info">
-        <image class="header-user-info-avatar" src="{{infos.avatarUrl}}"></image>
-        <view class="header-user-info-nickname">{{infos.nickname}}</view>
-        <image wx:if="{{infos.unreadMsgNum > 0}}" class="header-user-info-msg" src="/assets/img/icon/msg.png" bindtap="goToMsgPage"></image>
-      </view>
-
-      <view class="header-bottom-box">
-        <view class="header-bottom-box-item">
-          <view>已发布{{infos.publishedInfoTotalNum}}条</view>
-        </view>
-        <view class="header-bottom-box-item header-bottom-box-item-middle" bindtap="obtainLikedList">
-          <view>收到{{infos.likeTotalNum}}个赞</view>
-        </view>
-        <view class="header-bottom-box-item"  bindtap="obtainCommentedList">
-          <view>收到{{infos.commentTotalNum}}条评论</view>
-        </view>
-      </view>
-
-      <view wx:if="{{infos.unreadMsgNum > 0}}" class="header-msg">
-        您有 {{infos.unreadMsgNum}} 条未读消息
-      </view>
+<!-- 登录状态显示内容 -->
+<view wx:if="{{login}}">
+  <!-- 头部 -->
+  <view class="header">
+    <!-- 用户信息 -->
+    <view class="header-user-info">
+      <image class="header-user-info-avatar" src="{{infos.avatarUrl}}"></image>
+      <view class="header-user-info-nickname">{{infos.nickname}}</view>
+      <image class="header-user-info-msg" src="/assets/img/icon/msg.png" bindtap="goToMsgPage"></image>
     </view>
-    
+
     <!-- 列表展示 -->
     <view class="body">
       <view class="body-item" bindtap="goToObtainDataPage" data-typeid="1">
-        <image src="/assets/img/icon/my/publish.png"></image>
-        <view class="body-item-middle">我发布的</view>
-        <image src="/assets/img/icon/my/right.png"></image>
-      </view>
-
-      <view class="body-item" bindtap="goToObtainDataPage" data-typeid="2">
-          <image src="/assets/img/icon/my/like.png"></image>
-          <view class="body-item-middle">我点赞的</view>      
-          <image src="/assets/img/icon/my/right.png"></image>
-      </view>
-
-      <view class="body-item"  bindtap="goToObtainDataPage" data-typeid="3">
-        <image src="/assets/img/icon/my/comment.png"></image>
-        <view class="body-item-middle">我评论的</view>
-        <image src="/assets/img/icon/my/right.png"></image>
-      </view>
-    </view>
-
-    <!-- 收藏夹 -->
-    <view wx:if="{{favorites.length > 0}}" class="favorite">
-      <view class="favorite-title">
-        <view class="favorite-title-line"></view>
-        收藏夹
-        <view class="favorite-title-line"></view>
-      </view>
-
-      <scroll-view scroll-y="true"  style="height: 500rpx;">
-        <view wx:for="{{favorites}}" wx:key="index" class="body-item" bindtap="goToFavoritedContentPage" data-favoriteid="{{item['id']}}">
-          <image src="/assets/img/icon/favorite.png"></image>
-          <view class="body-item-middle">{{item.name}}</view>
-          <image src="/assets/img/icon/my/delete.png" catchtap="deleteFavorite" data-id="{{item['id']}}"></image>
-          <image src="/assets/img/icon/my/right.png" style="margin-left: 45rpx"></image>
+        <view class="body-item-left">
+          <image src="/assets/img/icon/my/publish.png"></image>
+          <view class="body-item-middle">发布</view>
         </view>
-      </scroll-view>
-    </view>
+        <image src="/assets/img/icon/my/right.png"></image>
+      </view>
 
-    <view wx:else class="favorite">
-      <view class="favorite-title">
-        <view class="favorite-title-line"></view>
-        暂无收藏夹
-        <view class="favorite-title-line"></view>
+      <view class="body-item" bindtap="goToFavoritePage">
+        <view class="body-item-left">
+          <image src="/assets/img/icon/favorite.png"></image>
+          <view class="body-item-middle">收藏夹</view>
+        </view>
+        <image src="/assets/img/icon/my/right.png"></image>
+      </view>
+
+      <view class="body-item">
+        <view class="body-item-left">
+          <image src="/assets/img/icon/my/comment.png"></image>
+          <view class="body-item-middle">关于</view>
+        </view>
+        <image src="/assets/img/icon/my/right.png"></image>
       </view>
     </view>
 
-    
-
   </view>
+</view>
 
-  <!-- 未登录状态显示内容 -->
-  <view wx:else class="no-login-body">
-    <button type="primary" style="margin-top: 50rpx" bindtap="login">登录</button>
-  </view>
+<!-- 未登录状态显示内容 -->
+<view wx:else class="no-login-body">
+  <button type="primary" style="margin-top: 50rpx" bindtap="login">登录</button>
 </view>

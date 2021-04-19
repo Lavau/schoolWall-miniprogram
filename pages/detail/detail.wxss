@@ -24,12 +24,15 @@
   display: flex;
   flex-direction: row;
   margin: 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx rgb(205, 225, 235) solid;
 }
 
 .promulgator-info-avator {
   height: 58rpx;
   width: 58rpx;
   border-radius: 35rpx;
+  border: 2rpx #11417E solid;
 }
 
 .promulgator-info-time {
@@ -116,7 +119,7 @@
 .others-right {
   display: flex;
   flex-direction: row;
-  margin-left: 280rpx;
+  margin-left: 270rpx;
 }
 
 .others-liner {

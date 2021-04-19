@@ -1,0 +1,44 @@
+/* pages/listFavorite/listFavorite.wxss */
+.body-item {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+
+  margin: 0 25rpx;
+  padding: 30rpx 0;
+  border-bottom: #F0EFF5 2rpx solid;
+}
+
+.body-item-left {
+  display: flex; 
+  flex-direction: row;
+}
+
+.body-item image{
+  height: 45rpx;
+  width: 45rpx
+}
+
+.body-item-left-favorite-name {
+  margin-left: 15rpx;
+  width: 450rpx;
+
+  display: -webkit-box;  /*设置为弹性盒子*/
+  -webkit-line-clamp: 1;  /*最多显示2行*/
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
+  -webkit-box-orient: vertical;
+}
+
+.add-icon image {
+  position: fixed; 
+  left: 646rpx; 
+  bottom: 45rpx; 
+  width: 72rpx; 
+  height: 76rpx; 
+  display: block; 
+  box-sizing: border-box;
+}
+
+

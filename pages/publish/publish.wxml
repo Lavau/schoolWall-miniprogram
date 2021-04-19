@@ -12,7 +12,7 @@
     </view>
 
     <!-- 选择图片并预览 -->
-    <view class="picture">
+    <view class="picture"> 
       <button bindtap="choosepicture">选择图片</button>
       <view style="height: 20rpx;"></view>
       <image wx:for="{{pictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
@@ -29,7 +29,7 @@
     <!-- 标签选择 -->
     <view class="weui-cells weui-cells_after-title"  style="margin: 30rpx 20rpx;">
       <view class="weui-cell weui-cell_select" >
-        <view class="weui-label">标签</view>
+        <view style="margin-left: 25rpx">标签</view>
         <view class="weui-cell__bd">
             <picker bindchange="inputLabel" value="{{typeIndex}}" range="{{typeNames}}">
                 <view class="weui-select weui-select_in-select-after">{{typeNames[typeIndex]}}</view>

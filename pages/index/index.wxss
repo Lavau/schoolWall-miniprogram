@@ -14,11 +14,8 @@
   margin: 10rpx 0;
 }
 
-.body-item-img image{
-  width: 235rpx;
-  height: 235rpx;
-  margin-right: 5rpx;
-  border-radius: 25rpx;
+.van-image {
+  margin-right: 7rpx;
 }
 
 /* 文字内容 */

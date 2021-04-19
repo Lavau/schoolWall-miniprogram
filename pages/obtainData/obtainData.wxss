@@ -2,7 +2,7 @@
 /* 页面展示 */
 .body-item{
   width: 100%;
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
   background-color: #fff;
   padding: 15rpx;
 
@@ -32,8 +32,8 @@
 
 .body-item-above image {
   margin-left: 15rpx;
-  height: 60rpx;
-  width: 60rpx
+  height: 55rpx;
+  width: 55rpx
 }
 
 /* 下部 */

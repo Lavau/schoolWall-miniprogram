@@ -1,0 +1,26 @@
+<!--pages/listFavorite/listFavorite.wxml-->
+<view wx:if="{{favorites == null}}"> 获取数据中。。</view>
+
+<view wx:else>
+  <view wx:if="{{favorites.length == 0}}">暂无收藏夹</view>
+  <view wx:else>
+    <view wx:for="{{favorites}}" wx:key="index" class="body-item" bindtap="goToFavoritedContentPage" data-favoriteid="{{item['id']}}">
+      <view class="body-item-left">
+        <image src="/assets/img/icon/favorite.png"></image>
+        <view class="body-item-left-favorite-name">{{item.name}}</view>
+      </view>
+      <view  class="body-item-right">
+        <image src="/assets/img/icon/my/delete.png" catchtap="deleteFavorite" data-id="{{item['id']}}"></image>
+        <image src="/assets/img/icon/my/right.png" style="margin-left: 45rpx"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="add-icon">
+    <image src="/assets/img/icon/add.png" bindtap="showOrCloseInputFavoriteName"></image>
+    <modal hidden="{{isHiddenInputFavoriteName}}" confirm-text="确定" cancel-text="取消" bindcancel="showOrCloseInputFavoriteName" bindconfirm="createFavorite">
+        <input type="text" bindinput="inputFavoriteName" placeholder="请输入收藏夹的名字" />
+      </modal>
+  </view>
+  
+</view>

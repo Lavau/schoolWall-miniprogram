@@ -56,7 +56,7 @@
       </modal>
       
       <!-- 举报 -->
-      <image src="/assets/img/icon/report.png" style="margin-left: 15rpx;" bindtap="determineReportReson"></image>
+      <image src="/assets/img/icon/report.png" style="margin-left: 20rpx;" bindtap="determineReportReson"></image>
       <modal hidden="{{isHiddenReportTypeModal}}" confirm-text="举报" cancel-text="取消" bindcancel="closeReportTypeModal" bindconfirm="report">
         <view wx:for="{{reportTypes}}" wx:key="index" class="report-type-item" data-reporttype="{{item}}" bindtap="inputReportType">
           {{item.name}}

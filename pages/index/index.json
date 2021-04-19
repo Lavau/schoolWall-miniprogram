@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-image": "@vant/weapp/image/index",
+    "van-loading": "@vant/weapp/loading/index"
+  },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "校园生活JIA"
 }
