@@ -19,7 +19,7 @@ Page({
 
     reportTypes: [],
     isHiddenReportTypeModal: true,
-    isHiddenInputReportReason: true,
+    isHiddenInputReportReason: false,
     selectedReportType: null,
     reportReason: "",
 

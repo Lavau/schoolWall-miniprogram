@@ -154,6 +154,7 @@
   height: 55rpx;
   width: 55rpx;
   border-radius: 35rpx;
+  border: 2rpx #11417E solid;
 }
 
 /* 右部 */
@@ -186,11 +187,12 @@
 
   width: 635rpx;
 
-  display: -webkit-box;  /*设置为弹性盒子*/
-  -webkit-line-clamp: 5;  /*最多显示2行*/
-  overflow: hidden;  /*超出隐藏*/
-  text-overflow: ellipsis;  /*超出显示为省略号*/
+  display: -webkit-box;  
+  -webkit-line-clamp: 3;  
+  overflow: hidden; 
+  text-overflow: ellipsis;  
   -webkit-box-orient: vertical;
+  word-break: break-all; 
 }
 
 /* foter */

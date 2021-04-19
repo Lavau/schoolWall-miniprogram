@@ -4,7 +4,7 @@ const APP = getApp();
 Page({
   data: {
     labelId: "",
-    labelText: "请选择搜索的标签",
+    labelText: "标签",
     isHiddenLabelModal: true,
     types: [],
 
@@ -37,24 +37,24 @@ Page({
 
   goToDetailPage(e) {
     if (APP.globalData.login == false) {
-        wx.showModal({
-            content: "请先登录",
-            showCancel: false,
-            success() {
-                wx.showLoading({title: '处理中'});
-                wx.login({
-                    success(res) {
-                        if (res.code) {
-                            APP.login(res.code);
-                            wx.hideLoading();
-                        }
-                    },
-                    fail: () => wx.showToast({title: "获取 code 失败"}),
-                });
-            }
-        });
+      wx.showModal({
+        content: "请先登录",
+        showCancel: false,
+        success() {
+          wx.showLoading({title: '处理中'});
+          wx.login({
+            success(res) {
+              if (res.code) {
+                APP.login(res.code);
+                wx.hideLoading();
+              }
+            },
+            fail: () => wx.showToast({title: "获取 code 失败"}),
+          });
+        }
+      });
     } else {
-        wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
+      wx.navigateTo({url: '../detail/detail?id=' + e.currentTarget.dataset.id});
     }
   },
 
@@ -64,7 +64,7 @@ Page({
       && p.data.beginDate == "开始时间" && p.data.endDate == "结束时间") {
       APP.showModal('(*^_^*)：搜索内容必须填哦');
     } else {
-      p.obtainSearchResults();
+      p.obtainSearchResults(-1);
     }
   },
 
@@ -77,12 +77,15 @@ Page({
       return;
     }
     wx.showLoading({title: '数据加载中'});
-    this.obtainSearchResults();
+    this.obtainSearchResults(0);
     wx.hideLoading({});
   },
 
-  obtainSearchResults() {
+  obtainSearchResults(pageNum) {
     let p = this;
+
+    console.log(p.data.labelId, p.data.searchText);
+
     wx.request({
       url: APP.globalData.localhost + "/noLogin/search",
       method: "POST",
@@ -92,14 +95,14 @@ Page({
         searchText: p.data.searchText,
         beginDate: p.data.beginDate == "开始时间" ? "" : p.data.beginDate,
         endDate: p.data.endDate == "结束时间" ? "" : p.data.endDate,
-        pageNum: p.data.pageNum + 1
+        pageNum: pageNum == -1 ? 1 : p.data.pageNum + 1
       },
       success(response) {
         if (response.data.success) {
           if (response.data.data.list.length == 0) {
             APP.showModal('没有搜索到内容');
           } else {
-            let listCopy = p.data.list;
+            let listCopy = pageNum == -1 ? [] : p.data.list;
             response.data.data.list.forEach(item => {
                 listCopy.push(item);
             });

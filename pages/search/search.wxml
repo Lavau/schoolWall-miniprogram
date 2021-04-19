@@ -1,41 +1,24 @@
 <!--pages/search/search.wxml-->
 <!-- 搜索内容选择 -->
 <view>
-  <!-- 搜索的标签 -->
-  <view class="label" bindtap="showOrCloseLabelModal">{{labelText}}</view>
+  <!-- 输入框 -->
+  <view class="search-input">
+    <view bindtap="showOrCloseLabelModal">{{labelText}}</view>
+    <input type="text" placeholder="请输入搜索的内容" maxlength="50" bindinput="inputSearchText"/>
+    <image src="/assets/img/icon/search.png" bindtap="search"></image>
+  </view>
   <modal hidden="{{isHiddenLabelModal}}" confirm-text="关闭" no-cancel="true" bindconfirm="showOrCloseLabelModal">
     <view wx:for="{{types}}" wx:key="index" class="label-item" data-label="{{item}}" bindtap="inputLabel">
       {{item.chineseName}}
     </view>
   </modal>
-
-  <!-- 输入框 -->
-  <view class="label">
-    <input type="text" placeholder="请输入搜索的内容" maxlength="50" bindinput="inputSearchText"/>
-  </view>
-
-  <!--  时间 -->
-  <view style="display:flex; flex-direction: row; justify-content:space-evenly;">
-    <view class="label">
-      <picker mode="date" start="2021-4-15" fields="day" bindchange="inputBeginDate">
-        {{beginDate}}
-      </picker>
-    </view>
-    <view class="label">
-      <picker mode="date" start="2021-4-15" fields="day" bindchange="inputEndDate">
-        {{endDate}}
-      </picker>
-    </view>
-  </view>
-
-  <view class="label" style="width: 45%; margin: 10rpx 200rpx;" bindtap="search">搜索</view>
 </view>
 
 <!-- 搜索结果展示 -->
 <view class="container">   
   <view>
     <block wx:for="{{list}}" wx:key="i">
-      <!-- 类型 -->>
+      <!-- 类型 -->
       <view class="body-item" bindtap="goToDetailPage" data-id="{{item['id']}}">
         <view class="body-item-type">
           <view class="body-item-type">

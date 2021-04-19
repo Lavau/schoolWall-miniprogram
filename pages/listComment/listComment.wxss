@@ -42,6 +42,7 @@
   height: 55rpx;
   width: 55rpx;
   border-radius: 35rpx;
+  border: 2rpx #11417E solid;
 }
 
 /* 右部 */

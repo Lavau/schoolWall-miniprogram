@@ -5,6 +5,7 @@
   margin-bottom: 30rpx;
   background-color: #fff;
   padding: 15rpx;
+  border-bottom: 1rpx solid #bebec0;
 
   display: flex;
   flex-direction: column;

@@ -97,10 +97,10 @@
 /* 底部固定图标 */
 .bottom-fixed-search-icon image {
   position: fixed; 
-  left: 638rpx; 
-  bottom: 100rpx;
-  height: 100rpx; 
-  width: 100rpx;
+  left: 658rpx; 
+  bottom: 110rpx;
+  height: 70rpx; 
+  width: 70rpx;
 }
 
 .bottom-fixed-upward-icon image {

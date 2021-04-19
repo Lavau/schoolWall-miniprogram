@@ -1,5 +1,8 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup/index",
+    "mp-half-screen-dialog": "/miniprogram_npm/weui-miniprogram/half-screen-dialog/half-screen-dialog"
+  },
   "enablePullDownRefresh": true,
   "navigationBarTitleText": "详情"
 }

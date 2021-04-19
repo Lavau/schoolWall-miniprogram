@@ -57,15 +57,16 @@
       
       <!-- 举报 -->
       <image src="/assets/img/icon/report.png" style="margin-left: 20rpx;" bindtap="determineReportReson"></image>
-      <modal hidden="{{isHiddenReportTypeModal}}" confirm-text="举报" cancel-text="取消" bindcancel="closeReportTypeModal" bindconfirm="report">
-        <view wx:for="{{reportTypes}}" wx:key="index" class="report-type-item" data-reporttype="{{item}}" bindtap="inputReportType">
+      <action-sheet hidden="{{isHiddenReportTypeModal}}">
+        <action-sheet-item wx:for="{{reportTypes}}" wx:key="{{index}}" bindtap="inputReportType" data-reporttype="{{item}}"  >
           {{item.name}}
-        </view>
-        <view class="report-type-item" catchtap="showOrCloseInputReportReason">其他</view>
-      </modal>
-      <modal hidden="{{isHiddenInputReportReason}}" confirm-text="确定输入" cancel-text="取消" bindcancel="resetReportReason" bindconfirm="showOrCloseInputReportReason">
-        <input type="text" bindinput="inputOtherReportReason" placeholder="请输入举报原因（50字）" maxlength="50"/>
-      </modal>
+        </action-sheet-item> 
+        <action-sheet-item>
+          <input type="text" bindinput="inputOtherReportReason" placeholder="其它（请输入内容）" maxlength="50"/>
+        </action-sheet-item>
+        <action-sheet-item style="color: #0081CC" bindtap="report" >举报</action-sheet-item>
+        <action-sheet-cancel class="cancel" bindtap="closeReportTypeModal">取消</action-sheet-cancel>
+      </action-sheet>
 
       <view class="others-right">
         <view class="others-right-like">{{likeNum + ' 点赞'}} </view>
