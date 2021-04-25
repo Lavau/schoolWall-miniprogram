@@ -5,12 +5,12 @@
 }
 
 .nickname {
-  margin-left: 10rpx;
+  margin-left: 15rpx;
   margin-bottom: 20rpx;
-  padding-top: 10rpx;
-  font-size: 26rpx;
+  padding-top: 16rpx;
+  font-size: 28rpx;
 
-  width: 400rpx;
+  width: 390rpx;
 
   display: -webkit-box;  /*设置为弹性盒子*/
   -webkit-line-clamp: 1;  /*最多显示2行*/
@@ -29,17 +29,17 @@
 }
 
 .promulgator-info-avator {
-  height: 58rpx;
-  width: 58rpx;
+  height: 60rpx;
+  width: 60rpx;
   border-radius: 35rpx;
-  border: 2rpx #11417E solid;
+  border: 2rpx #69718b8c solid;
 }
 
 .promulgator-info-time {
   /* border: 1rpx blue solid; */
   width: 300rpx;
   text-align: right;
-  margin-top: 16rpx;
+  margin-top: 20rpx;
   font-size: x-small;
   color: black;
 }
@@ -149,12 +149,12 @@
   flex-direction: row;
 }
 
-.comment-item-left image{
-  margin-top: 10rpx;
+.comment-item-left-avatar image{
+  margin-top: 17rpx;
   height: 55rpx;
   width: 55rpx;
   border-radius: 35rpx;
-  border: 2rpx #11417E solid;
+  border: 2rpx #69718b8c solid;
 }
 
 /* 右部 */

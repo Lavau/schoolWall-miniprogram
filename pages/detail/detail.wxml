@@ -94,7 +94,7 @@
     <view wx:for="{{commentList}}" wx:key="index">
       <view class="comment-item">
         <!-- 左部-头像 -->
-        <view class="comment-item-left">
+        <view class="comment-item-left-avatar">
           <image src="{{item.avatarUrl}}"></image>
         </view>
 

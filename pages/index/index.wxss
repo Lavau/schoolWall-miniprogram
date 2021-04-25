@@ -66,11 +66,11 @@
   width: 64rpx;
   border-radius: 35rpx;
 
-  border: 2rpx #11417E solid;
+  border: 4rpx #69718b8c solid;
 }
 
 .body-item-bottom-nickname{
-  margin-left: 12rpx;
+  margin-left: 15rpx;
   padding-top: 22rpx;
   width: 400rpx;
 
