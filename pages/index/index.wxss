@@ -4,7 +4,7 @@
   margin-bottom: 40rpx;
   background-color: #fff;
   padding: 15rpx;
-  border-bottom: 1rpx solid #bebec0;
+  border-bottom: 1rpx solid #f0f0f3;
 }
 
 /* 图片部分 */

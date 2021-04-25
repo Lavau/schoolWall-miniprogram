@@ -92,7 +92,7 @@ Page({
     if (p.data.description.length == 0 && p.data.pathOfPictures.length == 0) { 
       APP.showModal("必须有具体的文字或照片哟");
     } else {
-      p.verifyDescription().then((res) => {
+      APP.verifyDescription(p.data.description).then((res) => {
         if (res) { APP.showModal("！！！您的输入内容存有敏感信息！！！"); } 
         else {
           p.submitPictures().then((res) => {
@@ -163,31 +163,6 @@ Page({
         });
       }
       resolve(result);
-    });
-  },
-
-  verifyDescription() {
-    let p = this;
-    return new Promise(function (resolve, reject) {
-      p.obtainAccessToken().then((res) => {
-        wx.request({
-          method: 'POST',
-          url: `https://api.weixin.qq.com/wxa/msg_sec_check?access_token=${res}`,
-          data: {content: p.data.description},
-          success(res) {resolve(res.data.errcode == 87014);}
-        });
-      });
-    });
-  },
-
-  obtainAccessToken() {
-    return new Promise(function (resolve, reject) {
-      wx.request({
-        url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx4178db6fa98e73de&secret=8abc434a7832d72dfd570b62f50e3e8f',
-        method: 'GET',
-        success(res) {resolve(res.data.access_token);},
-        fail() {APP.showModal('ACCESS_TOKEN 获取失败');}
-      });
     });
   },
 

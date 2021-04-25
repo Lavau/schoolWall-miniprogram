@@ -13,21 +13,20 @@
 
     <!-- 选择图片并预览 -->
     <view class="picture"> 
-      <button bindtap="choosepicture">选择图片</button>
-      <view style="height: 20rpx;"></view>
+      <button bindtap="choosepicture" style="margin-top: 50rpx; margin-bottom: 50rpx;">选择图片</button>
       <image wx:for="{{pathOfPictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
         bindtap="previewpicture" mode="aspectFill">
       </image>
     </view>
 
     <!-- 匿名按钮 -->
-    <view class="switch-anonymous">
+    <!-- <view class="switch-anonymous">
       <van-switch checked="{{Anonymous}}" size="20px" active-color="#11417E" data-anonymous="{{Anonymous}}" bindtap="inputAnonymous" />
       <view class="switch-anonymous-word">是否匿名，默认为不匿名</view>  
-    </view>
+    </view> -->
 
     <!-- 标签选择 -->
-    <view class="weui-cells weui-cells_after-title"  style="margin: 30rpx 20rpx;">
+    <view class="weui-cells weui-cells_after-title"  style="margin: 50rpx 20rpx;">
       <view class="weui-cell weui-cell_select" >
         <view style="margin-left: 25rpx">标签</view>
         <view class="weui-cell__bd">

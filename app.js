@@ -10,7 +10,7 @@ App({
 
   setLoginTrue() {this.globalData.login = true;},
 
-  fail:() => wx.showToast({title: "服务器繁忙", icon: "loading"}),
+  fail:() => this.showModel("服务器繁忙"),
 
   /**
    * 等待服务器返回处理结果
@@ -96,6 +96,26 @@ App({
         if (response.data.success) {
           that.setData({favorites: response.data.data});
         }
+      }
+    });
+  },
+
+  verifyDescription(description) {
+    let p = this;
+    return new Promise(function (resolve, reject) {
+      if (description.length == 0) {
+        resolve(false);
+      } else {
+        wx.request({
+          method: 'POST',
+          url: p.globalData.localhost + '/login/publishedInfo/description/verify',
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "JSessionId": wx.getStorageSync('JSessionId')
+          },
+          data: {'description': description},
+          success(res) {resolve(!res.data.data);}
+        });
       }
     });
   },

@@ -31,7 +31,15 @@
       <view class="body-item">
         <view class="body-item-left">
           <image src="/assets/img/icon/my/comment.png"></image>
-          <view class="body-item-middle">关于</view>
+          <view class="body-item-middle">意见反馈</view>
+        </view>
+        <image src="/assets/img/icon/my/right.png"></image>
+      </view>
+
+      <view class="body-item">
+        <view class="body-item-left">
+          <image src="/assets/img/icon/my/comment.png"></image>
+          <view class="body-item-middle">关于小程序</view>
         </view>
         <image src="/assets/img/icon/my/right.png"></image>
       </view>

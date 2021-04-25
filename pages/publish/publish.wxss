@@ -2,7 +2,7 @@
 .title, .msg, .description {
   border: #D3D3D3 3rpx solid;
   border-radius: 10rpx;
-  margin: 30rpx 20rpx;
+  margin: 50rpx 30rpx;
   padding: 10rpx;
 }
 

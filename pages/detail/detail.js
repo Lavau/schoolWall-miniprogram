@@ -140,31 +140,36 @@ Page({
     if (this.data.commentContent.length == 0) {
       wx.showToast({title: '输入评论，才能发布哦', icon: "none"});
     } else {
-      APP.serverLoading();
+      APP.verifyDescription(p.data.commentContent).then((res) => {
+        if (res) { APP.showModal("！！！您的输入内容存有敏感信息！！！"); } 
+        else {
+          APP.serverLoading();
 
-      let uri = p.data.isCommentParent ? "/login/comment/insert" : "/login/comment/reply/insert";
-      let dataToServer = p.data.isCommentParent ? {
-        commentContent: p.data.commentContent,
-        attachedId: p.data.parentIdOrAttachedId
-      } : {
-        commentContent: p.data.commentContent,
-        parentId: p.data.parentIdOrAttachedId
-      };
+          let uri = p.data.isCommentParent ? "/login/comment/insert" : "/login/comment/reply/insert";
+          let dataToServer = p.data.isCommentParent ? {
+            commentContent: p.data.commentContent,
+            attachedId: p.data.parentIdOrAttachedId
+          } : {
+            commentContent: p.data.commentContent,
+            parentId: p.data.parentIdOrAttachedId
+          };
 
-      wx.request({
-        url: APP.globalData.localhost + uri,
-        method: "POST",
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          "JSessionId": wx.getStorageSync('JSessionId')
-        },
-        data: dataToServer,
-        success(res) {
-          wx.hideLoading();
-          APP.showModal(res.data.msg);
-          p.setData({hidden: !p.data.hidden, commentContent: ""});
-        },
-        fail:() => APP.fail()
+          wx.request({
+            url: APP.globalData.localhost + uri,
+            method: "POST",
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded",
+              "JSessionId": wx.getStorageSync('JSessionId')
+            },
+            data: dataToServer,
+            success(res) {
+              wx.hideLoading();
+              APP.showModal(res.data.msg);
+              p.setData({hidden: !p.data.hidden, commentContent: ""});
+            },
+            fail:() => APP.fail()
+          });
+        }
       });
     }
   },
