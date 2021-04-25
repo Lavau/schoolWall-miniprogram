@@ -15,7 +15,7 @@
     <view class="picture"> 
       <button bindtap="choosepicture">选择图片</button>
       <view style="height: 20rpx;"></view>
-      <image wx:for="{{pictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
+      <image wx:for="{{pathOfPictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
         bindtap="previewpicture" mode="aspectFill">
       </image>
     </view>

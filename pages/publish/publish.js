@@ -17,7 +17,7 @@ Page({
     description: "",
     Anonymous: false,
     wordNum: 0,
-    pictures: []
+    pathOfPictures: []
   },
 
   /**
@@ -60,7 +60,7 @@ Page({
       count: 3,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
-      success: (res) => p.setData({pictures: res.tempFilePaths}),
+      success(res) {p.setData({pathOfPictures: res.tempFilePaths});}
     })
   },
 
@@ -69,10 +69,10 @@ Page({
    */
   previewpicture(e) {
     let index = e.currentTarget.dataset.index;
-    let pictures = this.data.pictures;
+    let pathOfPictures = this.data.pathOfPictures;
     wx.previewImage({
-      current: pictures[index],
-      urls: pictures
+      current: pathOfPictures[index],
+      urls: pathOfPictures
     });
   },
 
@@ -89,61 +89,106 @@ Page({
       return;
     }
 
-    if (p.data.description.length == 0 && p.data.pictures.length == 0) { 
+    if (p.data.description.length == 0 && p.data.pathOfPictures.length == 0) { 
       APP.showModal("必须有具体的文字或照片哟");
     } else {
-        // 提交非图片部分
-        wx.request({
-          url: APP.globalData.localhost + "/login/publish",
-          method: "POST",
+      p.verifyDescription().then((res) => {
+        if (res) { APP.showModal("！！！您的输入内容存有敏感信息！！！"); } 
+        else {
+          p.submitPictures().then((res) => {
+            if (res) { p.submitDescription(); } 
+            else { APP.showModal('！！！图片含有敏感信息！！！'); }
+          });
+          
+        }
+      });
+    }
+  },
+
+  submitDescription() {
+    let p = this;
+    wx.request({
+      url: APP.globalData.localhost + "/login/publish",
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {
+        id: p.data.uuid,
+        typeId: p.data.labelId,
+        description: p.data.description,
+        msg: p.data.msg,
+        anonymous: p.data.Anonymous,
+        pictureNum: p.data.pathOfPictures.length
+      },
+      success(response) {
+        wx.showModal({
+          content: response.data.msg,
+          showCancel: false,
+          success(res) {
+            if (response.data.success && res.confirm) {
+              p.resetData();
+              wx.switchTab({url: '../index/index'});
+            }
+          }
+        });
+      },
+    });
+  },
+
+  submitPictures() {
+    let p = this;
+    return new Promise(function (resolve, reject) {
+      let result = true;
+      for (let i = 0; i < p.data.pathOfPictures.length; i++) {
+        wx.uploadFile({
+          url: APP.globalData.localhost + "/login/picture/save",
           header: {
             "Content-Type": "application/x-www-form-urlencoded",
             "JSessionId": wx.getStorageSync('JSessionId')
           },
-          data: {
-            id: p.data.uuid,
+          filePath: p.data.pathOfPictures[i],
+          name: "picture",
+          formData: {
             typeId: p.data.labelId,
-            description: p.data.description,
-            msg: p.data.msg,
-            anonymous: p.data.Anonymous,
-            pictureNum: p.data.pictures.length
+            id: p.data.uuid
           },
           success(response) {
-            wx.showModal({
-              content: response.data.msg,
-              showCancel: false,
-              success(res) {
-                if (response.data.success && res.confirm) {
-                  p.resetData();
-                  wx.switchTab({url: '../index/index'});
-                }
-              }
-            });
+            result = response.data.success & result;
+            // if (!response.data.success) {
+            //   APP.showModal({content: response.data.msg});
+            // }
           },
         });
-        
-        // 提交图片
-        for (let i = 0; i < p.data.pictures.length; i++) {
-          wx.uploadFile({
-            url: APP.globalData.localhost + "/login/picture/save",
-            header: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              "JSessionId": wx.getStorageSync('JSessionId')
-            },
-            filePath: p.data.pictures[i],
-            name: "picture",
-            formData: {
-              typeId: p.data.labelId,
-              id: p.data.uuid
-            },
-            success(response) {
-              if (!response.data.success) {
-                wx.showToast({content: response.data.msg});
-              }
-            },
-          });
-        }
-    }
+      }
+      resolve(result);
+    });
+  },
+
+  verifyDescription() {
+    let p = this;
+    return new Promise(function (resolve, reject) {
+      p.obtainAccessToken().then((res) => {
+        wx.request({
+          method: 'POST',
+          url: `https://api.weixin.qq.com/wxa/msg_sec_check?access_token=${res}`,
+          data: {content: p.data.description},
+          success(res) {resolve(res.data.errcode == 87014);}
+        });
+      });
+    });
+  },
+
+  obtainAccessToken() {
+    return new Promise(function (resolve, reject) {
+      wx.request({
+        url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx4178db6fa98e73de&secret=8abc434a7832d72dfd570b62f50e3e8f',
+        method: 'GET',
+        success(res) {resolve(res.data.access_token);},
+        fail() {APP.showModal('ACCESS_TOKEN 获取失败');}
+      });
+    });
   },
 
   /**
@@ -165,7 +210,7 @@ Page({
       description: "",
       Anonymous: false,
       wordNum: 0,
-      pictures: [],
+      pathOfPictures: [],
     });
   },
 

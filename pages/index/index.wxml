@@ -28,7 +28,7 @@
          <!-- 图片 -->
          <view class="body-item-img" wx:if="{{item['pictureUrlList'].length > 0}}">
           <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
-            <van-image height="235rpx" width="235rpx" radius="25rpx" src="{{item}}" 
+            <van-image height="235rpx" width="235rpx" radius="25rpx" src="{{item}}" fit="cover"
               use-loading-slot use-error-slot >
               <van-loading slot="loading" type="spinner" size="20" vertical />
               <text slot="error">加载失败</text>
@@ -42,7 +42,7 @@
         <!-- 图片 -->
         <view class="body-item-img" wx:if="{{item['pictureUrlList'].length > 0}}">
           <block wx:for="{{item['pictureUrlList']}}" wx:key="j">
-              <van-image height="235rpx" width="235rpx" radius="25rpx" src="{{item}}" 
+              <van-image height="235rpx" width="235rpx" radius="25rpx" src="{{item}}" fit="cover"
                 use-loading-slot use-error-slot >
                 <van-loading slot="loading" type="spinner" size="20" vertical />
                 <text slot="error">加载失败</text>
