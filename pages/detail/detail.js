@@ -302,7 +302,13 @@ Page({
     });
   },
 
-  inputReportType(e) {this.data.selectedReportType = e.currentTarget.dataset.reporttype;},
+  inputReportType(e) {
+    this.setData({
+      isHiddenReportTypeModal: !this.data.isHiddenReportTypeModal,
+      selectedReportType: e.currentTarget.dataset.reporttype
+    });
+    this.report();
+  },
   inputOtherReportReason(e) {this.data.reportReason = e.detail.value;},
 
   report() {

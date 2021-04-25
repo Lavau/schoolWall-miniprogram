@@ -10,7 +10,10 @@
   padding: 8rpx;
 }
 
-@keyframes myfirst {
-  from {height: 0rpx;}
-  to {height: 210rpx;}
+.warning-text {
+  color: lightgray;
+  font-size: 24rpx; 
+  margin: 40rpx 20rpx;
 }
+
+

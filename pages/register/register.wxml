@@ -33,6 +33,8 @@
       </view>
     </view>
   </view>
+
+  <view class="warning-text">请注意：为保证安全性，我们按照学校的规则设置了判断标准。</view>
   
   <button type="primary" bindtap="register" style="margin-bottom: 40rpx;">注册</button>
 
