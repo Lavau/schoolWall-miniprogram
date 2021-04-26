@@ -5,8 +5,18 @@
   <view class="header">
     <!-- 用户信息 -->
     <view class="header-user-info">
-      <image class="header-user-info-avatar" src="{{infos.avatarUrl}}"></image>
-      <view class="header-user-info-nickname">{{infos.nickname}}</view>
+      <image class="header-user-info-avatar" bindtap="choosepicture" src="{{pathOfPicture}}"></image>
+
+      <view class="header-user-info-nickname" bindtap="showOrCloseInputNickname">{{nickname}}</view>
+      <!-- 修改昵称 -->
+      <action-sheet hidden="{{isHiddenInputNickname}}">
+        <action-sheet-item>
+          <input type="text" bindinput="inputNickname" placeholder="请输入昵称" maxlength="12"/>
+        </action-sheet-item>
+        <action-sheet-item style="color: #11417E" bindtap="modifyNickname">确定</action-sheet-item>
+        <action-sheet-cancel class="cancel" bindtap="showOrCloseInputNickname">取消</action-sheet-cancel>
+      </action-sheet>
+
       <image class="header-user-info-msg" src="/assets/img/icon/msg.png" bindtap="goToMsgPage"></image>
     </view>
 
