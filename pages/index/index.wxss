@@ -11,7 +11,7 @@
 .body-item-img {
   width: 720rpx;
   box-sizing: border-box;
-  margin: 10rpx 0;
+  margin-top: 15rpx;
 }
 
 .van-image {
@@ -28,8 +28,7 @@
   -webkit-box-orient: vertical;
   word-break: break-all;  
 
-  margin-bottom: 10rpx;
-  padding-bottom: 5rpx;
+  margin: 15rpx 10rpx;
 }
 
 /* 标签部分 */
@@ -60,7 +59,7 @@
   color: #69718b;
 }
 
-.body-item-bottom-avator{
+.body-item-bottom-avator {
   margin-top: 12rpx;
   height: 64rpx;
   width: 64rpx;

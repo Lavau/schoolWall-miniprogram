@@ -37,14 +37,14 @@
       </view>
     </view>
 
+    <view class="submit-button">
+      <button bindtap="submit">发布</button>
+    </view>
 
-
-    <!-- 标签选择与发布按钮 -->
-    <view>
-       <!-- 发布按钮 -->
-      <view class="submit-button">
-        <button bindtap="submit">发布</button>
-      </view>
+    <view class="warn-word">
+      <view>(*^_^*) ：</view>
+      <view>因某些原因我们不能为同学们提供匿名发布功能。</view>
+      <view>您可以根据自己的需要，修改头像与昵称</view>
     </view>
   </view>
 
