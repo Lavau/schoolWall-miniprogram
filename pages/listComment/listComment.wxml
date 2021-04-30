@@ -21,18 +21,11 @@
 
         <!-- 时间 + 回复 + 删除 -->
         <view class="comment-item-right-foter">
-          <view wx:if="{{index > 0}}" style="font-size: 27rpx; font-weight: bold; color: #0081CC;  padding-right: 88rpx">
-            {{index}} 楼
-          </view>
-          <view style="font-size: 27rpx; padding-right: 88rpx">{{item.createTime}}</view>
-
-          <view wx:if="{{index == 0}}"  style="font-size: 27rpx; color: darkgrey; padding-right: 88rpx;" bindtap="isShowModal" data-id="{{item.id}}">
-            回复
-          </view>
-
-          <view wx:if="{{item.mine && index != 0}}" style="font-size: 27rpx; color: darkgrey" bindtap="deleteComment" data-id="{{item.id}}" data-index="{{index}}">
-            删除
-          </view>
+          <view wx:if="{{index > 0}}" style="color: #0081CC;">{{index}} 楼</view>
+          <view>{{item.createTime}}</view>
+          <view wx:if="{{index == 0}}" bindtap="isShowModal" data-id="{{item.id}}">回复</view>
+          <view wx:if="{{item.mine && index != 0}}" bindtap="deleteComment" data-id="{{item.id}}" data-index="{{index}}">删除</view>
+          <view wx:if="{{index > 0}}" bindtap="determineReportReson" data-id="{{item.id}}">举报</view>
 
           <modal hidden="{{hidden}}" confirm-text="发布评论" cancel-text="取消" 
             bindcancel="isShowModal" bindconfirm="publishComment">
@@ -40,6 +33,17 @@
               style="border: #eeebeb 1rpx solid; padding: 10rpx; margin-right: 550rpx;" >
             </textarea>
           </modal>
+
+          <action-sheet hidden="{{isHiddenReportReasonTypeModal}}">
+            <action-sheet-item wx:for="{{reportReasonTypes}}" wx:key="{{index}}" bindtap="inputReportReasonType" data-reporttype="{{item}}"  >
+              {{item.name}}
+            </action-sheet-item> 
+            <action-sheet-item>
+              <input type="text" bindinput="inputOtherReportReason" placeholder="其它（请输入内容）" maxlength="50"/>
+            </action-sheet-item>
+            <action-sheet-item style="color: #0081CC" bindtap="report" data-type="publishedInfo">举报</action-sheet-item>
+            <action-sheet-cancel class="cancel" bindtap="closeReportReasonTypeModal">取消</action-sheet-cancel>
+          </action-sheet>
         </view>
       </view>
     </view>

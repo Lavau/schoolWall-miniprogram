@@ -11,6 +11,13 @@ Page({
     commentList: [],
     pageNum: 0,
     pages: null,
+
+    reportReasonTypes: [],
+    isHiddenReportReasonTypeModal: true,
+    isHiddenInputReportReason: false,
+    selectedReportReasonType: null,
+    reportReason: "",
+    reportedCommentId: ""
   },
 
   /**
@@ -85,6 +92,103 @@ Page({
   },
 
   /**
+   * 以下方法为举报
+   */
+  determineReportReson(e) {
+    let p = this;
+
+    p.data.reportedCommentId = e.currentTarget.dataset.id;
+
+    if (p.data.reportReasonTypes.length == 0) {
+      wx.showLoading({title: '获取信息中。。'});
+      wx.request({
+        url: APP.globalData.localhost + '/login/reportType/list',
+        method: "GET",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "JSessionId": wx.getStorageSync('JSessionId')
+        },
+        success(response) {
+          wx.hideLoading();
+          if (response.data.success) {
+            p.setData({
+              reportReasonTypes: response.data.data,
+              isHiddenReportReasonTypeModal: !p.data.isHiddenReportReasonTypeModal
+            });
+          } else {
+            APP.showModal("举报类别获取失败。。。");
+          }
+        },
+        fail() {APP.showModal("举报类别获取失败。。。"); }
+      });
+    } else {
+      p.setData({isHiddenReportReasonTypeModal: !p.data.isHiddenReportReasonTypeModal});
+    }
+  },
+
+  closeReportReasonTypeModal() {
+    this.setData({isHiddenReportReasonTypeModal: !this.data.isHiddenReportReasonTypeModal});
+  },
+
+  showOrCloseInputReportReason() {
+    this.setData({isHiddenInputReportReason: !this.data.isHiddenInputReportReason});
+  },
+  resetReportReason() {
+    this.setData({isHiddenInputReportReason: !this.data.isHiddenInputReportReason,
+      reportReason: ""
+    });
+  },
+
+  inputReportReasonType(e) {
+    this.setData({
+      isHiddenReportReasonTypeModal: !this.data.isHiddenReportReasonTypeModal,
+      selectedReportReasonType: e.currentTarget.dataset.reporttype
+    });
+    this.report();
+  },
+  inputOtherReportReason(e) {this.data.reportReason = e.detail.value;},
+
+  report() {
+    let p = this;
+    if (p.data.selectedReportReasonType == null && p.data.reportReason.length == 0) {
+      wx.hideLoading();
+      APP.showModal('！！请输入举报原因！！');
+    } else {
+      let reportReason = p.data.selectedReportReasonType != null ? p.data.selectedReportReasonType.name  : "";
+      if (p.data.selectedReportReasonType != null && p.data.reportReason.length > 0) {
+        reportReason += '、';
+      }
+      reportReason += (p.data.reportReason.length > 0 ? p.data.reportReason : "");
+      wx.showModal({
+        content: '举报原因：' + reportReason,
+        success(res) {
+          if (res.confirm) {
+            wx.showLoading({title: '处理中'});
+            p.reportComment(reportReason);
+          }
+        }
+      });
+    }
+  },
+
+  reportComment(reportReason) {
+    let p = this;
+    wx.request({
+      url: APP.globalData.localhost + '/login/comment/report',
+      method: "POST",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "JSessionId": wx.getStorageSync('JSessionId')
+      },
+      data: {id: p.data.reportedCommentId, reportReason: reportReason},
+      success(response) {
+        wx.hideLoading();
+        APP.showModal(response.data.msg);
+      }
+    });
+  },
+
+  /**
    * 监听页面滚动到顶部,触发加载事件————获取下一页评论数据
    */
   onReachBottom() {
@@ -122,16 +226,24 @@ Page({
         pageNum: p.data.pageNum + 1
       },
       success(response) {
-        let listCopy = p.data.commentList;
-        response.data.data.list.forEach(item => {
-            listCopy.push(item);
-        });
+        if (response.data.success) {
+          let listCopy = p.data.commentList;
+          response.data.data.list.forEach(item => {
+              listCopy.push(item);
+          });
 
-        p.setData({
-          commentList: listCopy,
-          pageNum: response.data.data.pageNum,
-          pages: response.data.data.pages
-        });
+          p.setData({
+            commentList: listCopy,
+            pageNum: response.data.data.pageNum,
+            pages: response.data.data.pages
+          });
+        } else {
+          wx.showModal({
+            content: response.data.msg,
+            showCancel: false,
+            success(res) {wx.switchTab({url: '../index/index'})}
+          }); 
+        }
       },
       fail:() => APP.fail()
     });

@@ -56,16 +56,16 @@
       </modal>
       
       <!-- 举报 -->
-      <image src="/assets/img/icon/report.png" style="margin-left: 20rpx;" bindtap="determineReportReson"></image>
-      <action-sheet hidden="{{isHiddenReportTypeModal}}">
-        <action-sheet-item wx:for="{{reportTypes}}" wx:key="{{index}}" bindtap="inputReportType" data-reporttype="{{item}}"  >
+      <image src="/assets/img/icon/report.png" style="margin-left: 20rpx;" bindtap="determineReportReson" data-type="publishedInfo"></image>
+      <action-sheet hidden="{{isHiddenReportReasonTypeModal}}">
+        <action-sheet-item wx:for="{{reportReasonTypes}}" wx:key="{{index}}" bindtap="inputReportReasonType" data-reporttype="{{item}}"  >
           {{item.name}}
         </action-sheet-item> 
         <action-sheet-item>
           <input type="text" bindinput="inputOtherReportReason" placeholder="其它（请输入内容）" maxlength="50"/>
         </action-sheet-item>
-        <action-sheet-item style="color: #0081CC" bindtap="report" >举报</action-sheet-item>
-        <action-sheet-cancel class="cancel" bindtap="closeReportTypeModal">取消</action-sheet-cancel>
+        <action-sheet-item style="color: #0081CC" bindtap="report" data-type="publishedInfo">举报</action-sheet-item>
+        <action-sheet-cancel class="cancel" bindtap="closeReportReasonTypeModal">取消</action-sheet-cancel>
       </action-sheet>
 
       <view class="others-right">
@@ -108,15 +108,12 @@
           <!-- 评论内容 -->
           <view class="comment-item-right-body">{{item.content}}</view>
 
-          <!-- 时间 + 回复 + 删除 -->
+          <!-- 时间 + 回复 + 删除 + 举报 -->
           <view class="comment-item-right-foter">
-            <view style="font-size: 27rpx; padding-right: 88rpx">{{item.createTime}}</view>
-            <view style="font-size: 27rpx; color: darkgrey; padding-right: 88rpx;" bindtap="isShowModal" data-id="{{item.id}}" data-parent="false">
-              回复
-            </view>
-            <view wx:if="{{item.mine}}" style="font-size: 27rpx; color: darkgrey" bindtap="deleteComment" data-id="{{item.id}}">
-              删除
-            </view>
+            <view>{{item.createTime}}</view>
+            <view bindtap="isShowModal" data-id="{{item.id}}" data-parent="false">回复</view>
+            <view wx:if="{{item.mine}}" bindtap="deleteComment" data-id="{{item.id}}">删除</view>
+            <view bindtap="determineReportReson" data-type="comment" data-id="{{item.id}}">举报</view>
           </view>
 
           <!-- 评论的回复 -->

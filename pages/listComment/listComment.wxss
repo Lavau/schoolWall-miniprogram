@@ -86,7 +86,10 @@
 .comment-item-right-foter {
   display: flex;
   flex-direction: row;
-  margin-left: 10rpx;
+  justify-content: space-between;
+  margin: 0 10rpx;
+  color: #69718b;
+  font-size: 27rpx;
 }
 
 .comment-item-right-bottom {
