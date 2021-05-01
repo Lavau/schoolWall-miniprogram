@@ -44,27 +44,6 @@
   color: black;
 }
 
-/* 标题 */
-.title {
-  display: flex;
-  flex-direction: row;
-  margin: 20rpx;
-  padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-/* 脱单 */
-.single-feature {
-  margin: 20rpx;
-  padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
-}
-
-.single-feature-item {
-  display: flex;
-  flex-direction: row;
-}
-
 /* 具体内容 */
 .description {
   margin: 20rpx;
@@ -85,7 +64,6 @@
   box-sizing: border-box;
   margin-bottom: 15rpx;
   padding-bottom: 20rpx;
-  /* border-bottom: #eeebeb 1rpx solid; */
 }
 
 .picture image {
@@ -112,14 +90,14 @@
 }
 
 .others image { 
-  height: 45rpx;
-  width: 45rpx;
+  height: 60rpx;
+  width: 60rpx;
 }
 
 .others-right {
   display: flex;
   flex-direction: row;
-  margin-left: 270rpx;
+  margin-left: 210rpx;
 }
 
 .others-liner {
@@ -160,8 +138,8 @@
 /* 右部 */
 .comment-item-right {
   margin: 0 10rpx 20rpx 10rpx;
-  padding-bottom: 50rpx;
-  border-bottom: #d4d4d4 1rpx solid;
+  padding-bottom: 30rpx;
+  border-bottom: #d4d4d462 1rpx solid;
 }
 
 /* header */

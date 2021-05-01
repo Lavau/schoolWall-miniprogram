@@ -15,13 +15,19 @@
   flex-direction: row;
 }
 
-.body-item image{
+.body-item-left image{
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.body-item-right image{
   height: 45rpx;
   width: 45rpx
 }
 
 .body-item-left-favorite-name {
   margin-left: 15rpx;
+  margin-top: 5rpx;
   width: 450rpx;
 
   display: -webkit-box;  /*设置为弹性盒子*/

@@ -1,8 +1,8 @@
 <!--pages/listFavorite/listFavorite.wxml-->
-<view wx:if="{{favorites == null}}"> 获取数据中。。</view>
+<view wx:if="{{favorites == null}}" style="margin-top:50%; text-align:center;"> 获取数据中。。</view>
 
 <view wx:else>
-  <view wx:if="{{favorites.length == 0}}">暂无收藏夹</view>
+  <view wx:if="{{favorites.length == 0}}" style="margin-top:50%; text-align:center;">暂无收藏夹</view>
   <view wx:else>
     <view wx:for="{{favorites}}" wx:key="index" class="body-item" bindtap="goToFavoritedContentPage" data-favoriteid="{{item['id']}}">
       <view class="body-item-left">
