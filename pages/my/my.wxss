@@ -42,8 +42,8 @@
   top: 0rpx;
   left: 640rpx;
   top: 40rpx;
-  height: 60rpx;
-  width: 60rpx
+  height: 65rpx;
+  width: 65rpx
 }
 
 /* 身体部分 */
@@ -69,12 +69,12 @@
 }
 
 .body-item image{
-  height: 45rpx;
-  width: 45rpx
+  height: 60rpx;
+  width: 60rpx
 }
 
 .body-item-middle {
-  margin: 0 405rpx 0 30rpx;
+  margin: 4rpx 365rpx 0 30rpx;
 }
 
 /* 未登录样式 */

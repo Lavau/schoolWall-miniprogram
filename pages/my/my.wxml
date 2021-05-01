@@ -17,7 +17,7 @@
         <action-sheet-cancel class="cancel" bindtap="showOrCloseInputNickname">取消</action-sheet-cancel>
       </action-sheet>
 
-      <image class="header-user-info-msg" src="/assets/img/icon/msg.png" bindtap="goToMsgPage"></image>
+      <image class="header-user-info-msg" src="/assets/img/icon/my/msg.png" bindtap="goToMsgPage"></image>
     </view>
 
     <!-- 列表展示 -->
@@ -40,7 +40,7 @@
 
       <view class="body-item">
         <view class="body-item-left">
-          <image src="/assets/img/icon/my/comment.png"></image>
+          <image src="/assets/img/icon/my/content.png"></image>
           <view class="body-item-middle">意见反馈</view>
         </view>
         <image src="/assets/img/icon/my/right.png"></image>
@@ -48,7 +48,15 @@
 
       <view class="body-item">
         <view class="body-item-left">
-          <image src="/assets/img/icon/my/comment.png"></image>
+          <image src="/assets/img/icon/my/question.png"></image>
+          <view class="body-item-middle">常见问题</view>
+        </view>
+        <image src="/assets/img/icon/my/right.png"></image>
+      </view>
+
+      <view class="body-item">
+        <view class="body-item-left">
+          <image src="/assets/img/icon/my/about.png"></image>
           <view class="body-item-middle">关于小程序</view>
         </view>
         <image src="/assets/img/icon/my/right.png"></image>

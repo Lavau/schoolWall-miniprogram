@@ -2,10 +2,10 @@
 /* 页面展示 */
 .body-item{
   width: 100%;
-  margin-bottom: 30rpx;
+  margin-bottom: 45rpx;
   background-color: #fff;
   padding: 15rpx;
-  border-bottom: 1rpx solid #bebec0;
+  border-bottom: 2rpx solid #f0f0f3;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,6 @@
 
   margin-bottom: 15rpx;
   padding-bottom: 10rpx;
-  /* border-bottom: #93d1f5 5rpx dotted; */
 }
 
 .body-item-above image {
@@ -42,6 +41,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  color: #69718b;
 }
 
 .body-item-bottom image {
@@ -51,9 +51,9 @@
 }
 
 .body-item-bottom-type {
+  margin-top: 3rpx;
   font-size: small;
   font-weight: bold;
-  color: #55b5ec;
 }
 
 .body-item-bottom-time {
