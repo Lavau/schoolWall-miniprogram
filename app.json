@@ -7,7 +7,6 @@
     "pages/publish/publish",
     "pages/register/register",
     "pages/detail/detail",
-    "pages/listOthers/listOthers",
     "pages/listComment/listComment",
     "pages/listFavoritedContent/listFavoritedContent",
     "pages/listMsg/listMsg",
