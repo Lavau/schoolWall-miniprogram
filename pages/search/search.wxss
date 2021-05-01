@@ -12,9 +12,14 @@
   padding: 10rpx;
 }
 
+.search-input input {
+  margin-top: 6rpx;
+  border-bottom: 1rpx solid #11407e49;
+}
+
 .search-input image {
-  height: 50rpx;
-  width: 50rpx;
+  height: 60rpx;
+  width: 60rpx;
 }
 
 .label {

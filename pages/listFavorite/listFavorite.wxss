@@ -20,6 +20,10 @@
   width: 60rpx;
 }
 
+.body-item-right {
+   margin-top: 2rpx;
+}
+
 .body-item-right image{
   height: 45rpx;
   width: 45rpx

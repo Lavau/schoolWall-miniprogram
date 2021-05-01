@@ -3,7 +3,7 @@
 <view>
   <!-- 输入框 -->
   <view class="search-input">
-    <view bindtap="showOrCloseLabelModal">{{labelText}}</view>
+    <view bindtap="showOrCloseLabelModal" style="color: #11417E; margin-top: 1rpx">{{labelText}}</view>
     <input type="text" placeholder="请输入搜索的内容" maxlength="50" bindinput="inputSearchText"/>
     <image src="/assets/img/icon/search.png" bindtap="search"></image>
   </view>

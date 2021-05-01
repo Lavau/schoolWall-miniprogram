@@ -5,7 +5,7 @@
   margin-bottom: 45rpx;
   background-color: #fff;
   padding: 15rpx;
-  border-bottom: 2rpx solid #f0f0f3;
+  border-bottom: 4rpx solid #f0f0f3;
 
   display: flex;
   flex-direction: column;
@@ -45,8 +45,9 @@
 }
 
 .body-item-bottom image {
-  height: 30rpx;
-  width: 45rpx;
+  height: 36rpx;
+  width: 36rpx;
+  margin-top: 4rpx;
   margin-right: 15rpx;
 }
 

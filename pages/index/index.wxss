@@ -98,16 +98,16 @@
   position: fixed; 
   left: 658rpx; 
   bottom: 110rpx;
-  height: 70rpx; 
-  width: 70rpx;
+  height: 90rpx; 
+  width: 90rpx;
 }
 
 .bottom-fixed-upward-icon image {
   display: block; 
-  left: 666rpx; 
-  bottom: 50rpx; 
-  height: 57rpx; 
-  width: 57rpx; 
+  left: 656rpx; 
+  bottom: 45rpx; 
+  height: 90rpx; 
+  width: 90rpx; 
   position: fixed; 
   box-sizing: border-box
 }
