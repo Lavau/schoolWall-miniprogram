@@ -11,7 +11,8 @@
     "pages/listFavoritedContent/listFavoritedContent",
     "pages/listMsg/listMsg",
     "pages/search/search",
-    "pages/listFavorite/listFavorite"
+    "pages/listFavorite/listFavorite",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "dark",

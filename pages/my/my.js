@@ -106,6 +106,7 @@ Page({
   },
   goToFavoritePage() {wx.navigateTo({url: "../listFavorite/listFavorite"});},
   goToMsgPage() {wx.navigateTo({url: '../listMsg/listMsg'});},
+  goToFeedbackPage() {wx.navigateTo({url: '../feedback/feedback'});},
 
   login() {
     let p = this;

@@ -1,0 +1,22 @@
+<!--pages/publishOthers/publishOthers.wxml-->
+<view>
+    <!-- 输入具体内容 -->
+    <view class="description">
+      <textarea placeholder="请输入反馈的内容" maxlength="300" bindinput="inputDescription" value="">
+      </textarea>
+      <view class="description-word-num-sign">{{wordNum}}/300</view>
+    </view>
+
+    <!-- 选择图片并预览 -->
+    <view class="picture"> 
+      <button bindtap="choosepicture" style="margin-top: 50rpx; margin-bottom: 50rpx;">选择图片</button>
+      <image wx:for="{{pathOfPictures}}" wx:key="unique" src="{{item}}" data-index="{{index}}" 
+        bindtap="previewpicture" mode="aspectFill">
+      </image>
+    </view>
+
+    <view class="submit-button">
+      <button bindtap="submit">发布</button>
+    </view>
+
+</view>

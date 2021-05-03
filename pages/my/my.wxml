@@ -38,7 +38,7 @@
         <image src="/assets/img/icon/my/right.png"></image>
       </view>
 
-      <view class="body-item">
+      <view class="body-item"  bindtap="goToFeedbackPage">
         <view class="body-item-left">
           <image src="/assets/img/icon/my/content.png"></image>
           <view class="body-item-middle">意见反馈</view>

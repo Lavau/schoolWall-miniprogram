@@ -1,0 +1,35 @@
+/* pages/feedback/feedback.wxss */
+.description {
+  border: #D3D3D3 3rpx solid;
+  border-radius: 10rpx;
+  margin: 50rpx 30rpx;
+  padding: 10rpx;
+}
+
+.description-word-num-sign {
+  margin: 10rpx 0 0 2rpx;
+  font-size: small;
+  bottom: 0rpx;
+  color: lightblue;
+}
+
+/* 图片部分 */
+.picture {
+  margin: 10rpx;
+  width: 720rpx;
+  box-sizing: border-box;
+  margin: 30rpx 20rpx;
+}
+
+.picture image {
+  width: 235rpx;
+  height: 235rpx;
+  margin-right: 5rpx;
+  border-radius: 15rpx;
+}
+
+.submit-button button {
+  margin-bottom: 20rpx; 
+  background-color: #11417E;
+  color: #fff;
+}

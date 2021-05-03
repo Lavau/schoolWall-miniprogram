@@ -25,8 +25,8 @@
 }
 
 .body-item-right image{
-  height: 45rpx;
-  width: 45rpx
+  height: 50rpx;
+  width: 50rpx
 }
 
 .body-item-left-favorite-name {
@@ -43,10 +43,10 @@
 
 .add-icon image {
   position: fixed; 
-  left: 646rpx; 
+  left: 635rpx; 
   bottom: 45rpx; 
-  width: 72rpx; 
-  height: 76rpx; 
+  width: 85rpx; 
+  height: 85rpx; 
   display: block; 
   box-sizing: border-box;
 }

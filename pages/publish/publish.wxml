@@ -2,7 +2,7 @@
 <view>
   <view wx:if="{{login}}">
     <!-- 输入具体内容 -->
-    <view class="description description-position">
+    <view class="description">
       <textarea placeholder="{{placeholderOfDescription}}" maxlength="300" bindinput="inputDescription" value="">
       </textarea>
       <view class="description-word-num-sign">{{wordNum}}/300</view>
