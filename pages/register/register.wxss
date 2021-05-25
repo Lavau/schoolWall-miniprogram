@@ -5,7 +5,7 @@
   flex-direction: row;
 }
 
-.item input, .selected-content{
+.item input, .selected-content, .select-body {
   border: gray 2rpx solid;
   padding: 8rpx;
 }
@@ -15,5 +15,3 @@
   font-size: 24rpx; 
   margin: 40rpx 20rpx;
 }
-
-
