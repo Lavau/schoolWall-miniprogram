@@ -38,7 +38,5 @@
   
   <button type="primary" bindtap="register" style="margin-bottom: 40rpx;">注册</button>
 
-  <button wx:if="{{userInfo == null}}" type="warn" open-type="getUserInfo" bindgetuserinfo="obtainUserInfo">
-    基本信息授权
-  </button>
+  <button wx:if="{{userInfo == null}}" type="warn" bindtap="getUserProfile"> 获取头像昵称 </button>
 </view>

@@ -34,12 +34,15 @@ Page({
    /**
    * 获取用户信息
    */
-  obtainUserInfo(e) {
-    console.log("register.js: obtainUserInfo() \n", e.detail.userInfo);
-    this.setData({
-      userInfo: e.detail.userInfo,
-    });
-    APP.globalData.userInfo = e.detail.userInfo;
+  getUserProfile(e) {
+    let p = this;
+    wx.getUserProfile({
+      desc: '用于获取头像与昵称', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success(res) {
+        console.log(res.userInfo);
+        p.setData({userInfo: res.userInfo });
+      }
+    })
   },
 
   /**
@@ -48,7 +51,7 @@ Page({
    */
   register: function(){
     if (this.data.userInfo == null) {
-      wx.showToast({title: "请您授权信息", icon: "none"});
+      APP.showModal("请您授权头像与昵称信息");
       return;
     }
 
